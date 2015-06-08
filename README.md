@@ -70,6 +70,7 @@ composite view.
 
 ### Bonus Features (TBD)
 - [ ] Typeahead search bar
+- [ ] Random trip selection
 - [ ] Advanced guest log in functionality (choose who to log in as)
 - [ ] "Friends" integration — keep a list of everyone you have met up with
 - [ ] Deprecated trip views - find and interact with trips that have past
