@@ -1,4 +1,4 @@
-# Phase 1: User Authentication, Basic Blogs and Posts
+# Phase 1: User Authentication, User Profiles
 
 ## Rails
 ### Models
@@ -7,13 +7,14 @@
 * Trip
 
 ### Controllers
-* API::UsersController (create, new)
-* API::ProfilesController (create, new, show)
+* API::UsersController (create)
+* API::ProfilesController (create, show)
 * SessionsController (create, new, destroy)
 
 ### Views
 * index.html.erb
 * static_pages/root.html.erb
+* profiles/show.json.jbuilder
 
 ## Backbone
 ### Models
@@ -23,12 +24,12 @@
 ### Collections
 
 ### Views
-* User Portal (Composite View, toggles Sign Up and Log In views)
-* Log In
-* Sign Up
-* Index View (Composite View, contains an empty sidebar div and Profile Show view)
-* Profile View (Composite View, contains either Profile Blurb Items or Profile Blurb Forms)
-* Profile Blurb Item
-* Profile Blurb Form
+* UserPortal (Composite View, toggles SignUp and LogIn subviews)
+* LogIn
+* SignUp
+* ProfileView (Composite View, contains either ProfileBlurbItem
+  or ProfileBlurbForm subviews)
+* ProfileBlurbItem
+* ProfileBlurbForm
 
 ## Gems/Libraries

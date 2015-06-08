@@ -4,10 +4,8 @@
 ### Models
 
 ### Controllers
-Api::PostsController (feed)
 
 ### Views
-posts/feed.json.jbuilder
 
 ## Backbone
 ### Models
@@ -15,6 +13,10 @@ posts/feed.json.jbuilder
 ### Collections
 
 ### Views
-* FeedShow (composite view, contains PostsIndex subview)
+* SideBar (Composite View, contains InterestsIndex subview)
+* InterestsIndex (Composite View, contains InterestsIndexItem subviews)
+* InterestsIndexItem
 
 ## Gems/Libraries
+* gravatar
+* filepicker

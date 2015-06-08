@@ -1,29 +1,26 @@
-# Phase 2: Viewing Blogs and Posts
+# Phase 2: Creating Trips
 
 ## Rails
 ### Models
 
 ### Controllers
-Api::BlogsController (create, destroy, index, show)
-Api::PostsController (create, destroy, show, update)
+Api::TripsController (create, destroy, edit, index)
 
 ### Views
-* blogs/show.json.jbuilder
+trips/index.json.jbuilder
 
 ## Backbone
 ### Models
-* Blog (parses nested `posts` association)
-* Post
+* Trip
 
 ### Collections
-* Blogs
-* Posts
+* Trips
 
 ### Views
-* BlogForm
-* BlogShow (composite view, contains PostsIndex subview)
-* PostsIndex (composite view, contains PostsIndexItem subviews)
-* PostsIndexItem
-* PostShow
+* TripView (Composite View, contains TripItem subviews)
+* TripItem (contains two templates, TripItemShow and TripItemForm, which toggle)
+* TripItemShow
+* TripItemForm
 
 ## Gems/Libraries
+http://simplemaps.com/resources/us-cities-data
