@@ -10,7 +10,7 @@
 ![profile-view]
 
 ## Trip Search
-![trip search]
+![trip-search]
 
 [log-in]: ./wireframes/log_in.png
 [index-view]: ./wireframes/index_view.png
