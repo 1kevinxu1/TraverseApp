@@ -3,26 +3,32 @@
 ## Rails
 ### Models
 * User
-* Blog
-* Post
+* Profile
+* Trip
 
 ### Controllers
-* UsersController (create, new)
+* API::UsersController (create, new)
+* API::ProfilesController (create, new, show)
 * SessionsController (create, new, destroy)
-* BlogsController (create, new, show)
-* PostsController (create, new, show)
 
 ### Views
-* users/new.html.erb
-* session/new.html.erb
-* blogs/new.html.erb
-* blogs/show.html.erb
+* index.html.erb
+* static_pages/root.html.erb
 
 ## Backbone
 ### Models
+* User
+* Profile
 
 ### Collections
 
 ### Views
+* User Portal (Composite View, toggles Sign Up and Log In views)
+* Log In
+* Sign Up
+* Index View (Composite View, contains an empty sidebar div and Profile Show view)
+* Profile View (Composite View, contains either Profile Blurb Items or Profile Blurb Forms)
+* Profile Blurb Item
+* Profile Blurb Form
 
 ## Gems/Libraries

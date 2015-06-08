@@ -55,6 +55,15 @@ id           | integer   | not null, primary key
 city_zip     | integer   | not null, foreign key: (references cities)
 user_id      | integer   | not null, foreign key: (references users)
 
-##
+## interests
 column name  | data type | details
 -------------|-----------|-----------------------
+id           | integer   | not null, primary key
+name         | string    | not null, unique
+
+## user_interests
+column name  | data type | details
+-------------|-----------|-----------------------
+id           | integer   | not null, primary key
+user_id      | integer   | not null
+interest_id  | integer   | not null

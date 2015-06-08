@@ -30,16 +30,17 @@ Users can:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Blog Creation (~1 day)
+### Phase 1: User Authentication, Profile Creation (~2-3 days)
 I will implement user authentication in Rails based on the practices learned at
-App Academy. By the end of this phase, users will be able to sign up, log in, and
-create trips using a simple text form in a Rails view. The most important part of
-this phase will be pushing the app to Heroku and ensuring that everything works
-before moving on to phase 2.
+App Academy. By the end of this phase, users will be able to toggle sign up and
+log in, and create a profile once logged in using a backbone view. I will create
+API routes that will enable the backbone calls to persist to the database. The
+most important part of this phase will be pushing the app to Heroku and ensuring
+that everything works before moving on to phase 2.
 
 [Details][phase-one]
 
-### Phase 2: Viewing Blogs and Posts (~2 days)
+### Phase 2: Creating Trips (~1-2 days)
 I will add API routes to serve blog and post data as JSON, then add Backbone
 models and collections that fetch data from those routes. By the end of this
 phase, users will be able to create blogs and view both blogs and posts, all
