@@ -1,6 +1,8 @@
 class Api::ProfilesController < ApplicationController
+
+  #id in params is the user_id, not profile id
   def show
-    @profile = Profile.find(params[:id])
+    @profile = Profile.find_by_user_id(params[:id])
     render :show
   end
 

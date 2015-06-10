@@ -12,19 +12,20 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   tripIndex: function() {
-
+    
   },
 
   editProfile: function() {
-    var view = new Traverse.Views.ProfileEdit();
+    var myProfile = new Traverse.Models.Profile({id: Traverse.userData.id});
+    myProfile.fetch();
+    var view = new Traverse.Views.ProfileEdit({model: myProfile});
     this._swapView(this.$mainview, this._mainview, view);
   },
 
   showProfile: function(id) {
-    var view = new Traverse.Views.ProfileShow({
-      userData: Traverse.userData,
-      myProfile: Traverse.myProfile
-    });
+    var myProfile = new Traverse.Models.Profile({id: id});
+    myProfile.fetch();
+    var view = new Traverse.Views.ProfileShow({model: myProfile});
     this._swapView(this.$mainview, this._mainview, view);
   },
 

@@ -13,4 +13,6 @@
 #
 
 class Trip < ActiveRecord::Base
+  validates :owner_id
+
 end

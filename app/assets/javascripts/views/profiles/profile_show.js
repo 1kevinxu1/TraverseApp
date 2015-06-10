@@ -1,18 +1,16 @@
 Traverse.Views.ProfileShow = Backbone.CompositeView.extend({
   template: JST['profiles/show'],
 
-  initialize: function(options) {
-    debugger;
-    this.userData = options.userData,
-    this.myProfile = options.myProfile
+  initialize: function() {
+    this.listenTo(this.model, "sync", this.render);
   },
 
   render: function () {
     var content = this.template({
-        userData: Traverse.userData,
-        profile: Traverse.myProfile
+        profile: this.model
       });
     this.$el.html(content);
     return this;
   },
+
 });

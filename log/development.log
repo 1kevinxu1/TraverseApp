@@ -17696,3 +17696,2410 @@ SystemExit - exit:
   /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
   /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
 
+
+
+Started DELETE "/session" for ::1 at 2015-06-10 11:46:07 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"fabZJ14xo7YDSnG4dIdmRelPlhJam8uIHOJI2Ya5LA9ZbpjM2U/+OWJOg1ObS4zaPH6eR4tnH/7eazlmwA/3eQ=="}
+  [1m[36mUser Load (12.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "4tuWNepcMGxICtR9BF5h-w"]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (2.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kevins' AND "users"."id" != 3) LIMIT 1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_digest" = 'hk5XGEPWXV1p5VZbsoBV_w' AND "users"."id" != 3) LIMIT 1
+  [1m[36mSQL (1.5ms)[0m  [1mUPDATE "users" SET "session_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"], ["updated_at", "2015-06-10 18:46:08.508744"], ["id", 3]]
+  [1m[35m (6.4ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 214ms (ActiveRecord: 93.4ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 11:46:08 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 2783ms (Views: 2777.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-06-10 11:46:27 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"9BQffD9b0DY6W4Nns6C8rMayUGwt/27Nrr34FyE5123Q3F6XuCWNuVtfcYxcbFYzE4NYOfwDurtsNImoZ48MGw==", "user"=>{"email"=>"kevins", "password"=>"[FILTERED]"}, "name"=>"Log In"}
+  [1m[36mUser Load (15.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "kevins"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 144ms (ActiveRecord: 16.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 11:46:27 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (17.4ms)
+Completed 200 OK in 2233ms (Views: 2218.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profile" for ::1 at 2015-06-10 11:49:30 -0700
+Processing by Api::ProfilesController#show as JSON
+  [1m[35mProfile Load (0.8ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" IS NULL LIMIT 1
+  Rendered api/profiles/show.json.jbuilder (14.6ms)
+Completed 500 Internal Server Error in 156ms (ActiveRecord: 2.4ms)
+
+NoMethodError - undefined method `name' for nil:NilClass:
+  app/views/api/profiles/show.json.jbuilder:2:in `_app_views_api_profiles_show_json_jbuilder__3374841826209945047_70267168820220'
+  actionview (4.2.1) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  app/controllers/api/profiles_controller.rb:4:in `show'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started GET "/" for ::1 at 2015-06-10 11:50:49 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 2539ms (Views: 2529.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/profile" for ::1 at 2015-06-10 11:50:56 -0700
+Processing by Api::ProfilesController#show as JSON
+  [1m[35mProfile Load (1.0ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" IS NULL LIMIT 1
+  Rendered api/profiles/show.json.jbuilder (16.7ms)
+Completed 500 Internal Server Error in 99ms (ActiveRecord: 1.0ms)
+
+NoMethodError - undefined method `name' for nil:NilClass:
+  app/views/api/profiles/show.json.jbuilder:2:in `_app_views_api_profiles_show_json_jbuilder__3374841826209945047_70267168820220'
+  actionview (4.2.1) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  app/controllers/api/profiles_controller.rb:4:in `show'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started GET "/" for ::1 at 2015-06-10 11:51:45 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 2065ms (Views: 2056.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/profile/3" for ::1 at 2015-06-10 11:51:51 -0700
+
+ActionController::RoutingError (No route matches [GET] "/api/profile/3"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (5.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (39.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (3.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (2.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (2.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (2.0ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (61.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (2.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (23.1ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (612.3ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 11:52:13 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 2527ms (Views: 2402.4ms | ActiveRecord: 4.5ms)
+
+
+Started GET "/api/profile/3" for ::1 at 2015-06-10 11:52:54 -0700
+
+ActionController::RoutingError (No route matches [GET] "/api/profile/3"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (2.9ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (13.9ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (2.0ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (69.7ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (1.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (123.8ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 11:55:26 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 1619ms (Views: 1551.5ms | ActiveRecord: 4.2ms)
+
+
+Started GET "/api/profile/3" for ::1 at 2015-06-10 11:55:40 -0700
+
+ActionController::RoutingError - uninitialized constant Api::ProfileController:
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:63:in `rescue in controller'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:58:in `controller'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started GET "/" for ::1 at 2015-06-10 12:00:55 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 1576ms (Views: 1505.2ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/api/profile/3" for ::1 at 2015-06-10 12:01:01 -0700
+
+ActionController::RoutingError (No route matches [GET] "/api/profile/3"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (4.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (32.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (2.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (2.0ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (27.0ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.9ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (84.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (2.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.1ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (166.5ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 12:01:17 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 3761ms (Views: 3715.0ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/profiles/3" for ::1 at 2015-06-10 12:01:25 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[35mProfile Load (1.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 3]]
+  Rendered api/profiles/show.json.jbuilder (18.4ms)
+Completed 500 Internal Server Error in 188ms (ActiveRecord: 4.0ms)
+
+NoMethodError - undefined method `name' for nil:NilClass:
+  app/views/api/profiles/show.json.jbuilder:2:in `_app_views_api_profiles_show_json_jbuilder__3374841826209945047_70267168820220'
+  actionview (4.2.1) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  app/controllers/api/profiles_controller.rb:4:in `show'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started GET "/" for ::1 at 2015-06-10 12:03:49 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 1971ms (Views: 1901.1ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/api/profiles/3" for ::1 at 2015-06-10 12:03:55 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[35mProfile Load (0.8ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 3]]
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered api/profiles/show.json.jbuilder (264.5ms)
+Completed 200 OK in 406ms (Views: 276.5ms | ActiveRecord: 4.1ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:17:32 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 3159ms (Views: 3147.4ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/3" for ::1 at 2015-06-10 13:17:42 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mProfile Load (0.9ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 3]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  Rendered api/profiles/show.json.jbuilder (12.4ms)
+Completed 200 OK in 66ms (Views: 21.1ms | ActiveRecord: 1.9ms)
+
+
+Started DELETE "/session" for ::1 at 2015-06-10 13:18:04 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"p7rPlgtODrHa7yRgxLXlh/EmB5aKroPcj1kQPBeVidiDco59jDBTPrvr1osreQ8YJBcPw1tSV6pN0GGDUSNSrg=="}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "hk5XGEPWXV1p5VZbsoBV_w"]]
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mUser Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kevins' AND "users"."id" != 3) LIMIT 1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_digest" = '50z-NA239wCE9pE2qA_4Ww' AND "users"."id" != 3) LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "users" SET "session_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_digest", "50z-NA239wCE9pE2qA_4Ww"], ["updated_at", "2015-06-10 20:18:04.313333"], ["id", 3]]
+  [1m[35m (1.3ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 111ms (ActiveRecord: 5.3ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 13:18:04 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 3621ms (Views: 3612.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-06-10 13:18:37 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"h7xaB+wa72HGql2vWKPbx0ddZ9HG4n967qNNnHSN25KjdBvsa2Sy7qeur0S3bzFYkmxvhBceqwwsKjwjMjsA5A==", "user"=>{"email"=>"kevins", "password"=>"[FILTERED]"}, "name"=>"Log In"}
+  [1m[36mUser Load (0.9ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "kevins"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 146ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:18:38 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "50z-NA239wCE9pE2qA_4Ww"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 2758ms (Views: 2743.0ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/session" for ::1 at 2015-06-10 13:18:50 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"OrmqAsf8C7MUcllbif6tkz7GWzedTil7qMTvGMWk7KkecevpQIJWPHV2q7BmMkcM6/dTYkyy/Q1qTZ6ngxI33w=="}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "50z-NA239wCE9pE2qA_4Ww"]]
+  [1m[36m (0.6ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (1.2ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kevins' AND "users"."id" != 3) LIMIT 1
+  [1m[36mUser Exists (1.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_digest" = 'Z9pRDK56z36gSiL4fFG9CQ' AND "users"."id" != 3) LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  UPDATE "users" SET "session_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_digest", "Z9pRDK56z36gSiL4fFG9CQ"], ["updated_at", "2015-06-10 20:18:50.801829"], ["id", 3]]
+  [1m[36m (1.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 115ms (ActiveRecord: 5.7ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 13:18:50 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 2613ms (Views: 2606.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-06-10 13:19:03 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"RqiTFsq77j/d9nqCDlVEft5NCqOYQq6Qdkr34hfcWnRiYNL9TcWzsLzyiGnhma7hC3wC9km+eua0w4ZdUWqBAg==", "user"=>{"email"=>"kevins", "password"=>"[FILTERED]"}, "name"=>"Log In"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" IS NULL LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "kevins"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 109ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:19:03 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "Z9pRDK56z36gSiL4fFG9CQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 2696ms (Views: 2678.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:19:13 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "Z9pRDK56z36gSiL4fFG9CQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 2864ms (Views: 2817.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/profiles/3" for ::1 at 2015-06-10 13:19:16 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[35mProfile Load (0.7ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 3]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "Z9pRDK56z36gSiL4fFG9CQ"]]
+  Rendered api/profiles/show.json.jbuilder (10.1ms)
+Completed 200 OK in 43ms (Views: 27.5ms | ActiveRecord: 1.3ms)
+
+
+Started DELETE "/session" for ::1 at 2015-06-10 13:19:32 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"RXfONccK8NWMRvyhWhfeLBSDoeIY/mfOaBdQXh58QxFhv4/eQHStWu1CDkq12zSzwbKpt8kCs7iqniHhWMqYZw=="}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "Z9pRDK56z36gSiL4fFG9CQ"]]
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.9ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kevins' AND "users"."id" != 3) LIMIT 1
+  [1m[36mUser Exists (0.9ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_digest" = 'S-q8_e-aol2Akafs8WOzpQ' AND "users"."id" != 3) LIMIT 1[0m
+  [1m[35mSQL (1.1ms)[0m  UPDATE "users" SET "session_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_digest", "S-q8_e-aol2Akafs8WOzpQ"], ["updated_at", "2015-06-10 20:19:32.828612"], ["id", 3]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 107ms (ActiveRecord: 4.8ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 13:19:32 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 2571ms (Views: 2562.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-06-10 13:19:42 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"BAmh7W2bqaYllITH+ny+Ayu4Di8qjE9szVHxoFsT6nsgweAG6uX0KUSQdiwVsFSc/okGevtwmxoP2IAfHaUxDQ==", "user"=>{"email"=>"kevin", "password"=>"[FILTERED]"}, "name"=>"Log In"}
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" IS NULL LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "kevin"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 112ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:19:42 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "nqRKME2TcRHXsorn2q7t0g"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 2841ms (Views: 2825.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/profiles/2" for ::1 at 2015-06-10 13:19:56 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mProfile Load (0.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 2]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "nqRKME2TcRHXsorn2q7t0g"]]
+  Rendered api/profiles/show.json.jbuilder (10.3ms)
+Completed 200 OK in 73ms (Views: 58.1ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/session" for ::1 at 2015-06-10 13:20:43 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"0+2+oGHV0Vb7/Rea83Dhk9LlBvSCWviqWxiRCwYKG2n3Jf9L5quM2Zr55XEcvAsMB9QOoVOmLNyZkeC0QLzAHw=="}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "nqRKME2TcRHXsorn2q7t0g"]]
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36mUser Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kevin' AND "users"."id" != 2) LIMIT 1[0m
+  [1m[35mUser Exists (0.8ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_digest" = '3FpxPa2nzwAUALam_axHOg' AND "users"."id" != 2) LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE "users" SET "session_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_digest", "3FpxPa2nzwAUALam_axHOg"], ["updated_at", "2015-06-10 20:20:43.929606"], ["id", 2]]
+  [1m[35m (0.9ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 82ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 13:20:43 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 2787ms (Views: 2783.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-06-10 13:20:52 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"Z3AVpi13Hm9RIvD0KNokAZiumelALbrPzkqzuU2/47NDuFRNqglD4DAmAh/HFs6eTZ+RvJHRbrkMw8IGCwk4xQ==", "user"=>{"email"=>"kevin", "password"=>"[FILTERED]"}, "name"=>"Log In"}
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" IS NULL LIMIT 1[0m
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "kevin"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 106ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:20:53 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "3FpxPa2nzwAUALam_axHOg"]]
+  Rendered static_pages/root.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 2018ms (Views: 2002.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/profiles/2" for ::1 at 2015-06-10 13:21:07 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mProfile Load (1.1ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 2]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "3FpxPa2nzwAUALam_axHOg"]]
+  Rendered api/profiles/show.json.jbuilder (12.3ms)
+Completed 200 OK in 53ms (Views: 25.0ms | ActiveRecord: 2.0ms)
+
+
+Started PUT "/api/profiles/2" for ::1 at 2015-06-10 13:21:13 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"2", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdbasbjdfj", "story_blurb"=>"fgjtWDGz", "travel_blurb"=>"sdgjszdrtyrjythd"}}
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "3FpxPa2nzwAUALam_axHOg"]]
+  [1m[36mProfile Load (0.8ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 2]]
+Completed 500 Internal Server Error in 54ms (ActiveRecord: 1.5ms)
+
+NoMethodError - undefined method `update_attributes' for nil:NilClass:
+  app/controllers/api/profiles_controller.rb:11:in `update'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+  [1m[36mUser Load (1.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mProfile Load (13.8ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 3]]
+  [1m[35mSQL (15.7ms)[0m  DELETE FROM "profiles" WHERE "profiles"."id" = $1  [["id", 2]]
+  [1m[36mSQL (22.0ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  [1m[35m (1.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 2]]
+  [1m[36mSQL (0.4ms)[0m  [1mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36mProfile Load (0.5ms)[0m  [1mSELECT "profiles".* FROM "profiles"[0m
+
+
+Started GET "/session" for ::1 at 2015-06-10 13:22:26 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+
+ActionController::RoutingError (No route matches [GET] "/session"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (20.1ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (12.7ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (94.1ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.9ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (46.7ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (1.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (78.7ms)
+
+
+Started GET "/session" for ::1 at 2015-06-10 13:22:27 -0700
+
+ActionController::RoutingError (No route matches [GET] "/session"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (24.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (18.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (36.9ms)
+
+
+Started GET "/session" for ::1 at 2015-06-10 13:22:27 -0700
+
+ActionController::RoutingError (No route matches [GET] "/session"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.9ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.9ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (42.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (40.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.7ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (73.2ms)
+
+
+Started GET "/session" for ::1 at 2015-06-10 13:22:27 -0700
+
+ActionController::RoutingError (No route matches [GET] "/session"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (24.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (18.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (39.2ms)
+
+
+Started GET "/session" for ::1 at 2015-06-10 13:22:27 -0700
+
+ActionController::RoutingError (No route matches [GET] "/session"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (25.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (19.0ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (37.3ms)
+
+
+Started GET "/session" for ::1 at 2015-06-10 13:22:28 -0700
+
+ActionController::RoutingError (No route matches [GET] "/session"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.9ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.7ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (26.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (15.6ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (34.5ms)
+
+
+Started GET "/session" for ::1 at 2015-06-10 13:22:28 -0700
+
+ActionController::RoutingError (No route matches [GET] "/session"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.8ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (25.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (16.0ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/gems/2.1.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (37.7ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:22:31 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "3FpxPa2nzwAUALam_axHOg"]]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_user rendered or redirected
+Completed 302 Found in 48ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 13:22:31 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 1648ms (Views: 1647.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2015-06-10 13:22:50 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"s7uKfA8a+2s9X1t3ej0chlNHJfW79kigVzlbSOhMxEiXc8uXiGSm5FxbqZyV8fYZhnYtoGoKnNaVsCr3rvofPg==", "user"=>{"email"=>"kevin", "password"=>"[FILTERED]", "fname"=>"Kevin", "lname"=>"Xu", "birthday"=>"1995-10-10"}, "name"=>"Sign Up"}
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (59.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'kevin' LIMIT 1
+  [1m[36mUser Exists (1.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_digest" = 'lhjY62ETjU3l__a17iwV_w' LIMIT 1[0m
+  [1m[35mSQL (73.9ms)[0m  INSERT INTO "users" ("email", "password_digest", "fname", "lname", "birthday", "session_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["email", "kevin"], ["password_digest", "$2a$10$sU.2H5e0SnHeUJZvkhG4N.7j9xuODKgMB4TLbdE.OH/wKRmhYKEey"], ["fname", "Kevin"], ["lname", "Xu"], ["birthday", "1995-10-10"], ["session_digest", "lhjY62ETjU3l__a17iwV_w"], ["created_at", "2015-06-10 20:22:50.910187"], ["updated_at", "2015-06-10 20:22:50.910187"]]
+  [1m[36m (180.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  [1m[35mSQL (76.2ms)[0m  INSERT INTO "profiles" ("user_id", "hometown_id", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["user_id", 4], ["hometown_id", 1], ["image_url", "send help"], ["created_at", "2015-06-10 20:22:51.239831"], ["updated_at", "2015-06-10 20:22:51.239831"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 872ms (ActiveRecord: 401.6ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:22:51 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 179ms (Views: 176.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:22:56 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.9ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (56.3ms)
+Completed 200 OK in 65ms (Views: 58.8ms | ActiveRecord: 1.5ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 13:23:07 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "profiles" SET "about_blurb" = $1, "story_blurb" = $2, "travel_blurb" = $3, "updated_at" = $4 WHERE "profiles"."id" = $5  [["about_blurb", "asdgasdvathj"], ["story_blurb", "askldvjaslkdgh;"], ["travel_blurb", "a;odfibwe;rognasfb\r\n"], ["updated_at", "2015-06-10 20:23:07.100889"], ["id", 3]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 28ms (Views: 0.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:24:53 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 394ms (Views: 391.0ms | ActiveRecord: 0.7ms)
+  [1m[36mUser Load (1.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  [1m[35mProfile Load (1.0ms)[0m  SELECT "profiles".* FROM "profiles"
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:27:04 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (1.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (2.6ms)
+Completed 200 OK in 51ms (Views: 40.8ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:28:15 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 1078ms (Views: 1075.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:28:16 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (3.3ms)
+Completed 200 OK in 16ms (Views: 12.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:28:34 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 191ms (Views: 189.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:28:34 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.6ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (2.9ms)
+Completed 200 OK in 20ms (Views: 16.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:29:47 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 645ms (Views: 643.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:29:48 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (4.7ms)
+Completed 200 OK in 19ms (Views: 15.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:30:53 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (0.9ms)
+Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:31:04 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (2.0ms)
+Completed 200 OK in 7ms (Views: 4.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:31:06 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.1ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:32:15 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (2.2ms)
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:32:16 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.5ms)
+Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:33:29 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.5ms)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:33:43 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 734ms (Views: 731.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:33:44 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.5ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (2.5ms)
+Completed 200 OK in 8ms (Views: 4.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:34:03 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 195ms (Views: 192.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:34:04 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (2.1ms)
+Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:35:37 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 841ms (Views: 836.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:35:50 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 719ms (Views: 716.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:35:51 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 213ms (Views: 209.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:35:52 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.8ms)
+Completed 200 OK in 7ms (Views: 4.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:36:23 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 610ms (Views: 608.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:36:25 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.6ms)
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:53:44 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 1114ms (Views: 1106.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:53:46 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (2.3ms)
+Completed 200 OK in 24ms (Views: 21.0ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:53:46 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.6ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (3.2ms)
+Completed 200 OK in 15ms (Views: 9.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:55:30 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1032ms (Views: 1029.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:55:31 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.5ms)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:56:40 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.2ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.0ms)
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:56:42 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 948ms (Views: 946.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:56:44 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.4ms)
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:58:46 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (13.0ms)
+Completed 200 OK in 30ms (Views: 12.1ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:58:50 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 579ms (Views: 577.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:58:51 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  Rendered api/profiles/show.json.jbuilder (1.2ms)
+Completed 200 OK in 5ms (Views: 3.4ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/session" for ::1 at 2015-06-10 13:58:56 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"R2LAE5E771XcKhIT8kYWMSi8SL5UbYPp5s3Ktb41D11jqoH4FkWy2r0u4Pgdivyu/Y1A64WRV58kRLsK+IPUKw=="}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "lhjY62ETjU3l__a17iwV_w"]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (1.0ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kevin' AND "users"."id" != 4) LIMIT 1
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."session_digest" = 'dg0wKtIEvaiqvBldAMHHTQ' AND "users"."id" != 4) LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "users" SET "session_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"], ["updated_at", "2015-06-10 20:58:56.318385"], ["id", 4]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 12ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 13:58:56 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 135ms (Views: 134.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 13:58:58 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 326ms (Views: 325.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/session" for ::1 at 2015-06-10 13:59:02 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"npSsgh3BtLTyyysxs1siG9ExnRIfgt4yoz06ASG1bym6XO1pmr/pO5PP2dpcl8iEBACVR85+CkRhtEu+ZwO0Xw==", "user"=>{"email"=>"kevin", "password"=>"[FILTERED]"}, "name"=>"Log In"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" IS NULL LIMIT 1
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "kevin"]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 81ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 13:59:02 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 147ms (Views: 145.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 13:59:05 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (6.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (11.1ms)
+Completed 200 OK in 17ms (Views: 7.5ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:00:10 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 837ms (Views: 835.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:00:11 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.6ms)
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:00:41 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 627ms (Views: 626.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:00:42 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.5ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (2.0ms)
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:00:49 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (1.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (2.9ms)
+Completed 200 OK in 9ms (Views: 4.9ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:02:42 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 996ms (Views: 994.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:02:43 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (2.5ms)
+Completed 200 OK in 9ms (Views: 4.7ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:03:06 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 590ms (Views: 588.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:03:07 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (1.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (3.3ms)
+Completed 200 OK in 19ms (Views: 4.5ms | ActiveRecord: 2.2ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:03:08 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 0.9ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:03:16 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"0"=>"Profile updated!", "id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdgasdvathj<script>", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[35mProfile Load (0.2ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "profiles" SET "about_blurb" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["about_blurb", "asdgasdvathj<script>"], ["updated_at", "2015-06-10 21:03:16.714075"], ["id", 3]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.6ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:03:40 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"0"=>"Profile updated!", "id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "profiles" SET "about_blurb" = $1, "travel_blurb" = $2, "updated_at" = $3 WHERE "profiles"."id" = $4[0m  [["about_blurb", "asdgasdvathj"], ["travel_blurb", "a;odfibwe;rognasfb\r\n<script>"], ["updated_at", "2015-06-10 21:03:40.966189"], ["id", 3]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Completed 200 OK in 6ms (Views: 0.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:03:50 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 567ms (Views: 566.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:03:54 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.5ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (1.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (2.4ms)
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:04:19 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 923ms (Views: 921.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:04:20 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (3.0ms)
+Completed 200 OK in 11ms (Views: 8.1ms | ActiveRecord: 1.1ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:04:22 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:04:44 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 970ms (Views: 968.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:04:46 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.5ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.4ms)
+Completed 200 OK in 87ms (Views: 4.3ms | ActiveRecord: 0.8ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:04:47 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>"}}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:04:55 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 482ms (Views: 480.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:05:00 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (2.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (2.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (4.3ms)
+Completed 200 OK in 13ms (Views: 4.8ms | ActiveRecord: 5.4ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:05:01 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>"}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:05:02 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (7.5ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.7ms)
+Completed 200 OK in 15ms (Views: 4.4ms | ActiveRecord: 7.8ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:05:33 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.9ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (2.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (4.2ms)
+Completed 200 OK in 11ms (Views: 4.7ms | ActiveRecord: 3.5ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:05:47 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"asdgasdvathj", "story_blurb"=>"askldvjaslkdgh;", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"asdgasdvathj", "story_blurb"=>"<script>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in\r\n      urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam.\r\n      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur\r\n      ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio\r\n      interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a\r\n      lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo\r\n      feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex\r\n      eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat\r\n      ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc\r\n      molestie, tempus ipsum sed, elementum dui.</script>", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>"}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[35mProfile Load (0.2ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "profiles" SET "story_blurb" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["story_blurb", "<script>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in\r\n      urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam.\r\n      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur\r\n      ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio\r\n      interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a\r\n      lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo\r\n      feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex\r\n      eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat\r\n      ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc\r\n      molestie, tempus ipsum sed, elementum dui.</script>"], ["updated_at", "2015-06-10 21:05:47.209707"], ["id", 3]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 7ms (Views: 0.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:05:48 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (1.1ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.4ms)
+Completed 200 OK in 28ms (Views: 4.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:07:14 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (2.2ms)
+Completed 200 OK in 9ms (Views: 4.7ms | ActiveRecord: 0.8ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:07:29 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"asdgasdvathj", "story_blurb"=>"<script>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in\r\n      urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam.\r\n      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur\r\n      ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio\r\n      interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a\r\n      lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo\r\n      feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex\r\n      eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat\r\n      ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc\r\n      molestie, tempus ipsum sed, elementum dui.</script>", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"<script>alert(\"POO\")</script>", "story_blurb"=>"<script>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in\r\n      urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam.\r\n      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur\r\n      ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio\r\n      interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a\r\n      lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo\r\n      feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex\r\n      eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat\r\n      ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc\r\n      molestie, tempus ipsum sed, elementum dui.</script>", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "profiles" SET "about_blurb" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["about_blurb", "<script>alert(\"POO\")</script>"], ["updated_at", "2015-06-10 21:07:29.485525"], ["id", 3]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:07:29 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (2.1ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (3.0ms)
+Completed 200 OK in 11ms (Views: 5.2ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:14:13 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (2.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.9ms)
+Completed 200 OK in 28ms (Views: 23.7ms | ActiveRecord: 2.8ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:15:01 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"<script>alert(\"POO\")</script>", "story_blurb"=>"<script>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in\r\n      urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam.\r\n      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur\r\n      ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio\r\n      interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a\r\n      lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo\r\n      feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex\r\n      eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat\r\n      ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc\r\n      molestie, tempus ipsum sed, elementum dui.</script>", "travel_blurb"=>"a;odfibwe;rognasfb\r\n<script>", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc molestie, tempus ipsum sed, elementum dui.", "story_blurb"=>"Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut felis viverra, molestie pharetra nulla gravida. Pellentesque tempus tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere. Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor, vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium accumsan, quam quam malesuada metus, et consequat ex ligula porttitor metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis sit amet odio. Aenean vestibulum euismod dolor at consectetur.", "travel_blurb"=>"Phasellus vitae augue facilisis, eleifend purus sit amet, tempor dui. Donec vel tristique justo. Nam vitae orci id enim venenatis congue sed tempus ipsum. Nullam ac sem in quam rhoncus commodo. Morbi ligula urna, consectetur non leo et, aliquet ornare leo. Pellentesque pharetra et neque in vulputate. Morbi posuere sapien non libero dictum pharetra."}}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "profiles" SET "about_blurb" = $1, "story_blurb" = $2, "travel_blurb" = $3, "updated_at" = $4 WHERE "profiles"."id" = $5  [["about_blurb", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc molestie, tempus ipsum sed, elementum dui."], ["story_blurb", "Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut felis viverra, molestie pharetra nulla gravida. Pellentesque tempus tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere. Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor, vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium accumsan, quam quam malesuada metus, et consequat ex ligula porttitor metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis sit amet odio. Aenean vestibulum euismod dolor at consectetur."], ["travel_blurb", "Phasellus vitae augue facilisis, eleifend purus sit amet, tempor dui. Donec vel tristique justo. Nam vitae orci id enim venenatis congue sed tempus ipsum. Nullam ac sem in quam rhoncus commodo. Morbi ligula urna, consectetur non leo et, aliquet ornare leo. Pellentesque pharetra et neque in vulputate. Morbi posuere sapien non libero dictum pharetra."], ["updated_at", "2015-06-10 21:15:01.657643"], ["id", 3]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 7ms (Views: 0.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:15:03 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (3.2ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (2.8ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (4.4ms)
+Completed 200 OK in 13ms (Views: 4.4ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:15:19 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 1112ms (Views: 1110.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:15:21 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.6ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (3.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (5.8ms)
+Completed 200 OK in 28ms (Views: 21.6ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:15:41 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (2.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.8ms)
+Completed 200 OK in 9ms (Views: 3.9ms | ActiveRecord: 2.5ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:15:58 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc molestie, tempus ipsum sed, elementum dui.", "story_blurb"=>"Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut felis viverra, molestie pharetra nulla gravida. Pellentesque tempus tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere. Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor, vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium accumsan, quam quam malesuada metus, et consequat ex ligula porttitor metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis sit amet odio. Aenean vestibulum euismod dolor at consectetur.", "travel_blurb"=>"Phasellus vitae augue facilisis, eleifend purus sit amet, tempor dui. Donec vel tristique justo. Nam vitae orci id enim venenatis congue sed tempus ipsum. Nullam ac sem in quam rhoncus commodo. Morbi ligula urna, consectetur non leo et, aliquet ornare leo. Pellentesque pharetra et neque in vulputate. Morbi posuere sapien non libero dictum pharetra.", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc molestie, tempus ipsum sed, elementum dui.", "story_blurb"=>"alert(\"hello\");Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut felis viverra, molestie pharetra nulla gravida. Pellentesque tempus tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere. Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor, vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium accumsan, quam quam malesuada metus, et consequat ex ligula porttitor metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis sit amet odio. Aenean vestibulum euismod dolor at consectetur.", "travel_blurb"=>"Phasellus vitae augue facilisis, eleifend purus sit amet, tempor dui. Donec vel tristique justo. Nam vitae orci id enim venenatis congue sed tempus ipsum. Nullam ac sem in quam rhoncus commodo. Morbi ligula urna, consectetur non leo et, aliquet ornare leo. Pellentesque pharetra et neque in vulputate. Morbi posuere sapien non libero dictum pharetra."}}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "profiles" SET "story_blurb" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3  [["story_blurb", "alert(\"hello\");Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut felis viverra, molestie pharetra nulla gravida. Pellentesque tempus tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere. Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor, vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium accumsan, quam quam malesuada metus, et consequat ex ligula porttitor metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis sit amet odio. Aenean vestibulum euismod dolor at consectetur."], ["updated_at", "2015-06-10 21:15:58.038408"], ["id", 3]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:15:58 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.7ms)
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:16:00 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.9ms)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.8ms)
+
+
+Started PUT "/api/profiles/4" for ::1 at 2015-06-10 14:16:07 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"4", "hometown"=>"San Diego, CA", "about_blurb"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc molestie, tempus ipsum sed, elementum dui.", "story_blurb"=>"alert(\"hello\");Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut felis viverra, molestie pharetra nulla gravida. Pellentesque tempus tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere. Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor, vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium accumsan, quam quam malesuada metus, et consequat ex ligula porttitor metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis sit amet odio. Aenean vestibulum euismod dolor at consectetur.", "travel_blurb"=>"Phasellus vitae augue facilisis, eleifend purus sit amet, tempor dui. Donec vel tristique justo. Nam vitae orci id enim venenatis congue sed tempus ipsum. Nullam ac sem in quam rhoncus commodo. Morbi ligula urna, consectetur non leo et, aliquet ornare leo. Pellentesque pharetra et neque in vulputate. Morbi posuere sapien non libero dictum pharetra.", "image_url"=>"send help", "name"=>"Kevin Xu", "age"=>19, "profile"=>{"about_blurb"=>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc molestie, tempus ipsum sed, elementum dui.", "story_blurb"=>"Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut felis viverra, molestie pharetra nulla gravida. Pellentesque tempus tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere. Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor, vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium accumsan, quam quam malesuada metus, et consequat ex ligula porttitor metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis sit amet odio. Aenean vestibulum euismod dolor at consectetur.", "travel_blurb"=>"Phasellus vitae augue facilisis, eleifend purus sit amet, tempor dui. Donec vel tristique justo. Nam vitae orci id enim venenatis congue sed tempus ipsum. Nullam ac sem in quam rhoncus commodo. Morbi ligula urna, consectetur non leo et, aliquet ornare leo. Pellentesque pharetra et neque in vulputate. Morbi posuere sapien non libero dictum pharetra."}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[36mProfile Load (0.2ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (69.5ms)[0m  [1mUPDATE "profiles" SET "story_blurb" = $1, "updated_at" = $2 WHERE "profiles"."id" = $3[0m  [["story_blurb", "Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut felis viverra, molestie pharetra nulla gravida. Pellentesque tempus tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere. Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor, vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium accumsan, quam quam malesuada metus, et consequat ex ligula porttitor metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis sit amet odio. Aenean vestibulum euismod dolor at consectetur."], ["updated_at", "2015-06-10 21:16:07.750921"], ["id", 3]]
+  [1m[35m (0.4ms)[0m  COMMIT
+Completed 200 OK in 75ms (Views: 0.2ms | ActiveRecord: 70.5ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:16:07 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.5ms)
+Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:16:15 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.4ms)
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:16:19 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  Rendered api/profiles/show.json.jbuilder (1.7ms)
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 0.8ms)
+
+
+Started DELETE "/session" for ::1 at 2015-06-10 14:16:19 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"sEHjjZlSkA2OjbrN9oJpfgJa9MjA5KvPM4sg+xeoWiuUiaJmHizNgu+JSCYZToPh12v8nREYf7nxAlFEUR6BXQ=="}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "dg0wKtIEvaiqvBldAMHHTQ"]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE ("users"."email" = 'kevin' AND "users"."id" != 4) LIMIT 1[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE ("users"."session_digest" = 'B0SstGsW63IG05jj0Ky8VA' AND "users"."id" != 4) LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "users" SET "session_digest" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["session_digest", "B0SstGsW63IG05jj0Ky8VA"], ["updated_at", "2015-06-10 21:16:19.809139"], ["id", 4]]
+  [1m[35m (0.8ms)[0m  COMMIT
+Redirected to http://localhost:3000/session/new
+Completed 302 Found in 8ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 14:16:19 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 198ms (Views: 197.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for ::1 at 2015-06-10 14:16:47 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"q3TnOQZWtGvFObsIxE4Z1t2O/NhX7myS3vWKOYuckr+PvKbSgSjp5KQ9SeMrgvNJCL/0jYYSuOQcfPuGzSpJyQ==", "user"=>{"email"=>"oscars", "password"=>"[FILTERED]", "fname"=>"Oscar", "lname"=>"Garcia", "birthday"=>"1992-09-24"}, "name"=>"Sign Up"}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mUser Exists (0.4ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'oscars' LIMIT 1
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."session_digest" = 'zsESIuxc6EzzhhGVhscBow' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "users" ("email", "password_digest", "fname", "lname", "birthday", "session_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["email", "oscars"], ["password_digest", "$2a$10$Rey./xl.auYQBA4cGsvNGuxe.HA.Ykm7cB/89bbshIZV84p4jaL3S"], ["fname", "Oscar"], ["lname", "Garcia"], ["birthday", "1992-09-24"], ["session_digest", "zsESIuxc6EzzhhGVhscBow"], ["created_at", "2015-06-10 21:16:47.637644"], ["updated_at", "2015-06-10 21:16:47.637644"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "profiles" ("user_id", "hometown_id", "image_url", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["user_id", 5], ["hometown_id", 1], ["image_url", "send help"], ["created_at", "2015-06-10 21:16:47.643394"], ["updated_at", "2015-06-10 21:16:47.643394"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 90ms (ActiveRecord: 3.3ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:16:47 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 175ms (Views: 173.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:17:00 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (4.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered api/profiles/show.json.jbuilder (1.4ms)
+Completed 200 OK in 11ms (Views: 3.7ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:17:05 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (0.8ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered api/profiles/show.json.jbuilder (2.1ms)
+Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:17:10 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered api/profiles/show.json.jbuilder (3.3ms)
+Completed 200 OK in 8ms (Views: 5.8ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:17:35 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered api/profiles/show.json.jbuilder (1.0ms)
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/api/profiles/3" for ::1 at 2015-06-10 14:17:39 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mProfile Load (41.9ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 3]]
+  Rendered api/profiles/show.json.jbuilder (3.4ms)
+Completed 500 Internal Server Error in 49ms (ActiveRecord: 41.9ms)
+
+NoMethodError - undefined method `hometown' for nil:NilClass:
+  jbuilder (2.2.16) lib/jbuilder.rb:253:in `block in _extract_method_values'
+  jbuilder (2.2.16) lib/jbuilder.rb:253:in `_extract_method_values'
+  jbuilder (2.2.16) lib/jbuilder.rb:212:in `extract!'
+  app/views/api/profiles/show.json.jbuilder:1:in `_app_views_api_profiles_show_json_jbuilder__395610997728146542_70096115076860'
+  actionview (4.2.1) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  app/controllers/api/profiles_controller.rb:6:in `show'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/ce7957bb1cf3d14b/variables" for ::1 at 2015-06-10 14:17:39 -0700
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:17:42 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.4ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (1.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered api/profiles/show.json.jbuilder (3.7ms)
+Completed 200 OK in 9ms (Views: 5.4ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:17:45 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[35mProfile Load (0.6ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 5]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered api/profiles/show.json.jbuilder (1.3ms)
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:18:41 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered api/profiles/show.json.jbuilder (1.3ms)
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:18:59 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 4]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 4]]
+  Rendered api/profiles/show.json.jbuilder (2.1ms)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:19:00 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 393ms (Views: 391.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:19:01 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.7ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (5.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered api/profiles/show.json.jbuilder (7.8ms)
+Completed 200 OK in 25ms (Views: 7.1ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:19:03 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered api/profiles/show.json.jbuilder (2.1ms)
+Completed 200 OK in 6ms (Views: 3.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:19:42 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.2ms)
+Completed 200 OK in 184ms (Views: 182.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:19:43 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[35mProfile Load (0.3ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 5]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  Rendered api/profiles/show.json.jbuilder (1.9ms)
+Completed 200 OK in 6ms (Views: 3.4ms | ActiveRecord: 0.7ms)
+
+
+Started PUT "/api/profiles/5" for ::1 at 2015-06-10 14:19:55 -0700
+Processing by Api::ProfilesController#update as JSON
+  Parameters: {"id"=>"5", "hometown"=>"San Diego, CA", "about_blurb"=>nil, "story_blurb"=>nil, "travel_blurb"=>nil, "image_url"=>"send help", "name"=>"Oscar Garcia", "age"=>22, "profile"=>{"about_blurb"=>"Mauris ultrices ullamcorper ligula ac egestas. Proin ac lorem blandit, bibendum lectus ac, vulputate lectus. Fusce et nisi ac augue finibus mattis. Vestibulum congue ex vitae turpis mattis, quis aliquam tellus tempus. Pellentesque porttitor tincidunt quam ac cursus. Proin hendrerit convallis odio, at aliquet erat aliquet eu. Nunc vitae metus ut nunc eleifend pharetra a accumsan massa. Curabitur sed consectetur velit. Quisque quis euismod lectus. Aenean condimentum, justo eu porttitor sollicitudin, nisi ex aliquet purus, et ultricies turpis orci ut ante. Curabitur id lacus enim. Morbi sagittis tempus ante, id egestas erat rhoncus in. Etiam id ultricies est.", "story_blurb"=>"Morbi aliquam ligula sed ex viverra, non vehicula augue pharetra. Sed at nisl et ante placerat porttitor. Nam a suscipit velit. In sed sem ac turpis placerat lacinia. Nunc aliquet ac dui nec scelerisque. Etiam vitae maximus urna. In hac habitasse platea dictumst.", "travel_blurb"=>"Nullam sodales felis ac magna porta vulputate. Proin dapibus fringilla mollis. Vivamus vitae sodales nisl. Suspendisse tempus quam sit amet ornare fermentum. Nulla facilisi. Quisque sagittis diam eu justo vestibulum, id suscipit odio venenatis. Cras accumsan felis nec fringilla elementum.\r\n"}}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "profiles" SET "about_blurb" = $1, "story_blurb" = $2, "travel_blurb" = $3, "updated_at" = $4 WHERE "profiles"."id" = $5[0m  [["about_blurb", "Mauris ultrices ullamcorper ligula ac egestas. Proin ac lorem blandit, bibendum lectus ac, vulputate lectus. Fusce et nisi ac augue finibus mattis. Vestibulum congue ex vitae turpis mattis, quis aliquam tellus tempus. Pellentesque porttitor tincidunt quam ac cursus. Proin hendrerit convallis odio, at aliquet erat aliquet eu. Nunc vitae metus ut nunc eleifend pharetra a accumsan massa. Curabitur sed consectetur velit. Quisque quis euismod lectus. Aenean condimentum, justo eu porttitor sollicitudin, nisi ex aliquet purus, et ultricies turpis orci ut ante. Curabitur id lacus enim. Morbi sagittis tempus ante, id egestas erat rhoncus in. Etiam id ultricies est."], ["story_blurb", "Morbi aliquam ligula sed ex viverra, non vehicula augue pharetra. Sed at nisl et ante placerat porttitor. Nam a suscipit velit. In sed sem ac turpis placerat lacinia. Nunc aliquet ac dui nec scelerisque. Etiam vitae maximus urna. In hac habitasse platea dictumst."], ["travel_blurb", "Nullam sodales felis ac magna porta vulputate. Proin dapibus fringilla mollis. Vivamus vitae sodales nisl. Suspendisse tempus quam sit amet ornare fermentum. Nulla facilisi. Quisque sagittis diam eu justo vestibulum, id suscipit odio venenatis. Cras accumsan felis nec fringilla elementum.\r\n"], ["updated_at", "2015-06-10 21:19:55.422940"], ["id", 4]]
+  [1m[35m (0.6ms)[0m  COMMIT
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:19:55 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered api/profiles/show.json.jbuilder (2.0ms)
+Completed 200 OK in 6ms (Views: 4.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:19:59 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.3ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered api/profiles/show.json.jbuilder (2.4ms)
+Completed 200 OK in 6ms (Views: 4.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:20:05 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered api/profiles/show.json.jbuilder (2.9ms)
+Completed 200 OK in 8ms (Views: 4.8ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:20:06 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered api/profiles/show.json.jbuilder (2.0ms)
+Completed 200 OK in 7ms (Views: 4.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:20:09 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35mUser Load (0.9ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered api/profiles/show.json.jbuilder (2.9ms)
+Completed 200 OK in 9ms (Views: 5.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:20:11 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered api/profiles/show.json.jbuilder (2.2ms)
+Completed 200 OK in 7ms (Views: 4.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:20:12 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35mUser Load (1.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered api/profiles/show.json.jbuilder (3.4ms)
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/api/profiles/4" for ::1 at 2015-06-10 14:20:15 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mProfile Load (0.4ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 4]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 4]]
+  Rendered api/profiles/show.json.jbuilder (1.9ms)
+Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:20:16 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (0.8ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 5]]
+  Rendered api/profiles/show.json.jbuilder (2.1ms)
+Completed 200 OK in 7ms (Views: 4.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2015-06-10 14:20:59 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1[0m  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+  Rendered static_pages/root.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 419ms (Views: 417.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 14:21:02 -0700
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[35mProfile Load (0.7ms)[0m  SELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1  [["user_id", 5]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
+  Rendered api/profiles/show.json.jbuilder (2.3ms)
+Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 1.1ms)

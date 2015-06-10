@@ -6,13 +6,12 @@ Traverse.Views.ProfileEdit = Backbone.CompositeView.extend({
   },
 
   initialize: function() {
-    this.myProfile = new Traverse.Models.Profile(Traverse.userData.id);
-    this.myProfile.fetch();
-  }
+    this.listenTo(this.model, "sync", this.render);
+  },
 
   render: function () {
     var content = this.template({
-        profile: this.myProfile
+        profile: this.model
       });
     this.$el.html(content);
     return this;
@@ -20,11 +19,10 @@ Traverse.Views.ProfileEdit = Backbone.CompositeView.extend({
 
   saveProfile: function() {
     var dataHash = $('.edit-profile-form').serializeJSON();
-    Traverse.myProfile.set(dataHash);
-    Traverse.myProfile.save([], {
+    this.model.save(dataHash, {
       success: function() {
-        Backbone.history.navigate("/profile", {trigger: true});
-      },
+        Backbone.history.navigate("/profile/" + this.model.get("id"), {trigger: true});
+      }.bind(this),
       error: function(model, response) {
         response.responseJSON.forEach(function(response){
           alert(response);

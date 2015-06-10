@@ -22,6 +22,7 @@ class Profile < ActiveRecord::Base
   after_initialize :hometown, :image
   def hometown
     self.hometown_id = 1
+    return "San Diego, CA"
   end
 
   def image

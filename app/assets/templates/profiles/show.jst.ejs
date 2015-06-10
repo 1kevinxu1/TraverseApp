@@ -1,8 +1,7 @@
 <div id="profile-header" class="container-fluid profile profile-header">
-  <div class="name"><h1><%= userData.name %></h1></div>
-  <!-- <%= profile.hometown_id %> -->
-  <div class="hometown"><h3>San Diego, CA</h3></div>
-  <div class="age"><h1><%= userData.age %> </h1></div>
+  <div class="name"><h1><%= profile.get("name") %></h1></div>
+  <div class="hometown"><h3> <%= profile.get("hometown") %></h3></div>
+  <div class="age"><h1><%= profile.get("age") %> </h1></div>
 </div>
 
 <div id="profile-content" class="profile">
@@ -11,45 +10,19 @@
       About Me
     </h3>
     <p>
-      <%= profile.about_blurb %>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci in
-      urna ullamcorper maximus interdum at risus. Vivamus sit amet dignissim diam.
-      Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-      ridiculus mus. Aenean tempor nibh id lorem lobortis, nec vulputate odio
-      interdum. Cras posuere bibendum lorem et euismod. Morbi scelerisque odio a
-      lacus aliquet feugiat. Donec hendrerit, est nec rutrum mollis, mi leo
-      feugiat ante, et bibendum felis lectus quis felis. Suspendisse aliquet, ex
-      eu egestas malesuada, neque nunc scelerisque dui, at imperdiet orci erat
-      ultrices sem. Mauris et metus et purus gravida semper. Nulla nec nunc
-      molestie, tempus ipsum sed, elementum dui.
+      <%= profile.escape("about_blurb") %>
     </p>
   </div>
   <div id="about-me" class="profile-blurb">
     <h3>One Crazy Story About Me</h3>
     <p>
-      <%= profile.story_blurb %>
-      Fusce tincidunt erat sit amet posuere porta. Nulla elementum ligula ut
-      felis viverra, molestie pharetra nulla gravida. Pellentesque tempus
-      tincidunt metus in gravida. Vestibulum at eros at nibh auctor posuere.
-      Curabitur faucibus arcu id nulla sodales iaculis. Nam sollicitudin tellus
-      ac turpis luctus, et ornare nibh volutpat. Aliquam vitae ante porttitor,
-      vehicula augue rhoncus, maximus odio. Fusce convallis, diam eget pretium
-      accumsan, quam quam malesuada metus, et consequat ex ligula porttitor
-      metus. Morbi hendrerit, nibh vitae cursus commodo, dui velit placerat
-      mi, ac pharetra libero nulla non elit. Mauris eu mauris eget metus
-      scelerisque commodo. In maximus tellus eu lacus rutrum dapibus quis
-      sit amet odio. Aenean vestibulum euismod dolor at consectetur.
+      <%= profile.escape("story_blurb") %>
     </p>
   </div>
   <div id="about-me" class="profile-blurb">
     <h3>When I travel, I like to...</h3>
     <p>
-      <%= profile.travel_blurb %>
-      Phasellus vitae augue facilisis, eleifend purus sit amet, tempor dui.
-      Donec vel tristique justo. Nam vitae orci id enim venenatis congue sed
-      tempus ipsum. Nullam ac sem in quam rhoncus commodo. Morbi ligula urna,
-      consectetur non leo et, aliquet ornare leo. Pellentesque pharetra et neque
-      in vulputate. Morbi posuere sapien non libero dictum pharetra.
+      <%= profile.escape("travel_blurb") %>
     </p>
   </div>
 </div>
