@@ -1,16 +1,6 @@
 class Api::ProfilesController < ApplicationController
-  def create
-    @profile = Profile.new(profile_params)
-    @profile.user_id = current_user.id
-    if @profile.save
-      render json: ["Profile saved!"]
-    else
-      render json: @profile.errors.full_messages, status: :unprocessable_entity
-    end
-  end
-
   def show
-    @profile = current_user.profile
+    @profile = Profile.find(params[:id])
     render :show
   end
 

@@ -1,15 +1,25 @@
+
+<div id="header"></div>
+
+<div id="content-container" class="container">
+  <div id="sideview" class="col-xs-3">
+    <div class="placeholder-2"></div>
+      <%=current_user.name%>
+      <br>
+      <%= current_user.age %>
+  </div>
+  <div id="mainview" class="col-xs-9">
+    <div class="placeholder-2">
+    </div>
+
+  </div>
+</div>
+
 <script>
   $(document).ready(function(){
+    Traverse.userData = <%=current_user_data%>;
+    Traverse.myProfile = <%=profile_data%>;
+    // Traverse.userData = render 'layouts/my_profile';
     Traverse.initialize();
   });
-  Traverse.CURRENT_USER_NAME = "<%=current_user.name%>";
 </script>
-
-<div id="header">  </div>
-
-<%=current_user.name%>
-<br>
-<%= current_user.age %>
-
-
-<%= button_to "sign out", session_url, method: :delete %>

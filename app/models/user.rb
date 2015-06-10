@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true}
   validates :session_digest, uniqueness: true
-  has_one :profile
+  has_one :profile, dependent: :destroy
   after_initialize :ensure_session_digest
 
   attr_accessor :password

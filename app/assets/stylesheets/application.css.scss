@@ -31,13 +31,13 @@
   margin: auto;
 }
 
-#header-container {
+.container {
   width: 1024px;
   margin: auto;
 }
 
 #center-content {
-  height: 900px;
+  max-height: 900px;
 }
 
 .placeholder {
@@ -56,4 +56,9 @@
 
 #user-portal input {
   margin:5px;
+}
+
+.placeholder-2 {
+  background-color: #eee;
+  min-height: 200px;
 }
