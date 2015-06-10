@@ -6,24 +6,30 @@
 #  email           :string           not null
 #  password_digest :string           not null
 #  session_digest  :string           not null
+#  fname           :string           not null
+#  lname           :string           not null
+#  birthday        :date             not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 class User < ActiveRecord::Base
-  validates :email, :password, :session_digest, presence: true
+  validates :email, :password_digest, :session_digest, :fname, :lname, :birthday, presence: true
+  validates :age, numericality: { greater_than_or_equal_to: 18 }
   validates :email, uniqueness: true
-
+  validates :password, length: { minimum: 6, allow_nil: true}
+  validates :session_digest, uniqueness: true
   has_one :profile
+  after_initialize :ensure_session_digest
 
-  after_initialize :ensure_session_token
+  attr_accessor :password
 
   def self.find_by_credentials(email, password)
-    user = user.find_by_email(email)
+    user = User.find_by_email(email)
     user && user.is_password?(password) ? user : nil
   end
 
-  def self.generate_session_token
+  def self.generate_session_digest
     token = SecureRandom::urlsafe_base64
   end
 
@@ -32,18 +38,30 @@ class User < ActiveRecord::Base
     self.password_digest = BCrypt::Password.create(password)
   end
 
+  def name
+    self.fname + " " + self.lname
+  end
+
+  def age
+    return 0 unless self.birthday
+    today = Date.today
+    age = today.year - self.birthday.year
+    age -= 1 if today.yday < self.birthday.yday
+    age
+  end
+
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
-  def reset_session_token!
-    self.session_token = User.generate_session_token
+  def reset_session_digest
+    self.session_digest = User.generate_session_digest
     self.save!
-    self.session_token
+    self.session_digest
   end
 
-  def ensure_session_token
-    self.session_token ||= User.generate_session_token
+  def ensure_session_digest
+    self.session_digest ||= User.generate_session_digest
   end
 
 end

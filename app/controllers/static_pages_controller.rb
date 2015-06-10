@@ -1,11 +1,7 @@
 class StaticPagesController < ApplicationController
-
+  before_action :require_user
   def root
-    if current_user
-      render :root
-    else
-      render 'sessions/new'
-    end
+    render :root
   end
 
 end

@@ -1,14 +1,51 @@
-<div id="banner">
+<div id="banner" class="jumbotron">
+  <div class="container center-text">
+    <h1>This is the jumbotron</h1>
+    <p>With a little bit of slightly extra content to make it look better.</p>
+    <span class="btn btn-primary">Hit me</span>
+  </div>
 </div>
 
+<div id="information" class="row">
+  <div id="page-content">
+    <div class="container-fluid center-text">
+      <h2>Short catchy statement.</h2>
+      <p> A little bit of extra explanation with a period at the end.</p>
+    </div>
+    <div class="row">
+      <div id="center-content" class="col-xs-9">
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+        <div class="placeholder"></div>
+      </div>
+      <div id="user-portal" class="col-xs-3">
+        <form class="" action="<%=session_url%>" method="post">
+          <br>
+          Log In
+          <br>
+          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+          <input type="text" name="user[email]" value="" placeholder="Email">
+          <input type="password" name="user[password]" value="" placeholder="Password">
+          <input type="submit" name="name" value="Log In">
+        </form>
+        <br>
 
-<div id="user-portal">
+        <form class="" action="<%=users_url%>" method="post">
+          Sign Up <br>
+          <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+          <input type="text" name="user[email]" value="" placeholder="Email">
+          <input type="password" name="user[password]" value="" placeholder="Password">
+          <input type="text" name="user[fname]" value="" placeholder="First"> <input type="text" name="user[lname]" value="" placeholder="Last">
+          <br>birthday <br>
+          <input type="date" name="user[birthday]" value="" placeholder="birthday">
+          <br>
+          <input type="submit" name="name" value="Sign Up">
+        </form>
+        <br>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-<div id="footer">
-</div>
-
-
-
-<script>$(UserPortal.initialize);</script>

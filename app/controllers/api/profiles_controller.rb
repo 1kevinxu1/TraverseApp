@@ -26,14 +26,12 @@ class Api::ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permits(:fname,
-                                     :lname,
-                                     :birthday,
-                                     :hometown_id,
-                                     :about_blurb,
-                                     :story_blurb,
-                                     :travel_blurb,
-                                     :image_url)
+    params.require(:profile).permits(
+      :hometown_id,
+      :about_blurb,
+      :story_blurb,
+      :travel_blurb,
+      :image_url
+    )
   end
-
 end

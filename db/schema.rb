@@ -27,9 +27,6 @@ ActiveRecord::Schema.define(version: 20150609181032) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id",      null: false
-    t.string   "fname",        null: false
-    t.string   "lname",        null: false
-    t.date     "birthday",     null: false
     t.integer  "hometown_id",  null: false
     t.text     "about_blurb"
     t.text     "story_blurb"
@@ -39,10 +36,7 @@ ActiveRecord::Schema.define(version: 20150609181032) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "profiles", ["birthday"], name: "index_profiles_on_birthday", using: :btree
-  add_index "profiles", ["fname"], name: "index_profiles_on_fname", using: :btree
   add_index "profiles", ["hometown_id"], name: "index_profiles_on_hometown_id", using: :btree
-  add_index "profiles", ["lname"], name: "index_profiles_on_lname", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
 
   create_table "trips", force: :cascade do |t|
@@ -65,11 +59,17 @@ ActiveRecord::Schema.define(version: 20150609181032) do
     t.string   "email",           null: false
     t.string   "password_digest", null: false
     t.string   "session_digest",  null: false
+    t.string   "fname",           null: false
+    t.string   "lname",           null: false
+    t.date     "birthday",        null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "users", ["birthday"], name: "index_users_on_birthday", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["fname"], name: "index_users_on_fname", using: :btree
+  add_index "users", ["lname"], name: "index_users_on_lname", using: :btree
   add_index "users", ["password_digest"], name: "index_users_on_password_digest", using: :btree
   add_index "users", ["session_digest"], name: "index_users_on_session_digest", unique: true, using: :btree
 

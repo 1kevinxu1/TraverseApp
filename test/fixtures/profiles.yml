@@ -4,9 +4,6 @@
 #
 #  id           :integer          not null, primary key
 #  user_id      :integer          not null
-#  fname        :string           not null
-#  lname        :string           not null
-#  birthday     :date             not null
 #  hometown_id  :integer          not null
 #  about_blurb  :text
 #  story_blurb  :text

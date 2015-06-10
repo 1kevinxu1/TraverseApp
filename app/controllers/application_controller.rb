@@ -8,21 +8,24 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= User.find_by_session_token(session[:token])
+    @current_user ||= User.find_by_session_digest(session[:token])
   end
 
   def sign_in!(user)
     @current_user = user
-    session[:token] = user.session_token
+    session[:token] = user.session_digest
+  end
+
+  def logged_in?
+    redirect_to root_url if current_user
   end
 
   def sign_out!
-    current_user.reset_session_token
+    current_user.reset_session_digest
     session[:token] = nil
-    redirect_to root_url
   end
 
   def require_user
-    redirect_to root_url unless current_user
+    redirect_to new_session_url unless current_user
   end
 end

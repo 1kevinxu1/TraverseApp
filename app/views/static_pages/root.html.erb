@@ -1,0 +1,15 @@
+<script>
+  $(document).ready(function(){
+    Traverse.initialize();
+  });
+  Traverse.CURRENT_USER_NAME = "<%=current_user.name%>";
+</script>
+
+<div id="header">  </div>
+
+<%=current_user.name%>
+<br>
+<%= current_user.age %>
+
+
+<%= button_to "sign out", session_url, method: :delete %>

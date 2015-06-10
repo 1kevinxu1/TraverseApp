@@ -10,6 +10,50 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+
+#banner {
+  background-color: #eee;
+  margin: 0px;
+  min-height: 350px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+#page-content {
+  width: 1024px;
+  margin: auto;
+}
+
+#header-container {
+  width: 1024px;
+  margin: auto;
+}
+
+#center-content {
+  height: 900px;
+}
+
+.placeholder {
+  float: left;
+  background-color: #ccc;
+  height: 202px;
+  width: 350px;
+  margin: 5px;
+}
+
+#user-portal {
+  float: right;
+  margin-top: 10px;
+  background-color: #eee;
+}
+
+#user-portal input {
+  margin:5px;
+}

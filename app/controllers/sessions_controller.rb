@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :logged_in?, only: [:create]
+
   def create
     @user = User.find_by_credentials(params[:user][:email],
                                      params[:user][:password])
@@ -6,13 +8,13 @@ class SessionsController < ApplicationController
       sign_in!(@user)
       redirect_to root_url
     else
-      render json: @user.errors.full_messages, status: :forbidden
+      render json: ["Wrong email/password combination"], status: :forbidden
     end
   end
 
   def destroy
     sign_out!
-    redirect_to root_url
+    redirect_to new_session_url
   end
 
 end
