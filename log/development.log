@@ -20103,3 +20103,703 @@ Processing by Api::ProfilesController#show as JSON
   [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 5]]
   Rendered api/profiles/show.json.jbuilder (2.3ms)
 Completed 200 OK in 8ms (Views: 4.4ms | ActiveRecord: 1.1ms)
+  [1m[36m (5101.9ms)[0m  [1mDROP DATABASE IF EXISTS "Traverse_development"[0m
+PG::ObjectInUse: ERROR:  database "Traverse_development" is being accessed by other users
+DETAIL:  There is 1 other session using the database.
+: DROP DATABASE IF EXISTS "Traverse_development"
+  [1m[35m (211.6ms)[0m  DROP DATABASE IF EXISTS "Traverse_test"
+  [1m[36m (0.8ms)[0m  [1mCREATE DATABASE "Traverse_development" ENCODING = 'unicode'[0m
+PG::DuplicateDatabase: ERROR:  database "Traverse_development" already exists
+: CREATE DATABASE "Traverse_development" ENCODING = 'unicode'
+  [1m[35m (896.8ms)[0m  CREATE DATABASE "Traverse_test" ENCODING = 'unicode'
+  [1m[36mSQL (40.4ms)[0m  [1mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (135.6ms)[0m  DROP TABLE "meet_requests" CASCADE
+  [1m[36m (58.3ms)[0m  [1mCREATE TABLE "meet_requests" ("id" serial primary key, "requester_id" integer NOT NULL, "requested_trip_id" integer NOT NULL, "status" character varying NOT NULL) [0m
+  [1m[35m (1.9ms)[0m  CREATE  INDEX  "index_meet_requests_on_requested_trip_id" ON "meet_requests" USING btree ("requested_trip_id")
+  [1m[36m (4.3ms)[0m  [1mCREATE  INDEX  "index_meet_requests_on_requester_id" ON "meet_requests" USING btree ("requester_id")[0m
+  [1m[35m (47.5ms)[0m  DROP TABLE "profiles" CASCADE
+  [1m[36m (6.0ms)[0m  [1mCREATE TABLE "profiles" ("id" serial primary key, "user_id" integer NOT NULL, "hometown_id" integer NOT NULL, "about_blurb" text, "story_blurb" text, "travel_blurb" text, "image_url" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_profiles_on_hometown_id" ON "profiles" USING btree ("hometown_id")
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX  "index_profiles_on_user_id" ON "profiles" USING btree ("user_id")[0m
+  [1m[35m (44.6ms)[0m  DROP TABLE "trips" CASCADE
+  [1m[36m (5.1ms)[0m  [1mCREATE TABLE "trips" ("id" serial primary key, "owner_id" character varying NOT NULL, "from_city_zip" character varying NOT NULL, "to_city_zip" character varying NOT NULL, "start_date" date NOT NULL, "end_date" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  CREATE  INDEX  "index_trips_on_end_date" ON "trips" USING btree ("end_date")
+  [1m[36m (22.6ms)[0m  [1mCREATE  INDEX  "index_trips_on_from_city_zip" ON "trips" USING btree ("from_city_zip")[0m
+  [1m[35m (1.5ms)[0m  CREATE  INDEX  "index_trips_on_owner_id" ON "trips" USING btree ("owner_id")
+  [1m[36m (1.6ms)[0m  [1mCREATE  INDEX  "index_trips_on_start_date" ON "trips" USING btree ("start_date")[0m
+  [1m[35m (1.3ms)[0m  CREATE  INDEX  "index_trips_on_to_city_zip" ON "trips" USING btree ("to_city_zip")
+  [1m[36m (3.9ms)[0m  [1mDROP TABLE "users" CASCADE[0m
+  [1m[35m (5.1ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_digest" character varying NOT NULL, "fname" character varying NOT NULL, "lname" character varying NOT NULL, "birthday" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (25.8ms)[0m  [1mCREATE  INDEX  "index_users_on_birthday" ON "users" USING btree ("birthday")[0m
+  [1m[35m (1.8ms)[0m  CREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")
+  [1m[36m (1.6ms)[0m  [1mCREATE  INDEX  "index_users_on_fname" ON "users" USING btree ("fname")[0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_users_on_lname" ON "users" USING btree ("lname")
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX  "index_users_on_password_digest" ON "users" USING btree ("password_digest")[0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX  "index_users_on_session_digest" ON "users" USING btree ("session_digest")
+  [1m[36m (0.9ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35mSQL (0.5ms)[0m  CREATE EXTENSION IF NOT EXISTS "plpgsql"
+  [1m[36m (10.5ms)[0m  [1mCREATE TABLE "meet_requests" ("id" serial primary key, "requester_id" integer NOT NULL, "requested_trip_id" integer NOT NULL, "status" character varying NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  CREATE  INDEX  "index_meet_requests_on_requested_trip_id" ON "meet_requests" USING btree ("requested_trip_id")
+  [1m[36m (1.5ms)[0m  [1mCREATE  INDEX  "index_meet_requests_on_requester_id" ON "meet_requests" USING btree ("requester_id")[0m
+  [1m[35m (5.2ms)[0m  CREATE TABLE "profiles" ("id" serial primary key, "user_id" integer NOT NULL, "hometown_id" integer NOT NULL, "about_blurb" text, "story_blurb" text, "travel_blurb" text, "image_url" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX  "index_profiles_on_hometown_id" ON "profiles" USING btree ("hometown_id")[0m
+  [1m[35m (1.5ms)[0m  CREATE UNIQUE INDEX  "index_profiles_on_user_id" ON "profiles" USING btree ("user_id")
+  [1m[36m (5.0ms)[0m  [1mCREATE TABLE "trips" ("id" serial primary key, "owner_id" character varying NOT NULL, "from_city_zip" character varying NOT NULL, "to_city_zip" character varying NOT NULL, "start_date" date NOT NULL, "end_date" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.6ms)[0m  CREATE  INDEX  "index_trips_on_end_date" ON "trips" USING btree ("end_date")
+  [1m[36m (1.6ms)[0m  [1mCREATE  INDEX  "index_trips_on_from_city_zip" ON "trips" USING btree ("from_city_zip")[0m
+  [1m[35m (2.1ms)[0m  CREATE  INDEX  "index_trips_on_owner_id" ON "trips" USING btree ("owner_id")
+  [1m[36m (1.8ms)[0m  [1mCREATE  INDEX  "index_trips_on_start_date" ON "trips" USING btree ("start_date")[0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_trips_on_to_city_zip" ON "trips" USING btree ("to_city_zip")
+  [1m[36m (4.5ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "email" character varying NOT NULL, "password_digest" character varying NOT NULL, "session_digest" character varying NOT NULL, "fname" character varying NOT NULL, "lname" character varying NOT NULL, "birthday" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_users_on_birthday" ON "users" USING btree ("birthday")
+  [1m[36m (1.6ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_users_on_fname" ON "users" USING btree ("fname")
+  [1m[36m (1.4ms)[0m  [1mCREATE  INDEX  "index_users_on_lname" ON "users" USING btree ("lname")[0m
+  [1m[35m (1.4ms)[0m  CREATE  INDEX  "index_users_on_password_digest" ON "users" USING btree ("password_digest")
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_session_digest" ON "users" USING btree ("session_digest")[0m
+  [1m[35m (2.5ms)[0m  CREATE TABLE "schema_migrations" ("version" character varying NOT NULL) 
+  [1m[36m (1.5ms)[0m  [1mCREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")[0m
+  [1m[35m (0.5ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (22.9ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150609181032')[0m
+  [1m[35m (1.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150609180926')
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20150609180955')[0m
+  [1m[35m (0.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20150609181006')
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (23.9ms)[0m  BEGIN
+  [1m[36m (24.0ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      )
+
+      COPY cities FROM '../cities.csv' DELIMITER ',' CSV;
+[0m
+PG::SyntaxError: ERROR:  syntax error at or near "COPY"
+LINE 9:       COPY cities FROM '../cities.csv' DELIMITER ',' CSV;
+              ^
+:       CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      )
+
+      COPY cities FROM '../cities.csv' DELIMITER ',' CSV;
+
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (41.1ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM '../cities.csv' DELIMITER ',' CSV;
+[0m
+PG::UndefinedFile: ERROR:  could not open file "../cities.csv" for reading: No such file or directory
+:       CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM '../cities.csv' DELIMITER ',' CSV;
+
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (34.4ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM 'db/cities.csv' DELIMITER ',' CSV;
+[0m
+PG::UndefinedFile: ERROR:  could not open file "db/cities.csv" for reading: No such file or directory
+:       CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM 'db/cities.csv' DELIMITER ',' CSV;
+
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (38.1ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM '/Users/appacademy/Traverse/db/cities.csv' DELIMITER ',' CSV;
+[0m
+PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: "zip"
+CONTEXT:  COPY cities, line 1, column zip: "zip"
+:       CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM '/Users/appacademy/Traverse/db/cities.csv' DELIMITER ',' CSV;
+
+  [1m[35m (0.8ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (127.3ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM '/Users/appacademy/Traverse/db/cities.csv' DELIMITER ',' CSV;
+[0m
+  [1m[35mSQL (10.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150610214539"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (5.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cities'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.4ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'meet_requests'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'trips'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.4ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (9.1ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'meet_requests'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'trips'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to ImportCities (20150610214539)
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'meet_requests'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.7ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'trips'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to ImportCities (20150610214539)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (21.5ms)[0m  DROP TABLE "cities"
+PG::UndefinedTable: ERROR:  table "cities" does not exist
+: DROP TABLE "cities"
+  [1m[36m (0.2ms)[0m  [1mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to ImportCities (20150610214539)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.1ms)[0m  DROP TABLE "cities"
+  [1m[36mSQL (6.8ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20150610214539"]]
+  [1m[35m (1.3ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'meet_requests'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'trips'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (3.6ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (56.6ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM './db/cities.csv' DELIMITER ',' CSV;
+[0m
+PG::UndefinedFile: ERROR:  could not open file "./db/cities.csv" for reading: No such file or directory
+:       CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM './db/cities.csv' DELIMITER ',' CSV;
+
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (25.8ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM './db/cities.csv' DELIMITER ',' CSV;
+[0m
+PG::UndefinedFile: ERROR:  could not open file "./db/cities.csv" for reading: No such file or directory
+:       CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM './db/cities.csv' DELIMITER ',' CSV;
+
+  [1m[35m (0.1ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (12.1ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM db/cities.csv DELIMITER ',' CSV;
+[0m
+PG::SyntaxError: ERROR:  syntax error at or near "db"
+LINE 9:       COPY cities FROM db/cities.csv DELIMITER ',' CSV;
+                               ^
+:       CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM db/cities.csv DELIMITER ',' CSV;
+
+  [1m[35m (0.2ms)[0m  ROLLBACK
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ImportCities (20150610214539)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (118.8ms)[0m  [1m      CREATE TABLE cities (
+        zip integer DEFAULT NULL,
+        state varchar(2) DEFAULT NULL,
+        city varchar(16) DEFAULT NULL,
+        lat decimal(8,6) DEFAULT NULL,
+        lng decimal(10,6) DEFAULT NULL
+      );
+
+      COPY cities FROM '/Users/appacademy/Traverse/db/cities.csv' DELIMITER ',' CSV;
+[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20150610214539"]]
+  [1m[36m (11.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (4.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cities'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.9ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'meet_requests'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (8.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'profiles'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (4.8ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'trips'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (4.5ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+
+
+Started GET "/api/profiles/5" for ::1 at 2015-06-10 15:19:13 -0700
+  [1m[35mActiveRecord::SchemaMigration Load (0.7ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Processing by Api::ProfilesController#show as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mProfile Load (29.9ms)[0m  [1mSELECT  "profiles".* FROM "profiles" WHERE "profiles"."user_id" = $1 LIMIT 1[0m  [["user_id", 5]]
+  Rendered api/profiles/show.json.jbuilder (7.5ms)
+Completed 500 Internal Server Error in 105ms (ActiveRecord: 31.9ms)
+
+NoMethodError - undefined method `hometown' for nil:NilClass:
+  jbuilder (2.2.16) lib/jbuilder.rb:253:in `block in _extract_method_values'
+  jbuilder (2.2.16) lib/jbuilder.rb:253:in `_extract_method_values'
+  jbuilder (2.2.16) lib/jbuilder.rb:212:in `extract!'
+  app/views/api/profiles/show.json.jbuilder:1:in `_app_views_api_profiles_show_json_jbuilder__395610997728146542_70096054428840'
+  actionview (4.2.1) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  app/controllers/api/profiles_controller.rb:6:in `show'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.1) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.1) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/appacademy/.rbenv/versions/2.1.2/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+
+Started GET "/" for ::1 at 2015-06-10 15:19:16 -0700
+Processing by StaticPagesController#root as HTML
+  [1m[35mUser Load (15.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."session_digest" = $1 LIMIT 1  [["session_digest", "zsESIuxc6EzzhhGVhscBow"]]
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_user rendered or redirected
+Completed 302 Found in 33ms (ActiveRecord: 16.5ms)
+
+
+Started GET "/session/new" for ::1 at 2015-06-10 15:19:16 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 1228ms (Views: 1226.5ms | ActiveRecord: 0.0ms)
