@@ -4,6 +4,7 @@ module ApplicationHelper
   end
 
   def current_user_data
-    "{'name': '#{current_user.name}', 'age': '#{current_user.age}'}".html_safe
+    "{'id': '#{current_user.id}', 'name': '#{current_user.name}',
+    'age': '#{current_user.age}'}".html_safe
   end
 end

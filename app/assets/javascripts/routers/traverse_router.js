@@ -2,7 +2,7 @@ Traverse.Routers.Router = Backbone.Router.extend({
 
   routes: {
     '': 'tripIndex',
-    'profile(/)': 'myProfile',
+    'profile/edit(/)': 'editProfile',
     'profile/:id(/)': 'showProfile'
   },
 
@@ -15,13 +15,17 @@ Traverse.Routers.Router = Backbone.Router.extend({
 
   },
 
-  myProfile: function() {
-    var view = new Traverse.Views.ProfileShow({});
+  editProfile: function() {
+    var view = new Traverse.Views.ProfileEdit();
     this._swapView(this.$mainview, this._mainview, view);
   },
 
   showProfile: function(id) {
-
+    var view = new Traverse.Views.ProfileShow({
+      userData: Traverse.userData,
+      myProfile: Traverse.myProfile
+    });
+    this._swapView(this.$mainview, this._mainview, view);
   },
 
   _swapView: function(pageElement, viewToReplace, currentView ) {

@@ -6,7 +6,7 @@ class Api::ProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile
-    if @profile.update_attibutes(profile_params)
+    if @profile.update_attributes(profile_params)
       render json: ["Profile updated!"]
     else
       render json: @profile.errors.full_messages, status: :unprocessable_entity
@@ -16,7 +16,7 @@ class Api::ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permits(
+    params.require(:profile).permit(
       :hometown_id,
       :about_blurb,
       :story_blurb,

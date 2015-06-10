@@ -3,7 +3,7 @@ Traverse.Views.Header = Backbone.View.extend({
 
   events: {
     'click .sign-out-button': 'signOut',
-    'click .profile': 'profile',
+    'click .profile-button': 'profile',
     'click .navbar-brand': 'index'
   },
 
@@ -18,7 +18,7 @@ Traverse.Views.Header = Backbone.View.extend({
   },
 
   profile: function() {
-    Backbone.history.navigate("/profile", {trigger: true})
+    Backbone.history.navigate("/profile/" + Traverse.userData.id, {trigger: true})
   },
 
   index: function() {

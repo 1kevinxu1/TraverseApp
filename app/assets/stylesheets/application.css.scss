@@ -62,3 +62,52 @@
   background-color: #eee;
   min-height: 200px;
 }
+
+.profile-header {
+  padding: 0px;
+  margin: 0px 0px 20px 0px;
+}
+
+.profile-header > div {
+  float: left;
+  margin: 0px 10px 0px;
+}
+
+.profile-header > div.hometown {
+  margin-top: 12px;
+}
+
+.profile-header > div.age {
+  float: right;
+}
+
+.profile-blurb {
+  margin: 10px;
+}
+
+.profile {
+  border: 1px solid #ddd;
+  background: rgba(240, 240, 240, .5
+  );
+}
+
+.edit-profile {
+  float: right;
+  height: 30px;
+  margin: 0px 10px;
+}
+
+textarea {
+  height: 150px;
+  width: 100%;
+}
+
+.no-border-radius {
+  border-radius: 0px;
+}
+
+#edit-profile-button {
+  position: absolute;
+  bottom: 0px;
+  width: 218px;
+}
