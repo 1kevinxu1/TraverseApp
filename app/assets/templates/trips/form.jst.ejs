@@ -1,7 +1,7 @@
-<div class="trip-details">
-  <input type="text" name="trip[from_city]" value=<%= trip.get("from_city") %>placeholder="Starting City">
-  <input type="text" name="trip[to_city]" value=<%= trip.get("to_city") %> placeholder="Final Destination">
-  <input type="date" name="trip[start_date]" value=<%= trip.get("start_date") %> placeholder="Start Date">
-  <input type="date" name="trip[end_date]" value=<%= trip.get("end_date") %> placeholder="End Date">
-  <input id="submit-trip" class="btn btn-primary" name="name" value="">
-</div><%=
+<form class="trip trip-details">
+  <input type="text" name="trip[from_city]" value="<%= trip.get("from_city") %>" placeholder="Starting City">
+  <input type="text" name="trip[to_city]" value= "<%= trip.get("to_city") %>" placeholder="Final Destination">
+  <input type="date" name="trip[start_date]" value= "<%= trip.get("start_date") %>" placeholder="Start Date">
+  <input type="date" name="trip[end_date]" value= "<%= trip.get("end_date") %>" placeholder="End Date">
+  <input type="submit" class="btn btn-primary" name="name" value="Create My Trip!">
+</form>

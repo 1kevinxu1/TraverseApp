@@ -6,8 +6,9 @@ class Api::TripsController < ApplicationController
 
   def create
     @trip = Trip.new(trip_params)
+    @trip.owner_id = current_user.id
     if @trip.save
-      render json: ["Trip created! Have fun!"]
+      render :show
     else
       render json: @trip.errors.full_messages, status: :unprocessable_entity
     end
@@ -16,7 +17,7 @@ class Api::TripsController < ApplicationController
   def update
     @trip = Trip.find(params[:id])
     if @trip.update_attributes(trip_params)
-      render json: ["Trip saved! Enjoy your trip!"]
+      render json: @trip
     else
       render json: @trip.errors.full_messages, status: :unprocessable_entity
     end
@@ -26,5 +27,11 @@ class Api::TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip.destroy
     render json: ["Trip deleted."]
+  end
+
+  private
+
+  def trip_params
+    params.require(:trip).permit(:start_date, :end_date, :from_city, :to_city)
   end
 end

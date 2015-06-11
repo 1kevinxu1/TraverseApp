@@ -132,3 +132,16 @@ textarea {
   background-color: #999;
   cursor: pointer;
 }
+
+.trip-details > .city-date {
+  padding: 5px;
+  margin: 10px;
+  float: left;
+  width: 30%;
+  background-color: white;
+  text-align: center;
+}
+
+.city-date > h4 {
+  margin: 0px;
+}

@@ -9,7 +9,7 @@ class Api::ProfilesController < ApplicationController
   def update
     @profile = current_user.profile
     if @profile.update_attributes(profile_params)
-      render json: ["Profile updated!"]
+      render json: @profiles
     else
       render json: @profile.errors.full_messages, status: :unprocessable_entity
     end

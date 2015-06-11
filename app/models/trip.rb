@@ -48,6 +48,14 @@ class Trip < ActiveRecord::Base
     self.to_city_zip = city && city.zip
   end
 
+  def start_date_string
+    self.start_date.strftime('%m/%d/%Y')
+  end
+
+  def end_date_string
+    self.end_date.strftime('%m/%d/%Y')
+  end
+
   private
 
   def must_be_traveling
