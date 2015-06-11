@@ -8,8 +8,6 @@ class ImportCities < ActiveRecord::Migration
         lat decimal(8,6) DEFAULT NULL,
         lng decimal(10,6) DEFAULT NULL
       );
-
-      COPY cities FROM '#{Dir.pwd}/db/cities.csv' DELIMITER ',' CSV;
     SQL
   end
 

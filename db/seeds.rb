@@ -6,6 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create({
-  fname: "Kevin", lname: "Xu", email: "kevin", password: ""
-})
+City.connection.execute("COPY cities FROM '#{Dir.pwd}/db/cities.csv' DELIMITER ',' CSV;")

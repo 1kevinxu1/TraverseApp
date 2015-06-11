@@ -111,3 +111,24 @@ textarea {
   bottom: 0px;
   width: 218px;
 }
+
+.trip {
+  background: #eee;
+  height: 157px;
+  margin: 0px 0px 20px;
+}
+
+.content-header{
+  padding: 0px;
+  margin: 0px 0px 20px;
+  border-bottom: 2px solid #000;
+}
+
+.content-header > h3 {
+  margin: 0px 0px 10px;
+}
+
+.trip-new:hover {
+  background-color: #999;
+  cursor: pointer;
+}

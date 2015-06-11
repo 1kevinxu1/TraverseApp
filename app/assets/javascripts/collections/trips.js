@@ -1,5 +1,6 @@
 Traverse.Collections.Trips = Backbone.Collection.extend({
 
-  model: Traverse.Models.Trip
+  url: "/api/trips",
 
+  model: Traverse.Models.Trip
 });

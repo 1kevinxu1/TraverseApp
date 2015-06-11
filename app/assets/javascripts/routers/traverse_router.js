@@ -9,23 +9,26 @@ Traverse.Routers.Router = Backbone.Router.extend({
   initialize: function(options) {
     this.$mainview = options.$mainview;
     this.$sideview = options.$sideview;
+    this._userTrips = new Traverse.Collections.Trips();
+    this._userTrips.fetch();
   },
 
   tripIndex: function() {
-    
+    var view = new Traverse.Views.TripsIndex({collection: this._userTrips});
+    this._swapView(this.$mainview, this._mainview, view);
   },
 
   editProfile: function() {
-    var myProfile = new Traverse.Models.Profile({id: Traverse.userData.id});
-    myProfile.fetch();
-    var view = new Traverse.Views.ProfileEdit({model: myProfile});
+    var profile = new Traverse.Models.Profile({id: Traverse.userData.id});
+    profile.fetch();
+    var view = new Traverse.Views.ProfileEdit({model: profile});
     this._swapView(this.$mainview, this._mainview, view);
   },
 
   showProfile: function(id) {
-    var myProfile = new Traverse.Models.Profile({id: id});
-    myProfile.fetch();
-    var view = new Traverse.Views.ProfileShow({model: myProfile});
+    var profile = new Traverse.Models.Profile({id: id});
+    profile.fetch();
+    var view = new Traverse.Views.ProfileShow({model: profile});
     this._swapView(this.$mainview, this._mainview, view);
   },
 
