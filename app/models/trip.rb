@@ -21,6 +21,9 @@ class Trip < ActiveRecord::Base
 
   belongs_to :user, class_name: 'User', foreign_key: :owner_id
   belongs_to :city, class_name: 'City', foreign_key: :city_zip, primary_key: :zip
+  has_many :meet_requests, class_name: 'MeetRequest', foreign_key: :requested_trip_id
+  has_many :requesters, through: meet_requests: source: :requester
+  end
 
   def city=(city)
     city = city.split.map { |i| i.capitalize }.join(' ')

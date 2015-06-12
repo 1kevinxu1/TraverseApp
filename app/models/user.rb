@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true}
   validates :session_digest, uniqueness: true
   has_many :trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
+  has_many :meet_requests, foreign_key: :requester_id, dependent: :destroy
+  has_many :requested_trips, through: :meet_requests, source: :requested_trip
   belongs_to :hometown, class_name: 'City', foreign_key: :hometown_id, primary_key: :zip
 
   after_initialize :ensure_session_digest
