@@ -1,3 +1,3 @@
-Traverse.Models.MeetRequest = Backbone.Traverse.extend({
+Traverse.Models.MeetRequest = Backbone.Model.extend({
   urlRoot: '/api/meet_requests'
 });

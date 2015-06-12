@@ -3,7 +3,7 @@ class CreateMeetRequests < ActiveRecord::Migration
     create_table :meet_requests do |t|
       t.integer :requester_id, null: false
       t.integer :requested_trip_id, null: false
-      t.string :status, null: false
+      t.string :status, null: false, default: 'PENDING'
     end
 
     add_index :meet_requests, :requester_id

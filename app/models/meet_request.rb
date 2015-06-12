@@ -6,18 +6,11 @@ class MeetRequest < ActiveRecord::Base
   belongs_to :requester, class_name: 'User'
   belongs_to :requested_trip, class_name: 'Trip'
 
-  after_initialize :set_default_status
+  after_initialize :set_status
 
-  def set_default_status
-    self.status = 'PENDING'
-  end
-
-  def accept
-    self.status = 'ACCEPTED'
-  end
-
-  def decline
-    self.status = 'DECLINE'
+  def set_status(status)
+    self.status = status
+    self.save!
   end
 end
 

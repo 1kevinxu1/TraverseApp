@@ -40,7 +40,7 @@ class Trip < ActiveRecord::Base
 
   def overlapping_trips(search_all, search_user = self.owner_id)
     #Use LIMIT/OFFSET later for infinite search results
-    Trip.find_by_sql([<<-SQL, {sd: start_date, ed: end_date, su: search_user, sa: search_all, cz: city_zip}])
+    Trip.find_by_sql([<<-SQL, {sd: start_date, ed: end_date, su: search_user, sa: search_all, cz: city_zip, id: self.id}])
       SELECT
         *
       FROM
@@ -48,9 +48,10 @@ class Trip < ActiveRecord::Base
       WHERE
         ((trips.start_date > :sd AND trips.start_date < :ed) OR
         (trips.end_date > :sd AND trips.end_date < :ed) OR
-        (trips.start_date < :sd AND trips.end_date > :ed) OR
-        (trips.start_date > :sd AND trips.end_date < :ed)) AND
+        (trips.start_date <= :sd AND trips.end_date >= :ed) OR
+        (trips.start_date >= :sd AND trips.end_date <= :ed)) AND
         (trips.city_zip = :cz) AND
+        (trips.id != :id) AND
         (:sa OR trips.owner_id = :su)
     SQL
   end
@@ -73,8 +74,8 @@ class Trip < ActiveRecord::Base
       WHERE
         ((trips.start_date > :sd AND trips.start_date < :ed) OR
         (trips.end_date > :sd AND trips.end_date < :ed) OR
-        (trips.start_date < :sd AND trips.end_date > :ed) OR
-        (trips.start_date > :sd AND trips.end_date < :ed)) AND
+        (trips.start_date <= :sd AND trips.end_date >= :ed) OR
+        (trips.start_date > s:sd AND trips.end_date < :ed)) AND
         (trips.owner_id = :su)
     SQL
     if !trips.empty?

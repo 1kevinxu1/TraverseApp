@@ -1,14 +1,10 @@
 <div class="trip-details">
   <div class="trip-information-header group">
     <div class="city-date pull-left">
-      <h4><%= trip.get("trip").city %>, <%= trip.get("trip").state %></h4>
-      <%= trip.get("trip").start_date_string %>
-      <%= trip.get("trip").end_date_string %>
+      <h4><%= trip.get("city") %>, <%= trip.get("state") %></h4>
+      <%= trip.get("start_date_string") %>
+      <%= trip.get("end_date_string") %>
     </div>
-    <button id="request-button"
-            class="btn btn-success pull-right"
-            name="button">
-      Request to Meet
     </button>
   </div>
 </div>
