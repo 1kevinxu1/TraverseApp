@@ -4,6 +4,10 @@ Traverse.Views.SharedTrip = Backbone.CompositeView.extend({
 
   className: 'trip trip-view',
 
+  events: {
+    'click #request-button': 'requestTrip'
+  },
+
   initialize: function() {
   },
 
@@ -12,4 +16,6 @@ Traverse.Views.SharedTrip = Backbone.CompositeView.extend({
     this.$el.html(content);
     return this;
   }
+
+
 });
