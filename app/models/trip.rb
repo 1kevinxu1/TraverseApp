@@ -37,16 +37,18 @@ class Trip < ActiveRecord::Base
   end
 
   def overlapping_trips(search_all, search_user = self.owner_id)
-
-    Trip.find_by_sql([<<-SQL, {sd: start_date, ed: end_date, su: search_user, sa: search_all}])
+    #Use LIMIT/OFFSET later for infinite search results
+    Trip.find_by_sql([<<-SQL, {sd: start_date, ed: end_date, su: search_user, sa: search_all, cz: city_zip}])
       SELECT
         *
       FROM
         trips
       WHERE
-        (trips.start_date > :sd AND trips.start_date < :ed OR
-        trips.end_date > :sd AND trips.end_date < :ed OR
-        (trips.start_date < :sd AND trips.end_date > :ed)) AND
+        ((trips.start_date > :sd AND trips.start_date < :ed) OR
+        (trips.end_date > :sd AND trips.end_date < :ed) OR
+        (trips.start_date < :sd AND trips.end_date > :ed) OR
+        (trips.start_date > :sd AND trips.end_date < :ed)) AND
+        (trips.city_zip = :cz) AND
         (:sa OR trips.owner_id = :su)
     SQL
   end

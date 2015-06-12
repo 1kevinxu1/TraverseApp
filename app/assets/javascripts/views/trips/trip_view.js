@@ -4,6 +4,10 @@ Traverse.Views.TripView = Backbone.CompositeView.extend({
 
   className: 'trip trip-view',
 
+  events: {
+    'click .search-users': "userSearch"
+  },
+
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);
   },

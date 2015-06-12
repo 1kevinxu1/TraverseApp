@@ -1,5 +1,5 @@
 Traverse.Views.ProfileEdit = Backbone.CompositeView.extend({
-  template: JST['profiles/form'],
+  template: JST['user_profiles/form'],
 
   events: {
     'click #save-profile': 'saveProfile'

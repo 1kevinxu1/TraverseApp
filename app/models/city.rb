@@ -11,4 +11,5 @@
 
 class City < ActiveRecord::Base
   has_many :trips, class_name: 'Trip', foreign_key: :city_zip, primary_key: :zip
+  has_many :users, class_name: 'User', foreign_key: :hometown_id, primary_key: :zip
 end

@@ -1,12 +1,14 @@
 class Api::UsersController < Api::ApiController
   def index
-    @trip = Trip.find(params[:id])
-    if current_user.trips.include?(@trip)
-      @trips = @trip.overlapping_trips(true)
-      render :index
-    else
-      render json: ["That trip doesn't belong to you"], status: :unauthorized
-    end
+    @trip = Trip.find(params[:trip_id])
+    start = Time.now
+    @trips = @trip.overlapping_trips(true)
+    ActiveRecord::Associations::Preloader.new.preload(@trips, [:city, :user])
+    finish = Time.now
+    render :index
+    p finish-start
+      # render json: ["That trip doesn't belong to you"], status: :unauthorized
+    # end
   end
 
   #id in params is the user_id, not profile id

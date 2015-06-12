@@ -9,7 +9,7 @@ Traverse.Views.UserView = Backbone.CompositeView.extend({
   },
 
   render: function() {
-    console.log(this.model);
+    // debugger;
     var content = this.template({ user: this.model });
     this.$el.html(content);
     return this;
