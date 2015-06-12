@@ -31,7 +31,8 @@
 
 <script>
   $(document).ready(function(){
-    Traverse.userData = <%=current_user_data%>;
+    Traverse.userId = <%=current_user.id%>;
+    Traverse.name = "<%=current_user.name%>";
     Traverse.initialize();
   });
 </script>

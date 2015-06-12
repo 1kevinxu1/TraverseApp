@@ -1,7 +1,7 @@
 class CreateTrips < ActiveRecord::Migration
   def change
     create_table :trips do |t|
-      t.string :owner_id, null: false
+      t.integer :owner_id, null: false
       t.integer :city_zip, null: false
       t.date :start_date, null: false
       t.date :end_date, null: false

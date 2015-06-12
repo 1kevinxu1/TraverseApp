@@ -16,23 +16,19 @@ zips = ["san diego", "san francisco", "new york", "austin", "baltimore", "encini
   name = Faker::Name.name.split(' ')
   email = Faker::Internet.free_email(name)
   birthday = Faker::Date.between(*birthday_range)
-  user = User.create(
-    email: email,
-    password: "password",
-    fname: name[0],
-    lname: name[1],
-    birthday: birthday
-  )
 
-  user_id = user.id
   hometown = zips.sample
   about_blurb = Faker::Lorem.paragraph(4)
   story_blurb = Faker::Lorem.paragraph(6)
   travel_blurb = Faker::Lorem.paragraph(3)
   image_url = Faker::Avatar.image
 
-  profile = Profile.create(
-    user_id: user_id,
+  user = User.create(
+    email: email,
+    password: "password",
+    fname: name[0],
+    lname: name[1],
+    birthday: birthday,
     hometown: hometown,
     about_blurb: about_blurb,
     story_blurb: story_blurb,

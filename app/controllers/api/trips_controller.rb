@@ -1,4 +1,4 @@
-class Api::TripsController < ApplicationController
+class Api::TripsController < Api::ApiController
   def index
     @trips = current_user.trips.order(:start_date)
     render :index

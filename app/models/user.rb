@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   validates :session_digest, uniqueness: true
   has_one :profile, dependent: :destroy
   has_many :trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
+  belongs_to :hometown, class_name: 'City', foreign_key: :hometown_id, primary_key: :zip
+
   after_initialize :ensure_session_digest
 
   attr_accessor :password
@@ -37,6 +39,12 @@ class User < ActiveRecord::Base
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
+  end
+
+  def hometown=(hometown)
+    hometown = hometown.split.map { |i| i.capitalize }.join(' ')
+    hometown = City.find_by(city: hometown)
+    self.hometown_id = hometown && hometown.zip
   end
 
   def name

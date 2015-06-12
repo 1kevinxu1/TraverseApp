@@ -33,7 +33,7 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     $(event.currentTarget).remove();
     this.model = new Traverse.Models.Trip();
     var view = new Traverse.Views.TripForm({ model: this.model});
-    this.$el.append(view.render().$el);
+    this.$el.prepend(view.render().$el);
   },
 
   submitTrip: function(event) {

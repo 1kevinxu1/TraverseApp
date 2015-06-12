@@ -1,9 +1,14 @@
 <div class="user-details">
   <div class="user-information-header group">
+    <a href="/#profile/<%= user.get("id") %>">
+      <div id="user-profile-mini" class=""></div>
+    </a>
     <div class="user-information pull-left">
-      <h4><%= user.get("user").name %></h4>
-      <%= user.get("user").age %>
-      <%= trip.get("end_date_string") %>
+      <a href="/#profile/<%= user.get("id") %>">
+        <h4><%= user.get("name") %></h4>
+      </a>
+      <%= user.get("age") %>
+      <%= user.get("hometown").city%>, <%= user.get("hometown").state %>
     </div>
   </div>
 </div>

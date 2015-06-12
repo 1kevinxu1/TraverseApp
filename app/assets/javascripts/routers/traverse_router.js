@@ -20,17 +20,24 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   editProfile: function() {
-    var profile = new Traverse.Models.Profile({id: Traverse.userData.id});
-    profile.fetch();
-    var view = new Traverse.Views.ProfileEdit({model: profile});
-    this._swapView(this.$mainview, this._mainview, view);
+    debugger;
+    var user = new Traverse.Models.User({id: Traverse.userId});
+    user.fetch({
+      success: function() {
+        var view = new Traverse.Views.ProfileEdit({model: user});
+        this._swapView(this.$mainview, this._mainview, view);
+      }.bind(this)
+    });
   },
 
   showProfile: function(id) {
-    var profile = new Traverse.Models.Profile({id: id});
-    profile.fetch();
-    var view = new Traverse.Views.ProfileShow({model: profile});
-    this._swapView(this.$mainview, this._mainview, view);
+    var user = new Traverse.Models.User({id: id});
+    user.fetch({
+      success: function() {
+        var view = new Traverse.Views.ProfileShow({model: user});
+        this._swapView(this.$mainview, this._mainview, view);
+      }.bind(this)
+    });
   },
 
   overlappingTrips: function(tripId) {
@@ -40,7 +47,7 @@ Traverse.Routers.Router = Backbone.Router.extend({
       processData: true
     });
     var view = new Traverse.Views.SearchResults({collection: users});
-    this.swapView(this.$mainview, this._mainview, view);
+    this._swapView(this.$mainview, this._mainview, view);
   },
 
   _swapView: function(pageElement, viewToReplace, currentView ) {

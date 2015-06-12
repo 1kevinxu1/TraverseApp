@@ -18,7 +18,7 @@ Traverse.Views.Header = Backbone.View.extend({
   },
 
   profile: function() {
-    Backbone.history.navigate("/profile/" + Traverse.userData.id, {trigger: true});
+    Backbone.history.navigate("/profile/" + Traverse.id, {trigger: true});
   },
 
   index: function() {

@@ -1,4 +1,8 @@
+user = current_user
+
 json.array! @trips do |trip|
-  json.user trip.user
-  json.hometown trip.user.profile.hometown
+  json.name user.name
+  json.age user.age
+  json.id user.id
+  json.hometown user.hometown
 end

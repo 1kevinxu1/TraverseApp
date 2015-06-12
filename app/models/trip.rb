@@ -36,7 +36,8 @@ class Trip < ActiveRecord::Base
     self.end_date.strftime('%m/%d/%Y')
   end
 
-  def overlapping_trips(search_all = false, search_user = self.owner_id)
+  def overlapping_trips(search_all, search_user = self.owner_id)
+
     Trip.find_by_sql([<<-SQL, {sd: start_date, ed: end_date, su: search_user, sa: search_all}])
       SELECT
         *
@@ -59,7 +60,7 @@ class Trip < ActiveRecord::Base
   end
 
   def no_overlapping_trips
-    if !overlapping_trips.empty?
+    if !overlapping_trips(false).empty?
       errors.add("You're already someplace else, man!")
     end
   end

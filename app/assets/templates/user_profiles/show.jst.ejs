@@ -1,0 +1,35 @@
+<div class="containter-fluid profile overlapping-trips">
+
+</div>
+
+<div id="profile-header" class="container-fluid profile profile-header">
+  <h1><%= user.get("name") %>, <%= user.get("age") %></h1>
+  <h3> <% if (user.get("hometown")) { %>
+    <%= user.get("hometown").city %>, <%=user.get("hometown").state %>
+    <% } else { %>
+      No hometown
+    <% } %> </h3>
+</div>
+
+<div id="profile-content" class="profile">
+  <div id="about-me" class="profile-blurb">
+    <h3>
+      About Me
+    </h3>
+    <p>
+      <%= user.escape("about_blurb") || user.get("fname") + " has nothing to say." %>
+    </p>
+  </div>
+  <div id="about-me" class="profile-blurb">
+    <h3>One Crazy Story About Me</h3>
+    <p>
+      <%= user.escape("story_blurb") || user.get("fname") + " has nothing to say."%>
+    </p>
+  </div>
+  <div id="about-me" class="profile-blurb">
+    <h3>When I travel, I like to...</h3>
+    <p>
+      <%= user.escape("travel_blurb") || user.get("fname") + " has nothing to say." %>
+    </p>
+  </div>
+</div>

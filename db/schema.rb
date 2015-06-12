@@ -33,22 +33,8 @@ ActiveRecord::Schema.define(version: 20150610214539) do
   add_index "meet_requests", ["requested_trip_id"], name: "index_meet_requests_on_requested_trip_id", using: :btree
   add_index "meet_requests", ["requester_id"], name: "index_meet_requests_on_requester_id", using: :btree
 
-  create_table "profiles", force: :cascade do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "hometown_id",  null: false
-    t.text     "about_blurb"
-    t.text     "story_blurb"
-    t.text     "travel_blurb"
-    t.string   "image_url",    null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "profiles", ["hometown_id"], name: "index_profiles_on_hometown_id", using: :btree
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
-
   create_table "trips", force: :cascade do |t|
-    t.string   "owner_id",   null: false
+    t.integer  "owner_id",   null: false
     t.integer  "city_zip",   null: false
     t.date     "start_date", null: false
     t.date     "end_date",   null: false
@@ -68,6 +54,11 @@ ActiveRecord::Schema.define(version: 20150610214539) do
     t.string   "fname",           null: false
     t.string   "lname",           null: false
     t.date     "birthday",        null: false
+    t.string   "image_url"
+    t.text     "about_blurb"
+    t.text     "story_blurb"
+    t.text     "travel_blurb"
+    t.integer  "hometown_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -75,6 +66,8 @@ ActiveRecord::Schema.define(version: 20150610214539) do
   add_index "users", ["birthday"], name: "index_users_on_birthday", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["fname"], name: "index_users_on_fname", using: :btree
+  add_index "users", ["hometown_id"], name: "index_users_on_hometown_id", using: :btree
+  add_index "users", ["image_url"], name: "index_users_on_image_url", using: :btree
   add_index "users", ["lname"], name: "index_users_on_lname", using: :btree
   add_index "users", ["password_digest"], name: "index_users_on_password_digest", using: :btree
   add_index "users", ["session_digest"], name: "index_users_on_session_digest", unique: true, using: :btree
