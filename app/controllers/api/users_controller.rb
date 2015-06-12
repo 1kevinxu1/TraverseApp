@@ -1,12 +1,9 @@
 class Api::UsersController < Api::ApiController
   def index
     @trip = Trip.find(params[:trip_id])
-    start = Time.now
+    # if user.trips.inlucde?(@trip)
     @trips = @trip.overlapping_trips(true)
-    ActiveRecord::Associations::Preloader.new.preload(@trips, [:city, :user])
-    finish = Time.now
     render :index
-    p finish-start
       # render json: ["That trip doesn't belong to you"], status: :unauthorized
     # end
   end

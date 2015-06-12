@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true}
   validates :session_digest, uniqueness: true
-  has_one :profile, dependent: :destroy
   has_many :trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
   belongs_to :hometown, class_name: 'City', foreign_key: :hometown_id, primary_key: :zip
 

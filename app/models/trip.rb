@@ -15,7 +15,7 @@ class Trip < ActiveRecord::Base
   validates :owner_id, :start_date, :end_date, presence: true
   validate(
     :dates_are_reasonable,
-    :no_overlapping_trips,
+    :no_overlapping_dates,
     :city_zip_exists
   )
 
@@ -61,8 +61,21 @@ class Trip < ActiveRecord::Base
     end
   end
 
-  def no_overlapping_trips
-    if !overlapping_trips(false).empty?
+  def no_overlapping_dates
+    #Use LIMIT/OFFSET later for infinite search results
+    trips = Trip.find_by_sql([<<-SQL, {sd: start_date, ed: end_date, su: self.owner_id}])
+      SELECT
+        *
+      FROM
+        trips
+      WHERE
+        ((trips.start_date > :sd AND trips.start_date < :ed) OR
+        (trips.end_date > :sd AND trips.end_date < :ed) OR
+        (trips.start_date < :sd AND trips.end_date > :ed) OR
+        (trips.start_date > :sd AND trips.end_date < :ed)) AND
+        (trips.owner_id = :su)
+    SQL
+    if !trips.empty?
       errors.add("You're already someplace else, man!")
     end
   end

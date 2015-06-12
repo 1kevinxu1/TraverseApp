@@ -20,7 +20,6 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   editProfile: function() {
-    debugger;
     var user = new Traverse.Models.User({id: Traverse.userId});
     user.fetch({
       success: function() {
