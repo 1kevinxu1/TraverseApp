@@ -48,20 +48,18 @@ ActiveRecord::Schema.define(version: 20150610214539) do
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
 
   create_table "trips", force: :cascade do |t|
-    t.string   "owner_id",      null: false
-    t.string   "from_city_zip", null: false
-    t.string   "to_city_zip",   null: false
-    t.date     "start_date",    null: false
-    t.date     "end_date",      null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "owner_id",   null: false
+    t.integer  "city_zip",   null: false
+    t.date     "start_date", null: false
+    t.date     "end_date",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  add_index "trips", ["city_zip"], name: "index_trips_on_city_zip", using: :btree
   add_index "trips", ["end_date"], name: "index_trips_on_end_date", using: :btree
-  add_index "trips", ["from_city_zip"], name: "index_trips_on_from_city_zip", using: :btree
   add_index "trips", ["owner_id"], name: "index_trips_on_owner_id", using: :btree
   add_index "trips", ["start_date"], name: "index_trips_on_start_date", using: :btree
-  add_index "trips", ["to_city_zip"], name: "index_trips_on_to_city_zip", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false

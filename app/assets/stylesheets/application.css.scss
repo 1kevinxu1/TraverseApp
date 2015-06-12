@@ -16,6 +16,12 @@
  @import "bootstrap";
 
 
+.group:after {
+   content: "";
+   display: block;
+   clear: both;
+}
+
 #banner {
   background-color: #eee;
   margin: 0px;
@@ -60,25 +66,27 @@
 
 .placeholder-2 {
   background-color: #eee;
-  min-height: 200px;
+  height: 220px;
+  overflow: hidden;
+}
+
+.placeholder-2:hover{
+  #edit-profile-button {
+    display: block;
+  }
 }
 
 .profile-header {
-  padding: 0px;
-  margin: 0px 0px 20px 0px;
+  padding: 10px;
+  margin: 0px 0px 10px 0px;
 }
 
-.profile-header > div {
-  float: left;
-  margin: 0px 10px 0px;
+.profile-header > h1 {
+  margin: 0px;
 }
 
-.profile-header > div.hometown {
-  margin-top: 12px;
-}
-
-.profile-header > div.age {
-  float: right;
+.profile-header > h3 {
+  margin:4px 0px;
 }
 
 .profile-blurb {
@@ -107,6 +115,7 @@ textarea {
 }
 
 #edit-profile-button {
+  display: none;
   position: absolute;
   bottom: 0px;
   width: 218px;
@@ -114,7 +123,7 @@ textarea {
 
 .trip {
   background: #eee;
-  height: 157px;
+  height: 162px;
   margin: 0px 0px 20px;
 }
 
@@ -133,15 +142,26 @@ textarea {
   cursor: pointer;
 }
 
-.trip-details > .city-date {
+.trip-details {
+  padding: 10px;
+}
+
+.trip-details .city-date {
   padding: 5px;
-  margin: 10px;
   float: left;
-  width: 30%;
+  margin: 0px 5px 5px 0px;
   background-color: white;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .city-date > h4 {
   margin: 0px;
+}
+
+.trip-information-header {
+  border-bottom: 3px solid black;
+}
+
+.profile-all {
+  border: 2px solid black;
 }

@@ -32,6 +32,6 @@ class Api::TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:start_date, :end_date, :from_city, :to_city)
+    params.require(:trip).permit(:start_date, :end_date, :city)
   end
 end

@@ -3,7 +3,8 @@ Traverse.Routers.Router = Backbone.Router.extend({
   routes: {
     '': 'tripIndex',
     'profile/edit(/)': 'editProfile',
-    'profile/:id(/)': 'showProfile'
+    'profile/:id(/)': 'showProfile',
+    'search/:id(/)': 'overlappingTrips'
   },
 
   initialize: function(options) {
@@ -32,11 +33,20 @@ Traverse.Routers.Router = Backbone.Router.extend({
     this._swapView(this.$mainview, this._mainview, view);
   },
 
+  overlappingTrips: function(tripId) {
+    var users = new Traverse.Collections.Users();
+    users.fetch({
+      data: { id: tripId },
+      processData: true
+    });
+    var view = new Traverse.Views.SearchResults({collection: users});
+    this.swapView(this.$mainview, this._mainview, view);
+  },
+
   _swapView: function(pageElement, viewToReplace, currentView ) {
     viewToReplace && viewToReplace.remove();
     viewToReplace = currentView;
     pageElement.html(currentView.render().$el);
   }
-
 
 });

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true}
   validates :session_digest, uniqueness: true
   has_one :profile, dependent: :destroy
-  has_many :trips, class_name: 'Trip', foreign_key: :owner_id
+  has_many :trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
   after_initialize :ensure_session_digest
 
   attr_accessor :password
@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def name
-    self.fname + " " + self.lname
+    self.fname.capitalize + " " + self.lname.capitalize
   end
 
   def age

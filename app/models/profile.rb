@@ -16,17 +16,12 @@
 class Profile < ActiveRecord::Base
   validates :user, :hometown_id, :image_url, presence: true
   belongs_to :user
-  # belongs_to :hometown, class_name: 'City'
+  belongs_to :hometown, class_name: 'City', foreign_key: :hometown_id, primary_key: :zip
 
-  #TEMPORARY FIX UNTIL CITY DATABASE IS INTEGRATED AND GRAVATAR IMPLEMENTED
-  after_initialize :hometown, :image
-  def hometown
-    self.hometown_id = 1
-    return "San Diego, CA"
-  end
-
-  def image
-    self.image_url = "send help"
+  def hometown=(hometown)
+    hometown = hometown.split.map { |i| i.capitalize }.join(' ')
+    hometown = City.find_by(city: hometown)
+    self.hometown_id = hometown && hometown.zip
   end
 
 end

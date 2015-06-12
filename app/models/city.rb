@@ -1,4 +1,14 @@
-class City < ActiveRecord::Base
+# == Schema Information
+#
+# Table name: cities
+#
+#  zip   :integer
+#  state :string(2)
+#  city  :string(16)
+#  lat   :decimal(8, 6)
+#  lng   :decimal(10, 6)
+#
 
-  # City.where(zip: 92130)
+class City < ActiveRecord::Base
+  has_many :trips, class_name: 'Trip', foreign_key: :city_zip, primary_key: :zip
 end
