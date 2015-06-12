@@ -10,15 +10,19 @@ Traverse.Routers.Router = Backbone.Router.extend({
   initialize: function(options) {
     this.$mainview = options.$mainview;
     this.$sideview = options.$sideview;
+    this.$flashview = options.$flashview;
     this._userTrips = new Traverse.Collections.Trips();
-    this._userTrips.fetch();
+    this._userTrips.fetch({
+      success: function () {
+        this.displayTripInFlashView(this._userTrips.first());
+      }.bind(this)
+    });
   },
 
   tripIndex: function() {
     var view = new Traverse.Views.TripsIndex({collection: this._userTrips});
     this._swapView(this.$mainview, this._mainview, view);
     $('.content-header').html($("<h3>").text("Your Trips"));
-
   },
 
   editProfile: function() {
@@ -57,6 +61,11 @@ Traverse.Routers.Router = Backbone.Router.extend({
         $('.content-header').html($("<h3>").text("User Matches for Trip"));
       }.bind(this)
     });
+  },
+
+  displayTripInFlashView: function (trip) {
+    var flashview = new Travese.Views.TripFlashView({ model: trip })
+    this._swapView(this.$flashview, this._flashview, flashview);
   },
 
   _swapView: function(pageElement, viewToReplace, currentView ) {

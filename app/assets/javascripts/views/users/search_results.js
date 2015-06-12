@@ -19,7 +19,7 @@ Traverse.Views.SearchResults = Backbone.CompositeView.extend({
   },
 
   addTripView: function(user) {
-    var subview = new Traverse.Views.UserView({ model: user });
+    var subview = new Traverse.Views.UserSearchItem({ model: user });
     this.addSubview('#users', subview);
   },
 

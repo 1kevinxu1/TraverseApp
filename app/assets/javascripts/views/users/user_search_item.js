@@ -1,6 +1,6 @@
-Traverse.Views.UserView = Backbone.CompositeView.extend({
+Traverse.Views.UserSearchItem = Backbone.CompositeView.extend({
 
-  template: JST['users/view'],
+  template: JST['users/search_item'],
 
   className: 'trip user-view',
 
