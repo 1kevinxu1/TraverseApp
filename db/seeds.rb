@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-City.connection.execute("COPY cities FROM '#{Dir.pwd}/db/cities.csv' DELIMITER ',' CSV;")
+# City.connection.execute("COPY cities FROM '#{Dir.pwd}/db/cities.csv' DELIMITER ',' CSV;")
 
 birthday_range = [Date.new(1980,1,1), Date.new(1996,6,10)]
 
