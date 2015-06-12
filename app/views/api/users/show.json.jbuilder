@@ -3,7 +3,12 @@ json.fname @user.fname.capitalize
 
 if @user != current_user
   json.shared_trips current_user.trips do |trip|
-    json.trip trip.overlapping_trips(false, @user.id).first
-    json.city trip.city
+    json.trip do
+      json.extract!(trip.overlapping_trips(false, @user.id).first, :start_date_string, :end_date_string, :id)
+    end
+
+    json.city do
+      json.extract!(trip.city, :city, :state)
+    end
   end
 end
