@@ -75,7 +75,7 @@ class Trip < ActiveRecord::Base
         ((trips.start_date > :sd AND trips.start_date < :ed) OR
         (trips.end_date > :sd AND trips.end_date < :ed) OR
         (trips.start_date <= :sd AND trips.end_date >= :ed) OR
-        (trips.start_date > s:sd AND trips.end_date < :ed)) AND
+        (trips.start_date > :sd AND trips.end_date < :ed)) AND
         (trips.owner_id = :su)
     SQL
     if !trips.empty?

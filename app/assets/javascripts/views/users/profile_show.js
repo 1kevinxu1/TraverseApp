@@ -11,7 +11,6 @@ Traverse.Views.ProfileShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    debugger;
     var content = this.template({
         user: this.model
       });
@@ -24,7 +23,7 @@ Traverse.Views.ProfileShow = Backbone.CompositeView.extend({
     var subview = new Traverse.Views.SharedTrip({model: sharedTrip});
     this.addSubview('#overlapping-trips', subview);
   },
-  
+
   removeSharedTrip: function(sharedTrip) {
     this.removeModelSubview('#overlapping-trips', sharedTrip);
   }

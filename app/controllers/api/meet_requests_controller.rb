@@ -1,7 +1,12 @@
-class Api::MeetRequestsController < Api::ApplicationController
+class Api::MeetRequestsController < Api::ApiController
   def create
     @meet_request = MeetRequest.new(request_params)
     @meet_request.requester_id = current_user.id
+    if @meet_request.save
+      render json: @meet_request
+    else
+      render json: @meet_request.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -10,7 +15,7 @@ class Api::MeetRequestsController < Api::ApplicationController
   private
 
   def request_params
-    params.require(:request).permit(:trip_id, :status)
+    params.require(:meet_request).permit(:requested_trip_id, :status)
   end
 
 end
