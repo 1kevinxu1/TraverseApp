@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       sign_in!(@user)
       redirect_to root_url
     else
-      render json: ["Wrong email/password combination"], status: :forbidden
+      flash.now[:errors] = ["Wrong email/password combination"]
+      render :new
     end
   end
 

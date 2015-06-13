@@ -1,7 +1,8 @@
 <form class="edit-profile-form" action="" method="post">
   <div id="profile-header" class="container-fluid profile profile-header">
     <h1><%= user.get("name") %>, <%= user.get("age") %></h1>
-    <input name="profile[hometown]" value="<%= user.get("hometown")%>" >
+    <input name="profile[hometown]"
+           value="<%= user.get("hometown") && user.get("hometown").city %>">
   </div>
 
 

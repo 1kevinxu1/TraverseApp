@@ -10,12 +10,6 @@ class MeetRequest < ActiveRecord::Base
 
   # after_initialize :set_status
 
-  def set_status(status)
-    self.status = status
-    self.save!
-    self
-  end
-
   private
 
   def cant_request_own_trip
