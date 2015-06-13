@@ -12,15 +12,15 @@ Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    debugger;
     var content = this.template({
-        user: this.requests.first()
-      });
+      trip: this.model
+    });
     this.$el.html(content);
+    var requesterView = new Traverse.Views.RequesterFlashView({model: this.requests.first()});
+    this.$el.append(requesterView.render().el)
     return this;
   },
 
-  acceptRequest: function (event) {}
-
-  
+  acceptRequest: function (event) {
+  }
 });
