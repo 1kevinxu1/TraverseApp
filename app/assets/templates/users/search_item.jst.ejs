@@ -8,7 +8,11 @@
         <h4><%= user.get("name") %></h4>
       </a>
       <%= user.get("age") %>
-      <%= user.get("hometown").city%>, <%= user.get("hometown").state %>
+      <% if (user.get("hometown")) { %>
+        <%= user.get("hometown").city %>, <%=user.get("hometown").state %>
+        <% } else { %>
+          No hometown
+        <% } %>
     </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ window.Traverse = {
     $('#header').html(header.render().$el);
     var $mainview = $('#mainview');
     var $sideview = $('#sideview');
-    var $flashview = $('$flashview');
+    var $flashview = $('#flashview');
     this.router = new Traverse.Routers.Router({
       $mainview: $mainview,
       $sideview: $sideview,
