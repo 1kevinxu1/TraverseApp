@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :meet_requests, only: [:create, :update]
     resources :users, only: [:index, :show, :update]
-    resources :trips, only: [:index, :create, :update, :destroy]
+    resources :trips, only: [:index, :create, :show, :update, :destroy]
   end
 end

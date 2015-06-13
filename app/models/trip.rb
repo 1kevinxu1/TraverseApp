@@ -38,6 +38,10 @@ class Trip < ActiveRecord::Base
     self.end_date.strftime('%m/%d/%Y')
   end
 
+  def pending_requests
+    meet_requests.where(status: 'PENDING')
+  end
+
   def overlapping_trips(search_all, search_user = self.owner_id)
     #Use LIMIT/OFFSET later for infinite search results
     Trip.find_by_sql([<<-SQL, {sd: start_date, ed: end_date, su: search_user, sa: search_all, cz: city_zip, id: self.id}])

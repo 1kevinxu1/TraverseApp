@@ -14,6 +14,11 @@ class Api::TripsController < Api::ApiController
     end
   end
 
+  def show
+    @trip = Trip.find(params[:id])
+    render :show
+  end
+
   def update
     @trip = Trip.find(params[:id])
     if @trip.update_attributes(trip_params)
