@@ -12,7 +12,7 @@ class Api::MeetRequestsController < Api::ApiController
   def update
     @meet_request = MeetRequest.find(params[:id])
     if @meet_request.requested_trip.user == current_user
-      if @meet_request.update_attributes(request_params)
+      if @meet_request.update_attributes(update_params)
         corresponding_trip =
           @meet_request.requested_trip.overlapping_trips(false, @meet_request.requester_id).first
         if params[:meet_request][:status] != 'PENDING'
@@ -37,6 +37,10 @@ class Api::MeetRequestsController < Api::ApiController
 
   def request_params
     params.require(:meet_request).permit(:requested_trip_id, :status)
+  end
+
+  def update_params
+    params.require(:meet_request).permit(:status)
   end
 
 end

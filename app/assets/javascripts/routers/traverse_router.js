@@ -6,17 +6,17 @@ Traverse.Routers.Router = Backbone.Router.extend({
     'profile/:id(/)': 'showProfile',
     'search/:id(/)': 'searchTrips'
   },
-  
+
   initialize: function(options) {
     debugger;
     this.$mainview = options.$mainview;
     this.$sideview = options.$sideview;
-    this.$flashview = options.$flashview;
+    // this.$flashview = options.$flashview;
     this._userTrips = new Traverse.Collections.Trips();
     this._userTrips.fetch({
-      success: function () {
-        this.flashTrip(this._userTrips.first());
-      }.bind(this)
+      // success: function () {
+      //   this.flashTrip(this._userTrips.first());
+      // }.bind(this)
     });
   },
 
@@ -24,7 +24,6 @@ Traverse.Routers.Router = Backbone.Router.extend({
     var view = new Traverse.Views.TripsIndex({collection: this._userTrips});
     this._swapView(this.$mainview, this._mainview, view);
     $('.content-header').html($("<h3>").text("Your Trips"));
-
   },
 
   editProfile: function() {
@@ -36,7 +35,6 @@ Traverse.Routers.Router = Backbone.Router.extend({
       }.bind(this)
     });
     $('.content-header').html($("<h3>").text("Edit Profile"));
-
   },
 
   showProfile: function(id) {
@@ -60,22 +58,22 @@ Traverse.Routers.Router = Backbone.Router.extend({
       success: function() {
         var view = new Traverse.Views.SearchResults({collection: users});
         this._swapView(this.$mainview, this._mainview, view);
-        $('.content-header').html($("<h3>").text("User Matches for Trip"));
       }.bind(this)
     });
+    $('.content-header').html($("<h3>").text("User Matches for Trip"));
   },
 
-  flashTrip: function (trip) {
-    debugger;
-    trip.fetch({
-      success: function() {
-        var flashview = new Traverse.Views.TripFlashView({
-          model: trip
-        });
-        this._swapView(this.$flashview, this._flashview, flashview);
-      }.bind(this)
-    });
-  },
+  // flashTrip: function (trip) {
+  //   debugger;
+  //   trip.fetch({
+  //     success: function() {
+  //       var flashview = new Traverse.Views.TripFlashView({
+  //         model: trip
+  //       });
+  //       this._swapView(this.$flashview, this._flashview, flashview);
+  //     }.bind(this)
+  //   });
+  // },
 
   _swapView: function(pageElement, viewToReplace, currentView ) {
     viewToReplace && viewToReplace.remove();

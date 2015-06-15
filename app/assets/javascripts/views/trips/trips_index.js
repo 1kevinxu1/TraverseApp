@@ -11,19 +11,35 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "add", this.addTripView);
     this.listenTo(this.collection, "remove", this.removeTripView);
     this.collection.each(this.addTripView.bind(this));
+    this.$flashview = $('#flashview');
   },
 
   render: function() {
     var content = this.template({ });
     this.$el.html(content);
     this.attachSubviews();
+    // this.flashTrip(this.collection.first());
+    $('.content-header').html($("<h3>").text("Your Trips"));
     return this;
   },
 
   addTripView: function(trip) {
-    var subview = new Traverse.Views.TripView({ model: trip });
+    var subview = new Traverse.Views.TripIndexItem({ model: trip });
     this.addSubview('#trips', subview);
   },
+
+  // flashTrip: function (trip) {
+  //   trip.fetch({
+  //     success: function() {
+  //       var flashview = new Traverse.Views.TripFlashView({
+  //         model: trip
+  //       });
+  //       this._flashview && this._flashview.remove();
+  //       this._flashview = flashview;
+  //       this.$flashview.html(flashview.render().$el);
+  //     }.bind(this)
+  //   });
+  // },
 
   removeTripView: function(trip) {
     this.removeModelSubview('#trips', trip);
@@ -33,7 +49,7 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     $(event.currentTarget).remove();
     this.model = new Traverse.Models.Trip();
     var view = new Traverse.Views.TripForm({ model: this.model});
-    this.$el.prepend(view.render().$el);
+    this.$("#indexview").prepend(view.render().$el);
   },
 
   submitTrip: function(event) {

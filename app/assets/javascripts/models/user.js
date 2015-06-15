@@ -15,12 +15,14 @@ Traverse.Models.User = Backbone.Model.extend({
 
   parse: function(response) {
     if (response.shared_trips) {
+      debugger;
       this.sharedTrips().set(response.shared_trips);
       delete response.shared_trips;
     } else if (response.request) {
       this.request().set(response.request);
     }
-    
+    debugger;
+
     return response;
   }
 });

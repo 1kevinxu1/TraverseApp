@@ -1,6 +1,6 @@
 Traverse.Views.TripIndexItem = Backbone.CompositeView.extend({
 
-  template: JST['trips/show'],
+  template: JST['trips/index_item'],
 
   className: 'trip trip-view',
 

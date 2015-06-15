@@ -23,7 +23,7 @@ Traverse.Views.SharedTrip = Backbone.CompositeView.extend({
   },
 
   submitRequest: function () {
-    this.request.save({requested_trip_id: this.model.get("trip_id"), status: 'PENDING'});
+    this.request.save({requested_trip_id: this.model.get("id"), status: 'PENDING'});
   }
 
 });
