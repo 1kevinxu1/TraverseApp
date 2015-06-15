@@ -1,0 +1,6 @@
+<form class="trip trip-form">
+  <input type="text" name="trip[city]" value= "<%= trip.get("to_city") %>" placeholder="Destination">
+  <input type="date" name="trip[start_date]" value= "<%= trip.get("start_date") %>" placeholder="Start Date">
+  <input type="date" name="trip[end_date]" value= "<%= trip.get("end_date") %>" placeholder="End Date">
+  <input type="submit" class="btn btn-primary" name="name" value="Create My Trip!">
+</form>

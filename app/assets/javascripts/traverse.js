@@ -1,4 +1,4 @@
-window.Traverse = {
+var Traverse = window.Traverse = {
   Models: {},
   Collections: {},
   Views: {},
@@ -8,11 +8,9 @@ window.Traverse = {
     $('#header').html(header.render().$el);
     var $mainview = $('#mainview');
     var $sideview = $('#sideview');
-    // var $flashview = $('#flashview');
     this.router = new Traverse.Routers.Router({
       $mainview: $mainview,
       $sideview: $sideview,
-      // $flashview: $flashview
     });
     Backbone.history.start();
   }

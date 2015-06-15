@@ -1,0 +1,9 @@
+<div class="trip-header group">
+    <h4><%= trip.get("city") %>, <%= trip.get("state")%> </h4>
+    <%= trip.get("start_date_string") %>
+    <%= trip.get("end_date_string") %>
+</div>
+
+<a href="/#search/<%=trip.get("id")%>"><div class="search-users">
+  SEARCH FOR USERS
+</div></a>

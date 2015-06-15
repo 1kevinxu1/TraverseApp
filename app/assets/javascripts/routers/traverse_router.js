@@ -1,3 +1,4 @@
+var Traverse = window.Traverse;
 Traverse.Routers.Router = Backbone.Router.extend({
 
   routes: {
@@ -10,7 +11,6 @@ Traverse.Routers.Router = Backbone.Router.extend({
   initialize: function(options) {
     this.$mainview = options.$mainview;
     this.$sideview = options.$sideview;
-    // this.$flashview = options.$flashview;
     this._userTrips = new Traverse.Collections.Trips();
   },
 
