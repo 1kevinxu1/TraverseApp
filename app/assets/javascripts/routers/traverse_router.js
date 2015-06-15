@@ -1,4 +1,3 @@
-var Traverse = window.Traverse;
 Traverse.Routers.Router = Backbone.Router.extend({
 
   routes: {
@@ -60,18 +59,6 @@ Traverse.Routers.Router = Backbone.Router.extend({
     });
     $('.content-header').html($("<h3>").text("User Matches for Trip"));
   },
-
-  // flashTrip: function (trip) {
-  //   debugger;
-  //   trip.fetch({
-  //     success: function() {
-  //       var flashview = new Traverse.Views.TripFlashView({
-  //         model: trip
-  //       });
-  //       this._swapView(this.$flashview, this._flashview, flashview);
-  //     }.bind(this)
-  //   });
-  // },
 
   _swapView: function(pageElement, viewToReplace, currentView ) {
     viewToReplace && viewToReplace.remove();

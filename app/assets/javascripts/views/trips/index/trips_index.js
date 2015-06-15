@@ -1,6 +1,6 @@
 Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
 
-  template: JST['trips/index/indexview/index'],
+  template: JST['trips/index/index'],
 
   events: {
     'click #new-trip': 'showForm',
