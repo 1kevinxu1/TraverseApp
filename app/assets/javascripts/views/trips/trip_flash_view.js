@@ -1,11 +1,6 @@
 Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
   template: JST['trips/flash_view'],
 
-  // events: {
-  //   'click #accept': 'acceptRequest',
-  //   'click #decline': 'declineRequest'
-  // },
-
   initialize: function() {
     this.requests = this.model.requesters();
   },
@@ -21,8 +16,5 @@ Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
     this.$el.append(requesterView.render().$el)
     return this;
   }
-  //
-  // acceptRequest: function (event) {
-  //   debugger;
-  // }
+
 });

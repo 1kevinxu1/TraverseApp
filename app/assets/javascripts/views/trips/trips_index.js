@@ -4,22 +4,22 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
 
   events: {
     'click .trip-new': 'showForm',
-    'submit form.trip-details': 'submitTrip'
+    'submit form.trip-details': 'submitTrip',
+    'click .trip-view': 'selectTrip'
   },
 
   initialize: function() {
     this.listenTo(this.collection, "add", this.addTripView);
     this.listenTo(this.collection, "remove", this.removeTripView);
     this.collection.each(this.addTripView.bind(this));
-    this.$flashview = $('#flashview');
-    // this.flashTrip
+    this.currentTrip = this.collection.first();
   },
 
   render: function() {
     var content = this.template({ });
     this.$el.html(content);
     this.attachSubviews();
-    // this.flashTrip(this.collection.first());
+    this.flashTrip();
     $('.content-header').html($("<h3>").text("Your Trips"));
     return this;
   },
@@ -29,7 +29,14 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.addSubview('#trips', subview);
   },
 
-  flashTrip: function (trip) {
+  selectTrip: function (event) {
+    this.currentTrip = this.collection[$(event.currentTarget).index()];
+    this.render();
+  },
+
+  flashTrip: function () {
+    this.$flashview = this.$('#flashview');
+    var trip = this.currentTrip;
     trip.fetch({
       success: function() {
         var flashview = new Traverse.Views.TripFlashView({
