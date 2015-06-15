@@ -8,21 +8,19 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   initialize: function(options) {
-    debugger;
     this.$mainview = options.$mainview;
     this.$sideview = options.$sideview;
     // this.$flashview = options.$flashview;
     this._userTrips = new Traverse.Collections.Trips();
-    this._userTrips.fetch({
-      // success: function () {
-      //   this.flashTrip(this._userTrips.first());
-      // }.bind(this)
-    });
   },
 
   tripIndex: function() {
-    var view = new Traverse.Views.TripsIndex({collection: this._userTrips});
-    this._swapView(this.$mainview, this._mainview, view);
+    this._userTrips.fetch({
+      success: function () {
+        var view = new Traverse.Views.TripsIndex({collection: this._userTrips});
+        this._swapView(this.$mainview, this._mainview, view);
+      }.bind(this)
+    });
     $('.content-header').html($("<h3>").text("Your Trips"));
   },
 

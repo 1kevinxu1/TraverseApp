@@ -12,6 +12,7 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "remove", this.removeTripView);
     this.collection.each(this.addTripView.bind(this));
     this.$flashview = $('#flashview');
+    // this.flashTrip
   },
 
   render: function() {
@@ -28,18 +29,16 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.addSubview('#trips', subview);
   },
 
-  // flashTrip: function (trip) {
-  //   trip.fetch({
-  //     success: function() {
-  //       var flashview = new Traverse.Views.TripFlashView({
-  //         model: trip
-  //       });
-  //       this._flashview && this._flashview.remove();
-  //       this._flashview = flashview;
-  //       this.$flashview.html(flashview.render().$el);
-  //     }.bind(this)
-  //   });
-  // },
+  flashTrip: function (trip) {
+    trip.fetch({
+      success: function() {
+        var flashview = new Traverse.Views.TripFlashView({
+          model: trip
+        });
+        this.swapFlash(flashview);
+      }.bind(this)
+    });
+  },
 
   removeTripView: function(trip) {
     this.removeModelSubview('#trips', trip);
@@ -63,5 +62,11 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
       error: function(model, response) {
       }.bind(this),
     });
+  },
+
+  swapFlash: function(currentView) {
+    this._flashview && this._flashview.remove();
+    this._flashview = currentView;
+    this.$flashview.html(currentView.render().$el);
   }
 });
