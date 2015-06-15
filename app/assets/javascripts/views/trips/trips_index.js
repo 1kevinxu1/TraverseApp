@@ -30,7 +30,7 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
   },
 
   selectTrip: function (event) {
-    this.currentTrip = this.collection[$(event.currentTarget).index()];
+    this.currentTrip = this.collection.models[$(event.currentTarget).index()];
     this.render();
   },
 

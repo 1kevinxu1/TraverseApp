@@ -6,8 +6,9 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
     'click #decline': 'declineRequest'
   },
 
-  initialize: function () {
+  initialize: function (options) {
     this.listenTo(this.collection, "sync remove add", this.render);
+    this.meeters = options.meeters;
   },
 
   render: function () {
@@ -20,6 +21,7 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
   acceptRequest: function (event) {
     var request = new Traverse.Models.MeetRequest(this.model.get("request"));
     request.save({status:"ACCEPTED"});
+    this.meeters.add(this.model);
     this.collection.shift();
   }
 });
