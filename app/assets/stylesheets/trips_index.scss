@@ -1,0 +1,125 @@
+// #F5FCE0 white
+// #028090 turquoise
+// #114B5F darker turquoise
+// #3F5F9B blue
+// #F43848 red
+
+#content-container {
+  width: 1024px;
+  margin: auto;
+  padding: 20px;
+}
+
+.trip {
+  background: #fff;
+  bottom-border: 1px solid #ECF0F1;
+  height: 162px;
+  margin: 0px 0px 0px;
+}
+
+
+
+.placeholder-2 {
+  background-color: #eee;
+  height: 220px;
+  overflow: hidden;
+}
+
+.placeholder-2:hover{
+  #edit-profile-button {
+    display: block;
+  }
+}
+
+.profile-header {
+  padding: 10px;
+  margin: 0px 0px 10px 0px;
+}
+
+.profile-header > h1 {
+  margin: 0px;
+}
+
+.profile-header > h3 {
+  margin:4px 0px;
+}
+
+.profile-blurb {
+  margin: 10px;
+}
+
+.profile {
+  border: 1px solid #ddd;
+  background: rgba(240, 240, 240, .5
+  );
+}
+
+.edit-profile {
+  float: right;
+  height: 30px;
+  margin: 0px 10px;
+}
+
+textarea {
+  height: 150px;
+  width: 100%;
+}
+
+.no-border-radius {
+  border-radius: 0px;
+}
+
+#edit-profile-button {
+  display: none;
+  position: absolute;
+  bottom: 0px;
+  width: 218px;
+}
+
+.content-header{
+  padding: 0px;
+  margin: 0px 0px 20px;
+  border-bottom: 2px solid #000;
+}
+
+.content-header > h3 {
+  margin: 0px 0px 10px;
+}
+
+.trip-new:hover {
+  background-color: #999;
+  cursor: pointer;
+}
+
+.trip-details {
+  padding: 10px;
+}
+
+.trip-details .city-date {
+  padding: 5px;
+  float: left;
+  margin: 0px 5px 5px 0px;
+  background-color: white;
+  /*text-align: center;*/
+}
+
+.city-date > h4 {
+  margin: 0px;
+}
+
+.trip-information-header {
+  border-bottom: 3px solid black;
+}
+
+.profile-all {
+  border: 2px solid black;
+}
+
+#user-profile-mini {
+  float: left;
+  background-color: white;
+  margin: 10px;
+  height: 140px;;
+  width: 30%;
+  border: 2px solid black;
+}

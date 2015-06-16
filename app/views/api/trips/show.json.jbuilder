@@ -1,4 +1,6 @@
-json.extract!(@trip, :owner_id, :id, :start_date_string, :end_date_string, :city)
+json.extract!(
+  @trip, :id, :start_date_string, :end_date_string, :city, :state, :name
+)
 json.pending_requests @trip.pending_requests do |request|
   user = request.requester
   json.name user.name

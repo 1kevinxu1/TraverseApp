@@ -1,0 +1,2 @@
+(function() { this.JST || (this.JST = {}); this.JST["trips/index/indexview/index_item"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="trip-header group">\n    <h4>',  trip.get("city") ,', ',  trip.get("state"),' </h4>\n    ',  trip.get("start_date_string") ,'\n    ',  trip.get("end_date_string") ,'\n</div>\n\n<a href="/#search/', trip.get("id"),'"><div class="search-users">\n  SEARCH FOR USERS\n</div></a>\n');}return __p.join('');};
+}).call(this);

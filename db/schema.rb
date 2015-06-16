@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20150609181032) do
 
   create_table "trips", force: :cascade do |t|
     t.integer  "owner_id",   null: false
+    t.string   "name",       null: false
     t.date     "start_date", null: false
     t.date     "end_date",   null: false
     t.string   "city",       null: false

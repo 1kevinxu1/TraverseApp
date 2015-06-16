@@ -1,0 +1,2 @@
+(function() { this.JST || (this.JST = {}); this.JST["trips/shared_trip"] = function(obj){var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('<div class="trip-details">\n  <div class="trip-information-header group">\n    <div class="city-date pull-left">\n      <h4>',  trip.get("city") ,', ',  trip.get("state") ,'</h4>\n      ',  trip.get("start_date_string") ,'\n      ',  trip.get("end_date_string") ,'\n    </div>\n    </button>\n  </div>\n</div>\n');}return __p.join('');};
+}).call(this);

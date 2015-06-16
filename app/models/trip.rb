@@ -15,8 +15,9 @@
 #
 
 class Trip < ActiveRecord::Base
-  validates :owner_id, :start_date, :end_date, :city, :state, presence: true
+  validates :owner_id, :start_date, :end_date, :city, :state, :name, presence: true
   validate :dates_are_reasonable, :no_overlapping_dates
+  validate :real_location
 
   belongs_to :user, class_name: 'User', foreign_key: :owner_id
   has_many :meet_requests, class_name: 'MeetRequest', foreign_key: :requested_trip_id
@@ -77,8 +78,10 @@ class Trip < ActiveRecord::Base
   private
 
   def dates_are_reasonable
-    if end_date - start_date < 0 && start_date >= Date.today
-      errors.add("You can't take a trip back time. Yet.")
+    if start_date && end_date
+      if end_date - start_date < 0 || start_date <= Date.today
+        errors.add(:date_range, "is not valid")
+      end
     end
   end
 
@@ -97,7 +100,13 @@ class Trip < ActiveRecord::Base
         (trips.owner_id = :su)
     SQL
     if !trips.empty?
-      errors.add("You're already someplace else, man!")
+      errors.add(:date_range, "can't conflict with other trips")
+    end
+  end
+
+  def real_location
+    unless latitude && longitude
+      errors.add(:city, "or state is not a valid location in the US")
     end
   end
 end
