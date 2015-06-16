@@ -16,36 +16,81 @@
  @import "bootstrap";
  @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 
+ #lean_overlay {
+     position: fixed;
+     z-index:100;
+     top: 0px;
+     left: 0px;
+     height:100%;
+     width:100%;
+     background: #000;
+     display: none;
+ }
+
 body {
  font-family: 'Lato', sans-serif;
  font-weight: 700;
 }
 
-.user-portal-button {
-  margin: 20px 20px 0px 0px;
+.my-modal {
+  background-color: white;
+  position: absolute;
+  border-radius: 3px;
+  padding: 15px;
+  color: #1C1C38;
 }
 
-#log-in{
+.my-modal h3, .my-modal input {
+  margin: 10px;
+  font-weight: 400;
+  text-shadow: none;
+}
+
+.my-modal input {
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid #222;
+  outline: none;
+  width: 220px;
+}
+
+.my-modal button {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  transition: all .3s ease;
+}
+
+.my-modal button:hover {
+  background-color: #eee;
+  border: 1px solid #ddd;
+}
+
+.user-portal-button {
+  margin: 20px 20px 0px 0px;
+  transition: all .3s ease;
+}
+
+#log-in-button{
   background: none;
   border: 1px solid white;
   text-shadow: 0px 0px 2px black;
 }
 
-#log-in:hover {
-  background: rgba(100,100,100,.8);
+#log-in-button:hover {
+  background: rgba(59, 89, 152, .7);
   border: 1px solid rgba(100,100,100,.7);
   text-shadow: none;
   color: #eee;
 }
 
-#sign-up{
+#sign-up-button{
   background: #eee;
   border: 1px solid #999;
   text-shadow: none;
   color: #888;
 }
 
-#sign-up:hover {
+#sign-up-button:hover {
   background: rgba(200,200,200,.7);
   color: #111;
 }
@@ -57,6 +102,7 @@ body {
   background-position: center;
   position: relative;
   padding: 0px;
+  margin-bottom: 0px;
 }
 
 .jumbotron > .container {
@@ -78,16 +124,17 @@ body {
 }
 
 #jumbotron-button {
-  background-color: rgba(235, 235, 235, 0.7);
+  background-color: rgba(235, 235, 235, 0.5);
   color: #eee;
-  padding: 5px 10px;
+  padding: 5px 15px;
   font-size: 15px;
   text-weight: 900;
   text-shadow: 0px 0px 1px #000;
   min-width: 0px;
   border-radius: 2px;
-  border: 1px solid rgba(150, 150, 150, 0.7);
+  border: 1px solid rgba(175, 175, 175, 0.5);
   text-shadow: 0px 0px 1px solid rgba(25, 25, 25, 0.7);
+  transition: all .3s ease;
 }
 
 #jumbotron-button:hover {
@@ -117,16 +164,15 @@ body {
 // }
 //
 // #center-content {
-//   max-height: 900px;
+//   margin: auto;
 // }
-//
-// .placeholder {
-//   float: left;
-//   background-color: #ccc;
-//   height: 202px;
-//   width: 350px;
-//   margin: 5px;
-// }
+
+.placeholder {
+  background-color: #ccc;
+  height: 202px;
+  width: 300px;
+  margin: auto;
+}
 //
 // #user-portal {
 //   float: right;
