@@ -1,5 +1,5 @@
 Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
-  template: JST['trips/requester_flash_view'],
+  template: JST['trips/index/flashview/requesters'],
 
   events: {
     'click #accept': 'acceptRequest',

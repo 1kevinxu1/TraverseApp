@@ -1,5 +1,5 @@
 Traverse.Views.MeeterView = Backbone.CompositeView.extend({
-  template: JST['trips/meeting_view'],
+  template: JST['trips/index/flashview/meeter_item'],
 
   // events: {
   //   'click #accept': 'acceptRequest',
