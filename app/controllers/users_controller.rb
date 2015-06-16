@@ -1,21 +1,21 @@
 class UsersController < ApplicationController
 
   def create
-    debugger;
     @user = User.new(user_params)
     if @user.save
       sign_in!(@user)
-      redirect_to root_url
+      render json: @user
     else
-      flash.now[:errors] = @user.errors.full_messages
-      render json: @user.errors.full_messages
+      render json: @user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :fname, :lname, :birthday)
+    params.require(:user).permit(
+      :email, :password, :fname, :lname, :birthday, :city, :state
+    )
   end
 
 end

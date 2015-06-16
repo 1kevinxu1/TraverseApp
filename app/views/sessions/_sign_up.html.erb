@@ -1,4 +1,7 @@
 <div id="sign-up" style="display:none;" class="my-modal center-text">
+  <ul id="sign-up-errors">
+
+  </ul>
   <form id="sign-up-form" action="" method="post">
     <h3>Hello, new user!</h3>
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
@@ -6,7 +9,9 @@
     <input type="password" name="user[password]" value="" placeholder="Password"><br>
     <input type="text" name="user[fname]" value="" placeholder="First"><br>
     <input type="text" name="user[lname]" value="" placeholder="Last"><br>
-    <input type="date" name="user[birthday]" value="" placeholder="birthday"><br><br>
+    <input type="date" name="user[birthday]" value="" placeholder="birthday"><br>
+    <input id="city" type="text" name="user[city]" value="" placeholder="Hometown City">
+    <input id="state" type="text" name="user[state]" value="" placeholder="State"><br>
     <button class="btn" type="submit" name="name">Sign Up</button>
   </form>
 </div>
@@ -18,12 +23,20 @@
     event.preventDefault();
     var data = $(event.currentTarget).serializeJSON();
     $.ajax({
-       url: "/session",
+       url: "/users",
        data: data,
        dataType: "json",
        method: "POST",
-       error: function () {
-         
+       error: function (response) {
+         var errorsDisplay = $('#sign-up-errors');
+         errorsDisplay.empty();
+         response.responseJSON.forEach(function(error){
+           var error = $("<li>").html(error).append("<br>");
+           errorsDisplay.append(error);
+         })
+       },
+       success: function () {
+         window.location = '/';
        }
     });
   })

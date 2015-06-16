@@ -55,18 +55,39 @@ button:focus {
   border: none;
   border-bottom: 1px solid #222;
   outline: none;
-  width: 220px;
+  width: 260px;
+}
+
+.my-modal #city {
+  width: 209px;
+  margin-right: 3px;
+  float: left;
+}
+
+.my-modal #state {
+  width: 39px;
+  float: left;
 }
 
 .my-modal button {
   background-color: #ddd;
   border: 1px solid #ccc;
   transition: all .3s ease;
+  margin-top: 5px;
 }
 
 .my-modal button:hover {
   background-color: #eee;
   border: 1px solid #ddd;
+}
+
+.my-modal ul {
+  text-align: left;
+  font-weight: 300;
+  color: red;
+  list-style-type: none;
+  padding: 0px;
+  font-size: 12px;
 }
 
 .user-portal-button {

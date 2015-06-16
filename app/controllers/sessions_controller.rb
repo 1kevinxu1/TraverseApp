@@ -2,13 +2,12 @@ class SessionsController < ApplicationController
   before_action :logged_in?, only: [:create]
 
   def create
-    @user = User.find_by_credentials(login_params)
+    @user = User.find_by_credentials(*login_params)
     if @user
       sign_in!(@user)
-      redirect_to root_url
+      render json: @user
     else
-      flash.now[:errors] = ["Wrong email/password combination"]
-      render json: @user.errors.full_messages
+      render json:["invalid username/password combination"], status: :unprocessable_entity
     end
   end
 
@@ -20,6 +19,6 @@ class SessionsController < ApplicationController
   private
 
   def login_params
-    params.require(:user).permit(:email, :password)
+    [params[:user][:email], params[:user][:password]]
   end
 end
