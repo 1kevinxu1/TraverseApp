@@ -14,7 +14,87 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 
+body {
+ font-family: 'Lato', sans-serif;
+ font-weight: 700;
+}
+
+.user-portal-button {
+  margin: 20px 20px 0px 0px;
+}
+
+#log-in{
+  background: none;
+  border: 1px solid white;
+  text-shadow: 0px 0px 2px black;
+}
+
+#log-in:hover {
+  background: rgba(100,100,100,.8);
+  border: 1px solid rgba(100,100,100,.7);
+  text-shadow: none;
+  color: #eee;
+}
+
+#sign-up{
+  background: #eee;
+  border: 1px solid #999;
+  text-shadow: none;
+  color: #888;
+}
+
+#sign-up:hover {
+  background: rgba(200,200,200,.7);
+  color: #111;
+}
+
+.jumbotron {
+  background-image: url("jumbotron-background.jpg");
+  text-shadow: 1px 1px 2px #333;
+  height: 550px;
+  background-position: center;
+  position: relative;
+  padding: 0px;
+}
+
+.jumbotron > .container {
+  padding-top: 150px;
+  color: #ddd;
+}
+
+.jumbotron h1 {
+  text-weight: 900;
+}
+
+.jumbotron h4 {
+  text-weight: 400;
+  text-shadow: 0px 0px 1px #000;
+}
+
+.jumbotron p {
+  text-shadow: 0px 0px 2px #000;
+}
+
+#jumbotron-button {
+  background-color: rgba(235, 235, 235, 0.7);
+  color: #eee;
+  padding: 5px 10px;
+  font-size: 15px;
+  text-weight: 900;
+  text-shadow: 0px 0px 1px #000;
+  min-width: 0px;
+  border-radius: 2px;
+  border: 1px solid rgba(150, 150, 150, 0.7);
+  text-shadow: 0px 0px 1px solid rgba(25, 25, 25, 0.7);
+}
+
+#jumbotron-button:hover {
+  background-color: rgba(25, 25, 25, 0.7);
+  border: 1px solid rgba(35, 35, 35, 0.7);
+  color: #eee;
+}
 
 .group:after {
    content: "";
@@ -22,155 +102,149 @@
    clear: both;
 }
 
-#banner {
-  background-color: #eee;
-  margin: 0px;
-  min-height: 350px;
-}
-
 .center-text {
   text-align: center;
 }
-
-#page-content {
-  width: 1024px;
-  margin: auto;
-}
-
-.container {
-  width: 1024px;
-  margin: auto;
-}
-
-#center-content {
-  max-height: 900px;
-}
-
-.placeholder {
-  float: left;
-  background-color: #ccc;
-  height: 202px;
-  width: 350px;
-  margin: 5px;
-}
-
-#user-portal {
-  float: right;
-  margin-top: 10px;
-  background-color: #eee;
-}
-
-#user-portal input {
-  margin:5px;
-}
-
-.placeholder-2 {
-  background-color: #eee;
-  height: 220px;
-  overflow: hidden;
-}
-
-.placeholder-2:hover{
-  #edit-profile-button {
-    display: block;
-  }
-}
-
-.profile-header {
-  padding: 10px;
-  margin: 0px 0px 10px 0px;
-}
-
-.profile-header > h1 {
-  margin: 0px;
-}
-
-.profile-header > h3 {
-  margin:4px 0px;
-}
-
-.profile-blurb {
-  margin: 10px;
-}
-
-.profile {
-  border: 1px solid #ddd;
-  background: rgba(240, 240, 240, .5
-  );
-}
-
-.edit-profile {
-  float: right;
-  height: 30px;
-  margin: 0px 10px;
-}
-
-textarea {
-  height: 150px;
-  width: 100%;
-}
-
-.no-border-radius {
-  border-radius: 0px;
-}
-
-#edit-profile-button {
-  display: none;
-  position: absolute;
-  bottom: 0px;
-  width: 218px;
-}
-
-.trip {
-  background: #eee;
-  height: 162px;
-  margin: 0px 0px 20px;
-}
-
-.content-header{
-  padding: 0px;
-  margin: 0px 0px 20px;
-  border-bottom: 2px solid #000;
-}
-
-.content-header > h3 {
-  margin: 0px 0px 10px;
-}
-
-.trip-new:hover {
-  background-color: #999;
-  cursor: pointer;
-}
-
-.trip-details {
-  padding: 10px;
-}
-
-.trip-details .city-date {
-  padding: 5px;
-  float: left;
-  margin: 0px 5px 5px 0px;
-  background-color: white;
-  /*text-align: center;*/
-}
-
-.city-date > h4 {
-  margin: 0px;
-}
-
-.trip-information-header {
-  border-bottom: 3px solid black;
-}
-
-.profile-all {
-  border: 2px solid black;
-}
-
-#user-profile-mini {
-  float: left;
-  background-color: white;
-  margin: 10px;
-  height: 140px;;
-  width: 30%;
-  border: 2px solid black;
-}
+//
+// #page-content {
+//   width: 1024px;
+//   margin: auto;
+// }
+//
+// .container {
+//   width: 1024px;
+//   margin: auto;
+// }
+//
+// #center-content {
+//   max-height: 900px;
+// }
+//
+// .placeholder {
+//   float: left;
+//   background-color: #ccc;
+//   height: 202px;
+//   width: 350px;
+//   margin: 5px;
+// }
+//
+// #user-portal {
+//   float: right;
+//   margin-top: 10px;
+//   background-color: #eee;
+// }
+//
+// #user-portal input {
+//   margin:5px;
+// }
+//
+// .placeholder-2 {
+//   background-color: #eee;
+//   height: 220px;
+//   overflow: hidden;
+// }
+//
+// .placeholder-2:hover{
+//   #edit-profile-button {
+//     display: block;
+//   }
+// }
+//
+// .profile-header {
+//   padding: 10px;
+//   margin: 0px 0px 10px 0px;
+// }
+//
+// .profile-header > h1 {
+//   margin: 0px;
+// }
+//
+// .profile-header > h3 {
+//   margin:4px 0px;
+// }
+//
+// .profile-blurb {
+//   margin: 10px;
+// }
+//
+// .profile {
+//   border: 1px solid #ddd;
+//   background: rgba(240, 240, 240, .5
+//   );
+// }
+//
+// .edit-profile {
+//   float: right;
+//   height: 30px;
+//   margin: 0px 10px;
+// }
+//
+// textarea {
+//   height: 150px;
+//   width: 100%;
+// }
+//
+// .no-border-radius {
+//   border-radius: 0px;
+// }
+//
+// #edit-profile-button {
+//   display: none;
+//   position: absolute;
+//   bottom: 0px;
+//   width: 218px;
+// }
+//
+// .trip {
+//   background: #eee;
+//   height: 162px;
+//   margin: 0px 0px 20px;
+// }
+//
+// .content-header{
+//   padding: 0px;
+//   margin: 0px 0px 20px;
+//   border-bottom: 2px solid #000;
+// }
+//
+// .content-header > h3 {
+//   margin: 0px 0px 10px;
+// }
+//
+// .trip-new:hover {
+//   background-color: #999;
+//   cursor: pointer;
+// }
+//
+// .trip-details {
+//   padding: 10px;
+// }
+//
+// .trip-details .city-date {
+//   padding: 5px;
+//   float: left;
+//   margin: 0px 5px 5px 0px;
+//   background-color: white;
+//   /*text-align: center;*/
+// }
+//
+// .city-date > h4 {
+//   margin: 0px;
+// }
+//
+// .trip-information-header {
+//   border-bottom: 3px solid black;
+// }
+//
+// .profile-all {
+//   border: 2px solid black;
+// }
+//
+// #user-profile-mini {
+//   float: left;
+//   background-color: white;
+//   margin: 10px;
+//   height: 140px;;
+//   width: 30%;
+//   border: 2px solid black;
+// }
