@@ -4,9 +4,12 @@
 #
 #  id         :integer          not null, primary key
 #  owner_id   :integer          not null
-#  city_zip   :integer          not null
 #  start_date :date             not null
 #  end_date   :date             not null
+#  city       :string           not null
+#  state      :string           not null
+#  longitude  :float            not null
+#  latitude   :float            not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

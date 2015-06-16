@@ -13,25 +13,36 @@
 #  about_blurb     :text
 #  story_blurb     :text
 #  travel_blurb    :text
-#  hometown_id     :integer
+#  city            :string           not null
+#  state           :string           not null
+#  longitude       :float            not null
+#  latitude        :float            not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 class User < ActiveRecord::Base
-  validates :email, :password_digest, :session_digest, :fname, :lname, :birthday, presence: true
+  validates(
+    :email,
+    :password_digest,
+    :session_digest,
+    :fname,
+    :lname,
+    :birthday,
+    :city,
+    :state,
+    presence: true
+  )
   validates :age, numericality: { greater_than_or_equal_to: 18 }
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, :session_digest, uniqueness: true
   has_many :trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
   has_many :meet_requests, foreign_key: :requester_id, dependent: :destroy
   has_many :requested_trips, through: :meet_requests, source: :requested_trip
-  belongs_to :hometown, class_name: 'City', foreign_key: :hometown_id, primary_key: :zip
 
   after_initialize :ensure_session_digest
   geocoded_by :address
   before_validation :geocode
-
 
   attr_accessor :password
 
@@ -50,7 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def address
-      [city, state, zipcode, country].compact.join(', ')
+    [city, state].compact.join(', ')
   end
 
   def name

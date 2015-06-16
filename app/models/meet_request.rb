@@ -5,7 +5,7 @@
 #  id                :integer          not null, primary key
 #  requester_id      :integer          not null
 #  requested_trip_id :integer          not null
-#  status            :string           not null
+#  status            :string           default("PENDING"), not null
 #
 
 class MeetRequest < ActiveRecord::Base

@@ -13,7 +13,10 @@
 #  about_blurb     :text
 #  story_blurb     :text
 #  travel_blurb    :text
-#  hometown_id     :integer
+#  city            :string           not null
+#  state           :string           not null
+#  longitude       :float            not null
+#  latitude        :float            not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
