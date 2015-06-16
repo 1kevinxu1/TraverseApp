@@ -32,6 +32,10 @@ body {
  font-weight: 700;
 }
 
+button:focus {
+  outline:0 !important;
+}
+
 .my-modal {
   background-color: white;
   position: absolute;
