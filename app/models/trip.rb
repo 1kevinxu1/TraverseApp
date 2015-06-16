@@ -25,6 +25,11 @@ class Trip < ActiveRecord::Base
 
   geocoded_by :address
   before_validation :geocode
+  # reverse_geocoded_by :latitude, :longitude, do |obj, results|
+  # after_validation :reverse_geocode
+
+
+  attr_accessor :town
 
   def address
     [city, state].compact.join(', ')

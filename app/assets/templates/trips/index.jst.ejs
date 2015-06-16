@@ -1,11 +1,19 @@
-<form id="trip-form" class="trip">
-  <div id="form-errors"></div>
-  <input type="text" name="trip[name]" placeholder="Trip Name">
-  <input type="text" name="trip[city]" placeholder="Destination City">
-  <input type="text" name="trip[state]" placeholder="State">
-  <input type="date" name="trip[start_date]" placeholder="Start Date">
-  <input type="date" name="trip[end_date]" placeholder="End Date">
-  <input type="submit" class="btn btn-primary" name="name" value="Create My Trip!">
-</form>
+<div id="indexview" class="col-xs-7">
+  <form id="trip-form" class="trip">
+    <h4>Time for a new adventure.</h4>
+    <div id="form-errors"></div>
+    <input id="name" type="text" name="trip[name]" placeholder="Trip Name">
+    <input id="destination" type="text" name="trip[city]" placeholder="Destination"><br>
+    <label for="start_date">Start</label>
+    <input id="start_date" type="date" name="trip[start_date]">
+    <label for="end_date">End</label>
+    <input id="end_date" type="date" name="trip[end_date]">
+    <button type="submit" class="btn btn-primary">Create My Trip</button>
+  </form>
 
-<div id="trips-index"> </div>
+  <div id="trips-index"> </div>
+</div>
+
+<div id="flashview" class="col-xs-5">
+  <div class="placeholder-2"></div>
+</div>

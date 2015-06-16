@@ -12,12 +12,70 @@
 
 .trip {
   background: #fff;
-  bottom-border: 1px solid #ECF0F1;
-  height: 162px;
-  margin: 0px 0px 0px;
+  border-radius: 5px;
+  margin: 0px 0px 5px;
+  padding: 10px;
+  box-shadow: 2px 2px 1px #CFD3D4;
 }
 
+.trip:hover {
+  background-color: #ECF0F1;
+}
 
+input {
+  outline: none;
+}
+
+#trip-form input {
+  height: 25px;
+  padding: 2px;
+  margin: 5px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid black;
+}
+
+#trip-form > #name {
+  width: 150px;
+}
+
+#trip-form > #destination {
+  width: 206px;
+}
+
+#trip-form > label {
+  height: 25px;
+  padding: 2px;
+  margin: 5px 0px 5px 5px;
+  font-weight: 400;
+}
+
+#trip-form > input[type="date"] {
+  width: 139px;
+  padding: 0px;
+}
+
+#trip-form > button {
+  height: 25px;
+  padding: 2px;
+  width: 360px;
+  margin: 12px 0px 5px 10px;
+}
+
+#trip-form:hover {
+  background-color: #fff;
+}
+
+#trip-form > h4 {
+  padding: 2px;
+  margin: 5px 0px 5px 5px;
+}
+
+#trip-form > #form-errors {
+  font-size: 12px;
+  margin-left: 10px;
+  color: red;
+}
 
 .placeholder-2 {
   background-color: #eee;
@@ -25,55 +83,8 @@
   overflow: hidden;
 }
 
-.placeholder-2:hover{
-  #edit-profile-button {
-    display: block;
-  }
-}
-
-.profile-header {
-  padding: 10px;
-  margin: 0px 0px 10px 0px;
-}
-
-.profile-header > h1 {
-  margin: 0px;
-}
-
-.profile-header > h3 {
-  margin:4px 0px;
-}
-
-.profile-blurb {
-  margin: 10px;
-}
-
-.profile {
-  border: 1px solid #ddd;
-  background: rgba(240, 240, 240, .5
-  );
-}
-
-.edit-profile {
-  float: right;
-  height: 30px;
-  margin: 0px 10px;
-}
-
-textarea {
-  height: 150px;
-  width: 100%;
-}
-
-.no-border-radius {
-  border-radius: 0px;
-}
-
-#edit-profile-button {
-  display: none;
-  position: absolute;
-  bottom: 0px;
-  width: 218px;
+.placeholder-2:hover #edit-profile-button {
+  display: block;
 }
 
 .content-header{
@@ -86,40 +97,87 @@ textarea {
   margin: 0px 0px 10px;
 }
 
-.trip-new:hover {
-  background-color: #999;
-  cursor: pointer;
-}
 
-.trip-details {
-  padding: 10px;
-}
-
-.trip-details .city-date {
-  padding: 5px;
-  float: left;
-  margin: 0px 5px 5px 0px;
-  background-color: white;
-  /*text-align: center;*/
-}
-
-.city-date > h4 {
-  margin: 0px;
-}
-
-.trip-information-header {
-  border-bottom: 3px solid black;
-}
-
-.profile-all {
-  border: 2px solid black;
-}
-
-#user-profile-mini {
-  float: left;
-  background-color: white;
-  margin: 10px;
-  height: 140px;;
-  width: 30%;
-  border: 2px solid black;
-}
+// .profile-header {
+//   padding: 10px;
+//   margin: 0px 0px 10px 0px;
+// }
+//
+// .profile-header > h1 {
+//   margin: 0px;
+// }
+//
+// .profile-header > h3 {
+//   margin:4px 0px;
+// }
+//
+// .profile-blurb {
+//   margin: 10px;
+// }
+//
+// .profile {
+//   border: 1px solid #ddd;
+//   background: rgba(240, 240, 240, .5
+//   );
+// }
+//
+// .edit-profile {
+//   float: right;
+//   height: 30px;
+//   margin: 0px 10px;
+// }
+//
+// textarea {
+//   height: 150px;
+//   width: 100%;
+// }
+//
+// .no-border-radius {
+//   border-radius: 0px;
+// }
+//
+// #edit-profile-button {
+//   display: none;
+//   position: absolute;
+//   bottom: 0px;
+//   width: 218px;
+// }
+//
+//
+// .trip-new:hover {
+//   background-color: #999;
+//   cursor: pointer;
+// }
+//
+// .trip-details {
+//   padding: 10px;
+// }
+//
+// .trip-details .city-date {
+//   padding: 5px;
+//   float: left;
+//   margin: 0px 5px 5px 0px;
+//   background-color: white;
+//   /*text-align: center;*/
+// }
+//
+// .city-date > h4 {
+//   margin: 0px;
+// }
+//
+// .trip-information-header {
+//   border-bottom: 3px solid black;
+// }
+//
+// .profile-all {
+//   border: 2px solid black;
+// }
+//
+// #user-profile-mini {
+//   float: left;
+//   background-color: white;
+//   margin: 10px;
+//   height: 140px;;
+//   width: 30%;
+//   border: 2px solid black;
+// }
