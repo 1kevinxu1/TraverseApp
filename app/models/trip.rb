@@ -3,7 +3,7 @@
 # Table name: trips
 #
 #  id         :integer          not null, primary key
-#  owner_id   :string           not null
+#  owner_id   :integer          not null
 #  city_zip   :integer          not null
 #  start_date :date             not null
 #  end_date   :date             not null
@@ -16,7 +16,6 @@ class Trip < ActiveRecord::Base
   validate(
     :dates_are_reasonable,
     :no_overlapping_dates,
-    :city_zip_exists
   )
 
   belongs_to :user, class_name: 'User', foreign_key: :owner_id
@@ -24,10 +23,11 @@ class Trip < ActiveRecord::Base
   has_many :meet_requests, class_name: 'MeetRequest', foreign_key: :requested_trip_id
   has_many :requesters, through: :meet_requests, source: :requester
 
-  def city=(city)
-    city = city.split.map { |i| i.capitalize }.join(' ')
-    city = City.find_by(city: city)
-    self.city_zip = city && city.zip
+  geocoded_by :address
+  before_validation :geocode
+
+  def address
+      [city, state, zipcode, country].compact.join(', ')
   end
 
   def start_date_string
@@ -89,9 +89,5 @@ class Trip < ActiveRecord::Base
     if !trips.empty?
       errors.add("You're already someplace else, man!")
     end
-  end
-
-  def city_zip_exists
-    errors.add(:city_zip, "is not a real city.") unless self.city
   end
 end

@@ -9,6 +9,11 @@
 #  fname           :string           not null
 #  lname           :string           not null
 #  birthday        :date             not null
+#  image_url       :string
+#  about_blurb     :text
+#  story_blurb     :text
+#  travel_blurb    :text
+#  hometown_id     :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -16,15 +21,17 @@
 class User < ActiveRecord::Base
   validates :email, :password_digest, :session_digest, :fname, :lname, :birthday, presence: true
   validates :age, numericality: { greater_than_or_equal_to: 18 }
-  validates :email, uniqueness: true
-  validates :password, length: { minimum: 6, allow_nil: true}
-  validates :session_digest, uniqueness: true
+  validates :password, length: { minimum: 6, allow_nil: true }
+  validates :email, :session_digest, uniqueness: true
   has_many :trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
   has_many :meet_requests, foreign_key: :requester_id, dependent: :destroy
   has_many :requested_trips, through: :meet_requests, source: :requested_trip
   belongs_to :hometown, class_name: 'City', foreign_key: :hometown_id, primary_key: :zip
 
   after_initialize :ensure_session_digest
+  geocoded_by :address
+  before_validation :geocode
+
 
   attr_accessor :password
 
@@ -42,10 +49,8 @@ class User < ActiveRecord::Base
     self.password_digest = BCrypt::Password.create(password)
   end
 
-  def hometown=(hometown)
-    hometown = hometown.split.map { |i| i.capitalize }.join(' ')
-    hometown = City.find_by(city: hometown)
-    self.hometown_id = hometown && hometown.zip
+  def address
+      [city, state, zipcode, country].compact.join(', ')
   end
 
   def name

@@ -3,7 +3,7 @@
 # Table name: trips
 #
 #  id         :integer          not null, primary key
-#  owner_id   :string           not null
+#  owner_id   :integer          not null
 #  city_zip   :integer          not null
 #  start_date :date             not null
 #  end_date   :date             not null

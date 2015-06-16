@@ -9,6 +9,11 @@
 #  fname           :string           not null
 #  lname           :string           not null
 #  birthday        :date             not null
+#  image_url       :string
+#  about_blurb     :text
+#  story_blurb     :text
+#  travel_blurb    :text
+#  hometown_id     :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

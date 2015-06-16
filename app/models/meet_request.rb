@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: meet_requests
+#
+#  id                :integer          not null, primary key
+#  requester_id      :integer          not null
+#  requested_trip_id :integer          not null
+#  status            :string           not null
+#
+
 class MeetRequest < ActiveRecord::Base
   validates :requester, :requested_trip, :status, presence: true
   validates :status, inclusion: {

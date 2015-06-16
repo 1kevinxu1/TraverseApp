@@ -11,7 +11,12 @@ class CreateUsers < ActiveRecord::Migration
       t.text :about_blurb
       t.text :story_blurb
       t.text :travel_blurb
-      t.integer :hometown_id
+      t.string :city, null: false
+      t.string :state, null: false
+      t.string :country, null: false
+      t.integer :zipcode, null: false
+      t.float :longitude, null: false
+      t.float :latitude, null: false
       t.timestamps null: false
     end
 
@@ -22,6 +27,6 @@ class CreateUsers < ActiveRecord::Migration
     add_index :users, :lname
     add_index :users, :birthday
     add_index :users, :image_url
-    add_index :users, :hometown_id
+    add_index :users, :city
   end
 end
