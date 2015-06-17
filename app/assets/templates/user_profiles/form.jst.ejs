@@ -1,10 +1,10 @@
-<form id="edit-profile-form" action="" method="post">
+<form id="edit-profile-form" class="profile" action="" method="post">
 
   <div id="profile-header" class="container-fluid mypanel">
     <h2><%= user.get("name") %>, <%= user.get("age") %></h1>
     <label> Hometown
       <input id="hometown"
-        value="<%= user.get("city")%>, <%= user.get("state")%>,<%= user.get("country")%>">
+        value="<%= user.get("city")%>, <%= user.get("state")%>, <%= user.get("country")%>">
     </label>
   </div>
 

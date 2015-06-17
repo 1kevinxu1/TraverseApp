@@ -1,20 +1,18 @@
 <% if (this.collection.length > 0) { %>
   You have <%= this.collection.length %> trips in common!
-<% } %>  
+<% } %>
 
-<div class="containter-fluid profile" id="overlapping-trips">
+<div id="overlapping-trips" class="containter-fluid profile">
 </div>
 
-<div id="profile-header" class="container-fluid profile profile-header">
-  <h1><%= user.get("name") %>, <%= user.get("age") %></h1>
-  <h3> <% if (user.get("hometown")) { %>
-    <%= user.get("hometown").city %>, <%=user.get("hometown").state %>
-    <% } else { %>
-      No hometown
-    <% } %> </h3>
+<div id="profile-header" class="container-fluid mypanel profile">
+  <h2><%= user.get("name") %>, <%= user.get("age") %></h2>
+  <h4><%= user.get("city") %>,
+      <%= user.get("state") %>,
+      <%= user.get("country")%></h4>
 </div>
 
-<div id="profile-content" class="profile">
+<div id="profile-content" class="mypanel profile">
   <div id="about-me" class="profile-blurb">
     <h3>
       About Me
@@ -23,13 +21,13 @@
       <%= user.escape("about_blurb") || user.get("fname") + " has nothing to say." %>
     </p>
   </div>
-  <div id="about-me" class="profile-blurb">
+  <div id="crazy-story" class="profile-blurb">
     <h3>One Crazy Story About Me</h3>
     <p>
       <%= user.escape("story_blurb") || user.get("fname") + " has nothing to say."%>
     </p>
   </div>
-  <div id="about-me" class="profile-blurb">
+  <div id="travel-habits" class="profile-blurb">
     <h3>When I travel, I like to...</h3>
     <p>
       <%= user.escape("travel_blurb") || user.get("fname") + " has nothing to say." %>
