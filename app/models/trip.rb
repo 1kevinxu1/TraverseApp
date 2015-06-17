@@ -17,7 +17,15 @@
 #
 
 class Trip < ActiveRecord::Base
-  validates :owner_id, :start_date, :end_date, :name, presence: true
+  validates(
+    :owner_id,
+    :start_date,
+    :end_date,
+    :name,
+    :city,
+    :country,
+    presence: true
+    )
   validate :dates_are_reasonable, :no_overlapping_dates
   validate :real_location
 
@@ -25,24 +33,14 @@ class Trip < ActiveRecord::Base
   has_many :meet_requests, class_name: 'MeetRequest', foreign_key: :requested_trip_id
   has_many :requesters, through: :meet_requests, source: :requester
 
-  # before_validation :reverse_geocode
-  # reverse_geocoded_by :latitude, :longitude do |obj, results|
-  #   if geo = results.first
-  #     obj.city = geo.city
-  #     obj.zipcode = geo.postal_code
-  #     obj.state = geo.state_code
-  #     obj.country = geo.country_code
-  #   end
-  # end
-
   attr_accessor :address
 
   def start_date_string
-    self.start_date.strftime('%m/%d/%Y')
+    self.start_date.strftime("%B %d, %Y")
   end
 
   def end_date_string
-    self.end_date.strftime('%m/%d/%Y')
+    self.end_date.strftime("%B %d, %Y")
   end
 
   def pending_requests
@@ -113,7 +111,7 @@ class Trip < ActiveRecord::Base
 
   def real_location
     unless latitude && longitude
-      errors.add(:city, "or state is not a valid location in the US")
+      errors.add(:destination, "is not a valid location")
     end
   end
 end

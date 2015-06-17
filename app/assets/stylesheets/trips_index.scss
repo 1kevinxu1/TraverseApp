@@ -10,16 +10,51 @@
   padding: 20px;
 }
 
-.trip {
-  background: #fff;
+.mypanel {
+  background-color: #fff;
   border-radius: 5px;
   margin: 0px 0px 5px;
   padding: 10px;
-  box-shadow: 2px 2px 1px #CFD3D4;
+  box-shadow: 2px 2px 4px 1px #CFD3D4;
 }
 
-.trip:hover {
-  background-color: #ECF0F1;
+.trips-index-item h4, .trips-index-item h5, .trips-index-item h6 {
+  margin: 0px 5px 0px 0px;
+  padding: 5px 0px;
+}
+
+.trips-index-item button {
+  height: 25px;
+  padding: 2px 6px;
+  margin: 0px;
+  float: right;
+}
+
+#flashview {
+  padding: 0px;
+}
+
+#flashview h4, #flashview h5, #flashview h6 {
+  margin: 0px 5px 0px 0px;
+  padding: 5px 0px;
+}
+
+#flashview h5, #flashview h6 {
+  display:inline;
+}
+
+#flashview h4 {
+  border-bottom: 1px solid #060E14;
+  margin-bottom: 5px;
+}
+
+#flashview p {
+  margin-top:15px;
+  padding: 25px 0px;
+}
+
+.trips-index-item:hover {
+  background-color: #F8F9FC;
 }
 
 #trip-form input {
@@ -47,7 +82,7 @@
 }
 
 #trip-form > input[type="date"] {
-  width: 139px;
+  width: 137px;
   padding: 0px;
   color: grey;
 }
@@ -55,8 +90,8 @@
 #trip-form > button {
   height: 25px;
   padding: 2px;
-  width: 360px;
-  margin: 12px 0px 5px 10px;
+  width: 370px;
+  margin: 12px 0px 5px 5px;
 }
 
 #trip-form:hover {
@@ -72,6 +107,41 @@
   font-size: 12px;
   margin-left: 10px;
   color: red;
+}
+
+#pending-requests {
+  background-color: #eee;
+  height: 220px;
+  overflow: hidden;
+  text-align: center;
+  margin: 8px 0px 10px;
+}
+
+#pending-requests h3 {
+  margin-top: 95px;
+  color: #bbb;
+}
+
+.meeter-item {
+  background-color: #337AB7;
+  height: 51px;
+  width: 51px;
+  float: left;
+  margin: 2px 0px 3px 4px;
+  text-align: center;
+  border-radius: 5px;
+  transition: all .3s ease;
+}
+
+.meeter-item h3 {
+  margin:0px 0px 8px;
+  font-size: 40px;
+  color: white;
+}
+
+.meeter-item:hover {
+  background-color: #286090;
+  cursor: pointer;
 }
 
 .placeholder-2 {

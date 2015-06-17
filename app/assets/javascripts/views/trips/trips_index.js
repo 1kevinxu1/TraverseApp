@@ -4,14 +4,13 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
 
   events: {
     'submit form#trip-form': 'submitTrip',
-    'click .trips-index-item': 'selectTrip'
+    'click .select-trip': 'selectTrip'
   },
 
   initialize: function() {
     this.listenTo(this.collection, "add", this.addTripView);
     this.listenTo(this.collection, "remove", this.removeTripView);
     this.collection.each(this.addTripView.bind(this));
-    this.currentTrip = this.collection.first() || new Traverse.Models.Trip();
   },
 
   render: function() {
@@ -19,13 +18,24 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     this.flashTrip();
-    $('.content-header').html($("<h3>").text("Your Trips"));
+    this.onRender();
     return this;
+  },
+
+  onRender: function () {
+    $("#destination").geocomplete({
+      details: "#trip-form",
+      detailsAttribute: "geodata"
+    });
   },
 
   addTripView: function(trip) {
     var subview = new Traverse.Views.TripIndexItem({ model: trip });
     this.addSubview('#trips-index', subview);
+    if (!this.currentTrip) {
+      this.currentTrip = trip;
+      this.render();
+    }
   },
 
   selectTrip: function (event) {

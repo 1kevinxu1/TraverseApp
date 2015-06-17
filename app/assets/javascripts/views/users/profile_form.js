@@ -14,7 +14,15 @@ Traverse.Views.ProfileEdit = Backbone.CompositeView.extend({
         user: this.model
       });
     this.$el.html(content);
+    this.onRender();
     return this;
+  },
+
+  onRender: function () {
+    $("#hometown").geocomplete({
+      details: "#edit-profile-form",
+      detailsAttribute: "geodata"
+    });
   },
 
   saveProfile: function() {

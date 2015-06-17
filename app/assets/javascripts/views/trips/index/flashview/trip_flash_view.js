@@ -1,6 +1,8 @@
 Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
   template: JST['trips/index/flashview/flash_view'],
 
+  className: 'mypanel group',
+
   initialize: function() {
     this.requesters = this.model.requesters();
     this.meeters = this.model.meeters();

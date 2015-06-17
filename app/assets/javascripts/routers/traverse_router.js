@@ -14,16 +14,9 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   tripIndex: function() {
-    this._userTrips.fetch({
-      success: function () {
-        var view = new Traverse.Views.TripsIndex({collection: this._userTrips});
-        this._swapView(this.$mainview, this._mainview, view);
-        $("#destination").geocomplete({
-          details: "#trip-form",
-          detailsAttribute: "geodata"
-        });
-      }.bind(this)
-    });
+    this._userTrips.fetch();
+    var view = new Traverse.Views.TripsIndex({collection: this._userTrips});
+    this._swapView(this.$mainview, this._mainview, view);
     $('.content-header').html($("<h3>").text("Your Trips"));
   },
 
@@ -67,7 +60,8 @@ Traverse.Routers.Router = Backbone.Router.extend({
   _swapView: function(pageElement, viewToReplace, currentView ) {
     viewToReplace && viewToReplace.remove();
     viewToReplace = currentView;
-    pageElement.html(currentView.render().$el);
+    pageElement.html(currentView.$el);
+    currentView.render();
   }
 
 });

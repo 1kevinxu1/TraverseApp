@@ -19,6 +19,7 @@ Traverse.Models.Trip = Backbone.Model.extend({
       delete response.pending_requests;
     }
     if (response.accepted_requests) {
+      this.meetings = response.accepted_requests.length;
       this.meeters().set(response.accepted_requests);
       delete response.accepted_requests;
     }

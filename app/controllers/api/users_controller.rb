@@ -27,7 +27,11 @@ class Api::UsersController < Api::ApiController
 
   def profile_params
     params.require(:profile).permit(
-      :hometown,
+      :city,
+      :state,
+      :country,
+      :latitude,
+      :longtitude,
       :about_blurb,
       :story_blurb,
       :travel_blurb,

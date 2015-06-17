@@ -1,10 +1,7 @@
 Traverse.Views.MeeterView = Backbone.CompositeView.extend({
   template: JST['trips/index/flashview/meeter_item'],
 
-  // events: {
-  //   'click #accept': 'acceptRequest',
-  //   'click #decline': 'declineRequest'
-  // },
+  className: "meeter-item",
 
   initialize: function () {
   },
@@ -15,10 +12,5 @@ Traverse.Views.MeeterView = Backbone.CompositeView.extend({
     this.$el.html(content);
     return this;
   },
-  //
-  // acceptRequest: function (event) {
-  //   var request = new Traverse.Models.MeetRequest(this.model.get("request"));
-  //   request.save({status:"ACCEPTED"});
-  //   this.collection.shift();
-  // }
+
 });

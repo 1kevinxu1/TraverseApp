@@ -1,0 +1,41 @@
+
+#edit-profile-form h2, #edit-profile-form h3{
+  margin: 5px;
+}
+
+#edit-profile-form input{
+  margin: 5px;
+  border: none;
+  border-bottom: 1px solid black;
+  color: #444;
+  width: 300px;
+}
+
+#edit-profile-form label{
+  font-weight: 400;
+  margin: 5px;
+  font-size: 18px;
+}
+
+#edit-profile-form textarea{
+  font-weight: 400;
+  margin: 20px 20px 20px 32px;
+  padding: 10px;
+  width: 90%;
+  font-size: 18px;
+  height: 175;
+}
+
+#profile-content {
+  margin-bottom: 0px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+#save-profile {
+  margin-bottom: 50px;
+  box-shadow: 2px 2px 4px 1px #CFD3D4;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  border-top: none;
+}

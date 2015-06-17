@@ -1,25 +1,34 @@
-<form class="edit-profile-form" action="" method="post">
-  <div id="profile-header" class="container-fluid profile profile-header">
-    <h1><%= user.get("name") %>, <%= user.get("age") %></h1>
-    <input name="profile[hometown]"
-           value="<%= user.get("hometown") && user.get("hometown").city %>">
+<form id="edit-profile-form" action="" method="post">
+
+  <div id="profile-header" class="container-fluid mypanel">
+    <h2><%= user.get("name") %>, <%= user.get("age") %></h1>
+    <label> Hometown
+      <input id="hometown"
+        value="<%= user.get("city")%>, <%= user.get("state")%>,<%= user.get("country")%>">
+    </label>
   </div>
 
-
-  <div id="profile-content" class="profile">
+  <div id="profile-content" class="mypanel">
     <div id="about-me" class="profile-blurb">
       <h3>About Me</h3>
       <textarea name="profile[about_blurb]"><%= user.escape("about_blurb") %></textarea>
     </div>
     <div id="about-me" class="profile-blurb">
       <h3>One Crazy Story About Me</h3>
-      <textarea name="profile[story_blurb]" rows="8" cols="40"><%= user.escape("story_blurb") %></textarea>
+      <textarea name="profile[story_blurb]"><%= user.escape("story_blurb") %></textarea>
     </div>
     <div id="about-me" class="profile-blurb">
       <h3>When I travel, I like to...</h3>
-      <textarea name="profile[travel_blurb]" rows="8" cols="40"><%= user.escape("travel_blurb") %></textarea>
+      <textarea name="profile[travel_blurb]"><%= user.escape("travel_blurb") %></textarea>
     </div>
   </div>
+
+  <input type="hidden" geodata="locality" name="profile[city]">
+  <input type="hidden" geodata="lat" name="profile[latitude]">
+  <input type="hidden" geodata="lng" name="profile[longitude]">
+  <input type="hidden" geodata="administrative_area_level_1_short" name="profile[state]">
+  <input type="hidden" geodata="country" name="profile[country]">
+
 </form>
 <button id="save-profile" class="btn btn-success btn-block no-border-radius">
   Save Profile
