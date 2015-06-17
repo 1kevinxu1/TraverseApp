@@ -5,8 +5,8 @@ class CreateTrips < ActiveRecord::Migration
       t.string :name, null: false
       t.date :start_date, null: false
       t.date :end_date, null: false
-      t.string :city, null: false
-      t.string :state, null: false
+      t.string :city
+      t.string :state
       t.float :longitude, null: false
       t.float :latitude, null: false
       t.timestamps null: false

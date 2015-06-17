@@ -12,6 +12,15 @@
  *
  *= require_self
  */
+
+input[type="date"]::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+}
+
+input {
+  outline: none;
+}
+
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "trips_index.scss";
@@ -62,16 +71,17 @@ button:focus {
   width: 260px;
 }
 
-.my-modal #city {
-  width: 209px;
+.my-modal #birthday {
+  padding: 0px;
+  width: 202px;
+  margin-left: 3px;
   margin-right: 3px;
-  float: left;
+  color: grey;
 }
 
-.my-modal #state {
-  width: 39px;
-  float: left;
-  text-align: center;
+.my-modal label {
+  padding: 0px;
+  font-weight: 400;
 }
 
 .my-modal button {

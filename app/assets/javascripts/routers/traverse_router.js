@@ -18,6 +18,10 @@ Traverse.Routers.Router = Backbone.Router.extend({
       success: function () {
         var view = new Traverse.Views.TripsIndex({collection: this._userTrips});
         this._swapView(this.$mainview, this._mainview, view);
+        $("#destination").geocomplete({
+          details: "#trip-form",
+          detailsAttribute: "geodata"
+        });
       }.bind(this)
     });
     $('.content-header').html($("<h3>").text("Your Trips"));

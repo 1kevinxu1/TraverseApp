@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20150609181032) do
     t.string   "name",       null: false
     t.date     "start_date", null: false
     t.date     "end_date",   null: false
-    t.string   "city",       null: false
-    t.string   "state",      null: false
+    t.string   "city"
+    t.string   "state"
     t.float    "longitude",  null: false
     t.float    "latitude",   null: false
     t.datetime "created_at", null: false

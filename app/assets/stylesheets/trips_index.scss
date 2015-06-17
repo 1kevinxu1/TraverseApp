@@ -22,10 +22,6 @@
   background-color: #ECF0F1;
 }
 
-input {
-  outline: none;
-}
-
 #trip-form input {
   height: 25px;
   padding: 2px;
@@ -53,6 +49,7 @@ input {
 #trip-form > input[type="date"] {
   width: 139px;
   padding: 0px;
+  color: grey;
 }
 
 #trip-form > button {

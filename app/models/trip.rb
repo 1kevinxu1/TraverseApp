@@ -15,7 +15,7 @@
 #
 
 class Trip < ActiveRecord::Base
-  validates :owner_id, :start_date, :end_date, :city, :state, :name, presence: true
+  validates :owner_id, :start_date, :end_date, :city, :name, presence: true
   validate :dates_are_reasonable, :no_overlapping_dates
   validate :real_location
 
