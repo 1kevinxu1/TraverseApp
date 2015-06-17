@@ -49,10 +49,10 @@ button:focus {
      display: none;
  }
 
-// .pac-container {
-//   position: fixed;
-//   z-index: 110001;
-// }
+.pac-container{
+  position: fixed !important;
+  z-index: 110001 !important;
+}
 
 .my-modal {
   background-color: white;

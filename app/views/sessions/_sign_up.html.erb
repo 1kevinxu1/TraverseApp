@@ -1,7 +1,5 @@
 <div id="sign-up" style="display:none;" class="my-modal center-text">
-  <ul id="sign-up-errors">
-
-  </ul>
+  <ul id="sign-up-errors"></ul>
   <form id="sign-up-form" action="" method="post">
     <h3>Hello, new user!</h3>
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
@@ -9,15 +7,15 @@
     <input type="password" name="user[password]" value="" placeholder="Password"><br>
     <input type="text" name="user[fname]" value="" placeholder="First"><br>
     <input type="text" name="user[lname]" value="" placeholder="Last"><br>
-    <input id="city" type="text" name="user[city]" value="" placeholder="Where are you from?"><br>
+    <input id="city" type="text" placeholder="Where are you from?"><br>
     <label for="birthday">Birthday</label>
     <input id="birthday" type="date" name="user[birthday]" value="" placeholder="birthday"><br>
 
-    <input type="hidden" geodata="locality" name="trip[city]">
-    <input type="hidden" geodata="lat" name="trip[lattitude]">
-    <input type="hidden" geodata="lng" name="trip[longitude]">
-    <input type="hidden" geodata="administrative_area_level_1_short" name="trip[state]">
-    <input type="hidden" geodata="country_short" name="trip[country]">
+    <input type="hidden" geodata="locality" name="user[city]">
+    <input type="hidden" geodata="lat" name="user[latitude]">
+    <input type="hidden" geodata="lng" name="user[longitude]">
+    <input type="hidden" geodata="administrative_area_level_1_short" name="user[state]">
+    <input type="hidden" geodata="country_short" name="user[country]">
 
     <button class="btn" type="submit" name="name">Sign Up</button>
   </form>

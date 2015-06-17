@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       :city,
       :state,
       :country,
-      :lattitude,
+      :latitude,
       :longitude
     )
   end
