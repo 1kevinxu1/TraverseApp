@@ -1,4 +1,8 @@
-nav {
-  background: #114B5F;
-  margin-bottom: 0px;
+.navbar a, .navbar-nav > li > a {
+  padding: 10px 15px;
+}
+
+.navbar{
+  min-height: 40px;
+  height: 40px;
 }

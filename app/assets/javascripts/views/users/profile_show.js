@@ -1,7 +1,7 @@
 Traverse.Views.ProfileShow = Backbone.CompositeView.extend({
   template: JST['user_profiles/show'],
 
-  className: "profile-all group",
+  className: "profile-all",
 
   initialize: function() {
     this.collection = this.model.sharedTrips();

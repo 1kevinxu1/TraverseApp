@@ -1,5 +1,5 @@
 <% if (this.collection.length > 0) { %>
-  You have <%= this.collection.length %> trips in common!
+  <h6>You have <%= this.collection.length %> trip(s) in common!</h6>
 <% } %>
 
 <div id="overlapping-trips" class="containter-fluid profile">
@@ -8,8 +8,13 @@
 <div id="profile-header" class="container-fluid mypanel profile">
   <h2><%= user.get("name") %>, <%= user.get("age") %></h2>
   <h4><%= user.get("city") %>,
-      <%= user.get("state") %>,
-      <%= user.get("country")%></h4>
+      <% if (user.get("country") === "United States" ) { %>
+        <%= user.get("state") %>
+      <% } else { %>
+        <%= user.get("country") %>
+      <% } %>
+  </h4>
+
 </div>
 
 <div id="profile-content" class="mypanel profile">

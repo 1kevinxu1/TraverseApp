@@ -33,6 +33,9 @@ class Trip < ActiveRecord::Base
   has_many :meet_requests, class_name: 'MeetRequest', foreign_key: :requested_trip_id
   has_many :requesters, through: :meet_requests, source: :requester
 
+  geocoded_by :address
+  after_validation :geocode
+
   attr_accessor :address
 
   def start_date_string
@@ -63,21 +66,28 @@ class Trip < ActiveRecord::Base
       id: id
     }
 
-    Trip.find_by_sql([<<-SQL, sql_params])
-
-      SELECT
-        *
-      FROM
-        trips
-      WHERE
-        ((trips.start_date > :sd AND trips.start_date < :ed) OR
+    self.nearbys.where(
+       "((trips.start_date > :sd AND trips.start_date < :ed) OR
         (trips.end_date > :sd AND trips.end_date < :ed) OR
         (trips.start_date <= :sd AND trips.end_date >= :ed) OR
         (trips.start_date >= :sd AND trips.end_date <= :ed)) AND
-        ((trips.city = :city) AND (trips.state = :state)) AND
-        (trips.id != :id) AND
-        (:sa OR trips.owner_id = :su)
-    SQL
+        (:sa OR trips.owner_id = :su)", sql_params)
+
+    # Trip.find_by_sql([<<-SQL, sql_params])
+    #
+    #   SELECT
+    #     *
+    #   FROM
+    #     trips
+    #   WHERE
+    #     ((trips.start_date > :sd AND trips.start_date < :ed) OR
+    #     (trips.end_date > :sd AND trips.end_date < :ed) OR
+    #     (trips.start_date <= :sd AND trips.end_date >= :ed) OR
+    #     (trips.start_date >= :sd AND trips.end_date <= :ed)) AND
+    #     ((trips.city = :city) AND (trips.state = :state)) AND
+    #     (trips.id != :id) AND
+    #     (:sa OR trips.owner_id = :su)
+    # SQL
   end
 
   private

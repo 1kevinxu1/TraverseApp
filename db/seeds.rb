@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(
+admin = User.create(
   email: "admin",
   password:"password",
   fname: "Kevin",
@@ -14,6 +14,18 @@ User.create(
   birthday: Date.new(1995,10,10),
   city:"San Diego",
   state:"CA",
+  country: "United States",
+  latitude: 32.715738,
+  longitude: -117.1610838
+)
+
+trip = Trip.create!(
+  owner_id: admin.id,
+  name: "Going Home!",
+  start_date: Date.new(2015,7,10),
+  end_date: Date.new(2015,7,24),
+  city: "San Diego",
+  state: "CA",
   country: "United States",
   latitude: 32.715738,
   longitude: -117.1610838
@@ -103,7 +115,7 @@ cities = [
 
   end_date = Date.today
 
-  5.times do
+  5.times do |index|
     start_date = Faker::Date.between(end_date, end_date + 30)
     end_date = Faker::Date.between(start_date, start_date + 30)
 
@@ -113,10 +125,12 @@ cities = [
     country = random_city[:country]
     latitude = random_city[:latitude]
     longitude = random_city[:longitude]
+    name = "#{name[0]} #{name[1]}'s Sample Trip #{index}"
     owner_id = user.id
 
     trip = Trip.create!(
       owner_id: owner_id,
+      name: name,
       start_date: start_date,
       end_date: end_date,
       city: city,

@@ -45,8 +45,8 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
 
   flashTrip: function () {
     this.$flashview = this.$('#flashview');
-    var trip = this.currentTrip;
-    trip && trip.fetch({
+    var trip = this.currentTrip || new Traverse.Models.Trip();
+    trip.fetch({
       success: function() {
         var flashview = new Traverse.Views.TripFlashView({
           model: trip

@@ -40,6 +40,16 @@ button:focus {
   color: #1A2A37;
  }
 
+ .content-header{
+   padding: 0px;
+   margin: 0px 0px 10px;
+   border-bottom: 2px solid #000;
+ }
+
+ .content-header > h3 {
+   margin: 0px 0px 10px;
+ }
+
  @import "trips_index.scss";
  @import "user_profile.scss";
  @import "header.scss";

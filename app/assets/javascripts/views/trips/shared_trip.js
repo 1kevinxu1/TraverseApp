@@ -2,7 +2,7 @@ Traverse.Views.SharedTrip = Backbone.CompositeView.extend({
 
   template: JST['trips/shared_trip'],
 
-  className: 'trip trip-view',
+  className: 'mypanel shared-trip',
 
   events: {
     'click .submit-request': 'submitRequest'

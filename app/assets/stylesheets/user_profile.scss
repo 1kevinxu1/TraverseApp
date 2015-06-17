@@ -1,9 +1,27 @@
+.profile-all h6 {
+  color: red;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.shared-trip:hover {
+  background-color: #F8F9FC;
+}
+
+.shared-trip h4, .shared-trip h5 {
+  display: inline;
+  margin: 0px 5px;
+}
+
+.shared-trip:last-child {
+  margin-bottom: 20px;
+}
 
 .profile h2, .profile h3, {
   margin: 5px;
 }
 
-.profile h4 {
+.profile > h4 {
   margin: 10px 5px;
 }
 
