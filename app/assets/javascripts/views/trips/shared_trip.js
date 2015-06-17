@@ -18,7 +18,7 @@ Traverse.Views.SharedTrip = Backbone.CompositeView.extend({
     var sharedTripButton = new Traverse.Views.SharedTripButton({
       model: this.request
     });
-    this.$('.trip-information-header').append(sharedTripButton.render().$el);
+    this.$('#request-button').append(sharedTripButton.render().$el);
     return this;
   },
 
@@ -36,10 +36,11 @@ Traverse.Views.SharedTripButton = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.removeClass("btn-primary submit-request");
+    this.$el.removeClass("btn-primary submit-request").addClass("btn");
     var status = this.model.get("status");
     if (status === 'PENDING') {
       this.$el.html("Request Sent.");
+      this.$el.removeClass("btn");
     } else if (status === 'DECLINED') {
       this.$el.addClass("btn-danger").html("Request Declined.");
     } else if (status === 'ACCEPTED') {

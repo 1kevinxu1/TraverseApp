@@ -125,7 +125,7 @@ cities = [
     country = random_city[:country]
     latitude = random_city[:latitude]
     longitude = random_city[:longitude]
-    name = "#{name[0]} #{name[1]}'s Sample Trip #{index}"
+    trip_name = "#{name[0]} #{name[1]}'s Sample Trip #{index}"
     owner_id = user.id
 
     trip = Trip.create!(
