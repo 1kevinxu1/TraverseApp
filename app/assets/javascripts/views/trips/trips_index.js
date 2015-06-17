@@ -11,7 +11,7 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "add", this.addTripView);
     this.listenTo(this.collection, "remove", this.removeTripView);
     this.collection.each(this.addTripView.bind(this));
-    this.currentTrip = this.collection.first();
+    this.currentTrip = this.collection.first() || new Traverse.Models.Trip();
   },
 
   render: function() {

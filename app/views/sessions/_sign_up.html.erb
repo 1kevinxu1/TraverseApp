@@ -12,6 +12,13 @@
     <input id="city" type="text" name="user[city]" value="" placeholder="Where are you from?"><br>
     <label for="birthday">Birthday</label>
     <input id="birthday" type="date" name="user[birthday]" value="" placeholder="birthday"><br>
+
+    <input type="hidden" geodata="locality" name="trip[city]">
+    <input type="hidden" geodata="lat" name="trip[lattitude]">
+    <input type="hidden" geodata="lng" name="trip[longitude]">
+    <input type="hidden" geodata="administrative_area_level_1_short" name="trip[state]">
+    <input type="hidden" geodata="country_short" name="trip[country]">
+
     <button class="btn" type="submit" name="name">Sign Up</button>
   </form>
 </div>
@@ -40,4 +47,9 @@
        }
     });
   })
+
+  $("#city").geocomplete({
+    details: "#sign-up-form",
+    detailsAttribute: "geodata"
+  });
 </script>

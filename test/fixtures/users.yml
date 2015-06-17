@@ -14,7 +14,8 @@
 #  story_blurb     :text
 #  travel_blurb    :text
 #  city            :string           not null
-#  state           :string           not null
+#  state           :string
+#  country         :string           not null
 #  longitude       :float            not null
 #  latitude        :float            not null
 #  created_at      :datetime         not null

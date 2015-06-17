@@ -14,7 +14,8 @@
 #  story_blurb     :text
 #  travel_blurb    :text
 #  city            :string           not null
-#  state           :string           not null
+#  state           :string
+#  country         :string           not null
 #  longitude       :float            not null
 #  latitude        :float            not null
 #  created_at      :datetime         not null
@@ -30,7 +31,9 @@ class User < ActiveRecord::Base
     :lname,
     :birthday,
     :city,
-    :state,
+    :country,
+    :longitude,
+    :latitude,
     presence: true
   )
   validates :age, numericality: { greater_than_or_equal_to: 18 }
@@ -41,8 +44,8 @@ class User < ActiveRecord::Base
   has_many :requested_trips, through: :meet_requests, source: :requested_trip
 
   after_initialize :ensure_session_digest
-  geocoded_by :address
-  before_validation :geocode
+  # geocoded_by :address
+  # before_validation :geocode
 
   attr_accessor :password
 
@@ -58,10 +61,6 @@ class User < ActiveRecord::Base
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
-  end
-
-  def address
-    [city, state].compact.join(', ')
   end
 
   def name
@@ -89,5 +88,4 @@ class User < ActiveRecord::Base
   def ensure_session_digest
     self.session_digest ||= User.generate_session_digest
   end
-
 end

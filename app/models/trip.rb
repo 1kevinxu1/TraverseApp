@@ -4,10 +4,12 @@
 #
 #  id         :integer          not null, primary key
 #  owner_id   :integer          not null
+#  name       :string           not null
 #  start_date :date             not null
 #  end_date   :date             not null
 #  city       :string           not null
-#  state      :string           not null
+#  state      :string
+#  country    :string           not null
 #  longitude  :float            not null
 #  latitude   :float            not null
 #  created_at :datetime         not null
@@ -15,7 +17,7 @@
 #
 
 class Trip < ActiveRecord::Base
-  validates :owner_id, :start_date, :end_date, :city, :name, presence: true
+  validates :owner_id, :start_date, :end_date, :name, presence: true
   validate :dates_are_reasonable, :no_overlapping_dates
   validate :real_location
 
@@ -23,17 +25,17 @@ class Trip < ActiveRecord::Base
   has_many :meet_requests, class_name: 'MeetRequest', foreign_key: :requested_trip_id
   has_many :requesters, through: :meet_requests, source: :requester
 
-  geocoded_by :address
-  before_validation :geocode
-  # reverse_geocoded_by :latitude, :longitude, do |obj, results|
-  # after_validation :reverse_geocode
+  # before_validation :reverse_geocode
+  # reverse_geocoded_by :latitude, :longitude do |obj, results|
+  #   if geo = results.first
+  #     obj.city = geo.city
+  #     obj.zipcode = geo.postal_code
+  #     obj.state = geo.state_code
+  #     obj.country = geo.country_code
+  #   end
+  # end
 
-
-  attr_accessor :town
-
-  def address
-    [city, state].compact.join(', ')
-  end
+  attr_accessor :address
 
   def start_date_string
     self.start_date.strftime('%m/%d/%Y')
@@ -84,7 +86,7 @@ class Trip < ActiveRecord::Base
 
   def dates_are_reasonable
     if start_date && end_date
-      if end_date - start_date < 0 || start_date <= Date.today
+      if end_date - start_date < 0 || start_date < Date.today
         errors.add(:date_range, "is not valid")
       end
     end

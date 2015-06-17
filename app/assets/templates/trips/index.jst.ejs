@@ -4,14 +4,17 @@
     <h4>Time for a new adventure.</h4>
     <div id="form-errors"></div>
     <input id="name" type="text" name="trip[name]" placeholder="Trip Name">
-    <input id="destination" type="text" name="trip[city]" placeholder="Destination"><br>
+    <input id="destination" type="text" placeholder="Destination"><br>
     <label for="start_date">Start</label>
     <input id="start_date" type="date" name="trip[start_date]">
     <label for="end_date">End</label>
     <input id="end_date" type="date" name="trip[end_date]">
 
-    <input type="hidden" geodata="lat" name="trip[lat]"value="">
-    <input type="hidden" geodata="lng" name="trip[lng]"value="">
+    <input type="hidden" geodata="locality" name="trip[city]">
+    <input type="hidden" geodata="lat" name="trip[lattitude]">
+    <input type="hidden" geodata="lng" name="trip[longitude]">
+    <input type="hidden" geodata="administrative_area_level_1_short" name="trip[state]">
+    <input type="hidden" geodata="country_short" name="trip[country]">
 
     <button type="submit" class="btn btn-primary">Create My Trip</button>
   </form>
