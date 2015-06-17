@@ -10,6 +10,10 @@
   padding: 20px;
 }
 
+#indexview {
+  padding-left: 0px;
+}
+
 .mypanel {
   background-color: #fff;
   border-radius: 5px;
@@ -127,7 +131,7 @@
   height: 51px;
   width: 51px;
   float: left;
-  margin: 2px 0px 3px 4px;
+  margin: 5px 0px 0px 4px;
   text-align: center;
   border-radius: 5px;
   transition: all .3s ease;

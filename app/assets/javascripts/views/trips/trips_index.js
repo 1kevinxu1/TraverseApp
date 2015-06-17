@@ -46,7 +46,7 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
   flashTrip: function () {
     this.$flashview = this.$('#flashview');
     var trip = this.currentTrip;
-    trip.fetch({
+    trip && trip.fetch({
       success: function() {
         var flashview = new Traverse.Views.TripFlashView({
           model: trip
@@ -70,7 +70,6 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
   submitTrip: function(event) {
     event.preventDefault();
     var data = $(event.currentTarget).serializeJSON();
-    debugger;
     new Traverse.Models.Trip().save(data, {
       success: function(model, response) {
         this.collection.add(model);
