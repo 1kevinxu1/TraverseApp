@@ -4,7 +4,7 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
 
   events: {
     'submit form#trip-form': 'submitTrip',
-    'click .select-trip': 'selectTrip'
+    'click .trips-index-item': 'selectTrip'
   },
 
   initialize: function() {

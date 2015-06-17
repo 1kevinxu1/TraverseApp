@@ -1,14 +1,21 @@
 <h4><%=trip.get("name") || "No trip to display!"%></h4>
 
 <% if (trip.get("name")) { %>
-  Location: <h5><%=trip.get("city")%>, <%=trip.get("state")%></h5><br>
-  Duration: <h5><%=trip.get("start_date_string")%> to <%=trip.get("end_date_string")%></h5>
+  Location: <h5><%=trip.get("city")%>,
+    <% if (trip.get("country") === "United States" ) { %>
+      <%= trip.get("state")%>
+    <% } else { %>
+      <%= trip.get("country")%>
+    <% } %>
+  </h5><br>
+  Start Date: <h5><%=trip.get("start_date_string")%></h5><br>
+  End Date: <h5><%=trip.get("end_date_string")%></h5><br>
   Owned By: <h5><%=trip.get("owner_name")%></h5>
   <div id="pending-requests"></div>
   <h4>You are meeting <%=trip.meetings%> people:</h4>
   <div id="user-meeters"></div>
   <div id="search-users" class="meeter-item">
-    <a href="/#search/<%=trip.get("id")%>"><h3>+</h3></a>
+    <a href="/#search/<%=trip.get("id")%>">+</a>
   </div>
 
 

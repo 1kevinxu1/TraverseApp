@@ -130,7 +130,7 @@ cities = [
 
     trip = Trip.create!(
       owner_id: owner_id,
-      name: name,
+      name: trip_name,
       start_date: start_date,
       end_date: end_date,
       city: city,

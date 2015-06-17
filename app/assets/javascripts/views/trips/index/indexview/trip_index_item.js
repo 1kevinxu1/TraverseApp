@@ -4,10 +4,6 @@ Traverse.Views.TripIndexItem = Backbone.CompositeView.extend({
 
   className: 'mypanel trips-index-item',
 
-  events: {
-    'click .search-users': 'userSearch'
-  },
-
   render: function() {
     var content = this.template({ trip: this.model });
     this.$el.html(content);

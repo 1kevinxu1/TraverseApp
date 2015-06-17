@@ -34,6 +34,11 @@
   float: right;
 }
 
+.trips-index-item:hover {
+  background-color: #F8F9FC;
+  cursor: pointer;
+}
+
 #flashview {
   padding: 0px;
 }
@@ -55,10 +60,6 @@
 #flashview p {
   margin-top:15px;
   padding: 25px 0px;
-}
-
-.trips-index-item:hover {
-  background-color: #F8F9FC;
 }
 
 #trip-form input {
@@ -133,19 +134,24 @@
   float: left;
   margin: 5px 0px 0px 4px;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 3px;
   transition: all .3s ease;
 }
 
-.meeter-item h3 {
-  margin:0px 0px 8px;
+.meeter-item > a {
   font-size: 40px;
   color: white;
+  font-weight: 900;
+  line-height: 1.25;
 }
 
 .meeter-item:hover {
   background-color: #286090;
   cursor: pointer;
+}
+
+.meeter-item > a:hover {
+  text-decoration: none;
 }
 
 .placeholder-2 {
