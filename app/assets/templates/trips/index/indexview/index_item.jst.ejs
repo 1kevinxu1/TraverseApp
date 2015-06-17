@@ -1,4 +1,10 @@
 <button class="btn btn-primary select-trip" type="button" name="button">Show Details</button>
 <h4><%=trip.get("name")%></h4>
-<h5><%= trip.get("city") %>, <%= trip.get("state") || trip.get("country")%> </h5>
+<h5><%= trip.get("city") %>,
+<% if (trip.get("country") === "United States" ) { %>
+  <%= trip.get("state")%>
+<% } else { %>
+  <%= trip.get("country")%>
+<% } %></h5>
+
 <%= trip.get("start_date_string") %> to <%= trip.get("end_date_string")%>
