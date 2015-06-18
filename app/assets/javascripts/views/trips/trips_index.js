@@ -75,7 +75,8 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
   submitTrip: function(event) {
     event.preventDefault();
     var data = $(event.currentTarget).serializeJSON();
-    new Traverse.Models.Trip().save(data, {
+    var newTrip = new Traverse.Models.Trip().set(data.trip);
+    newTrip.save({}, {
       success: function(model, response) {
         this.collection.add(model);
         this.render();
