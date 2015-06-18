@@ -1,10 +1,12 @@
-<div class="placeholder-2">
+<div id="profile-picture">
   <img src="<%= user.get("image_url") %>">
   <% if (user.get("id") === Traverse.userId) { %>
     <a href="/#profile/edit">
-      <button id="edit-profile-button"
-              class="btn btn-primary btn-block no-border-radius">
+      <button id="edit-profile-button" class="btn btn-primary">
       Edit Profile
+    </button></a>
+    <button id="upload-photo-button" class="btn">
+      Upload Photo
     </button></a>
   <% } %>
 </div>
