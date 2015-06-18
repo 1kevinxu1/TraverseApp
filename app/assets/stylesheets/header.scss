@@ -8,8 +8,14 @@
 }
 
 #user-profile-mini {
-  height: 50px;
+  height: 100px;
   float: left;
+}
+
+.users-index-item:after {
+   content: "";
+   display: block;
+   clear: both;
 }
 
 .users-index-item h4, .users-index-item h5 {
