@@ -12,7 +12,8 @@
   End Date: <h5><%=trip.get("end_date_string")%></h5><br>
   Owned By: <h5><%=trip.get("owner_name")%></h5>
   <div id="pending-requests"></div>
-  <h4>You are meeting <%=trip.meetings%> people:</h4>
+  <h4>You are meeting <%=trip.meetings%>
+  <%=trip.meetings === 1 ? "person" : "people"%> </h4>
   <div id="user-meeters"></div>
   <div id="search-users" class="meeter-item meeter-search">
     <a href="/#search/<%=trip.get("id")%>">+</a>

@@ -12,6 +12,10 @@
   float: left;
 }
 
+#header-container {
+  width: 1024px;
+}
+
 .users-index-item:after {
    content: "";
    display: block;
@@ -21,4 +25,18 @@
 .users-index-item h4, .users-index-item h5 {
   display: inline;
   margin: 0;
+}
+
+.placeholder-2 {
+  background-color: white;
+  height: 220px;
+  overflow: hidden;
+}
+
+.placeholder-2:hover #edit-profile-button {
+  opacity: 1.0;
+}
+
+.placeholder-2 img{
+  height: 220px;
 }

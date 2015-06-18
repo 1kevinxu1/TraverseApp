@@ -1,6 +1,6 @@
 <% if (user) { %>
   <div id="requester-info"><%= user.get("name") %>, <%= user.get("age") %></div>
-  <img src="<%=user.get("image_url")%>">
+  <a href="/#profile/<%=user.get("id")%>"><img src="<%=user.get("image_url")%>"></a>
   <div id="accept" data-response="ACCEPTED" class="response btn btn-success">Accept</div>
   <div id="decline" data-response="DECLINED" class="response btn btn-danger">Decline</div>
 <% } else { %>

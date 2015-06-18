@@ -22,7 +22,6 @@ class Trip < ActiveRecord::Base
     :start_date,
     :end_date,
     :name,
-    :city,
     :country,
     presence: true
     )
@@ -30,7 +29,12 @@ class Trip < ActiveRecord::Base
   validate :real_location
 
   belongs_to :user, class_name: 'User', foreign_key: :owner_id
-  has_many :meet_requests, class_name: 'MeetRequest', foreign_key: :requested_trip_id
+  has_many(
+    :meet_requests,
+    class_name: 'MeetRequest',
+    foreign_key: :requested_trip_id,
+    dependent: :destroy
+  )
   has_many :requesters, through: :meet_requests, source: :requester
 
   geocoded_by :address
@@ -120,8 +124,8 @@ class Trip < ActiveRecord::Base
   end
 
   def real_location
-    unless latitude && longitude
-      errors.add(:destination, "is not a valid location")
+    unless city != "" && latitude && longitude
+      errors.add(:please, "list a city as your destination")
     end
   end
 end

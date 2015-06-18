@@ -7,6 +7,7 @@ Traverse.Views.ProfileShow = Backbone.CompositeView.extend({
     this.collection = this.model.sharedTrips();
     this.listenTo(this.collection, "add", this.addSharedTrip)
     this.listenTo(this.collection, "remove", this.removeSharedTrip)
+    this.listenTo(this.model, "sync", this.render)
     this.collection.each(this.addSharedTrip.bind(this));
   },
 

@@ -4,6 +4,7 @@ json.extract!(
 json.owner_name @trip.user.name
 json.pending_requests @trip.pending_requests do |request|
   user = request.requester
+  json.id user.id
   json.name user.name
   json.age user.age
   json.image_url user.image_url

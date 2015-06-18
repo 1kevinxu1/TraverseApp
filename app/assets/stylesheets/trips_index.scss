@@ -28,9 +28,10 @@
 }
 
 .trips-index-item button {
-  height: 25px;
+  font-size: 12px;
+  height: 22px;
   padding: 2px 6px;
-  margin: 0px;
+  margin: 0px 0px 0px 3px;
   float: right;
 }
 
@@ -194,18 +195,4 @@
 
 .meeter-item > a:hover {
   text-decoration: none;
-}
-
-.placeholder-2 {
-  background-color: #eee;
-  height: 220px;
-  overflow: hidden;
-}
-
-.placeholder-2:hover #edit-profile-button {
-  opacity: 1.0;
-}
-
-.placeholder-2 img{
-  height: 220px;
 }

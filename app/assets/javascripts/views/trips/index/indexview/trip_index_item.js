@@ -4,6 +4,14 @@ Traverse.Views.TripIndexItem = Backbone.CompositeView.extend({
 
   className: 'mypanel trips-index-item',
 
+  events: {
+    'click button#delete': 'deleteTrip'
+  },
+
+  deleteTrip: function (event) {
+    this.model.destroy();
+  },
+
   render: function() {
     var content = this.template({ trip: this.model });
     this.$el.html(content);

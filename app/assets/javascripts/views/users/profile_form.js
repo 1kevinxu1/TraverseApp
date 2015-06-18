@@ -5,6 +5,10 @@ Traverse.Views.ProfileEdit = Backbone.CompositeView.extend({
     'click #save-profile': 'saveProfile'
   },
 
+  initialize: function () {
+    this.listenTo(this.model, "sync", this.render);
+  },
+
   render: function () {
     var content = this.template({
         user: this.model
