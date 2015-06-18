@@ -6,7 +6,7 @@ if @user != current_user
     trip.overlapping_trips(false, @user.id).each do |their_trip|
       json.extract!(their_trip, :name, :start_date_string, :end_date_string, :id, :city, :state, :country)
       json.request MeetRequest.find_by(requester_id: current_user.id, requested_trip_id: their_trip.id)
-      json.their_request MeetRequest.find_by(requester_id: @user.id, requested_trip_id: trip.id)
+      json.pending_request MeetRequest.find_by(requester_id: @user.id, requested_trip_id: trip.id, status:"PENDING")
     end
   end
 end

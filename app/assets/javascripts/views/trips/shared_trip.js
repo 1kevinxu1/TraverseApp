@@ -5,27 +5,42 @@ Traverse.Views.SharedTrip = Backbone.CompositeView.extend({
   className: 'mypanel shared-trip',
 
   events: {
-    'click .submit-request': 'submitRequest'
+    'click .submit-request': 'submitRequest',
+    'click .response': 'handleRequest'
   },
 
   initialize: function (options) {
-    this.request = new Traverse.Models.MeetRequest(this.model.get("request"));
+    this.request =
+      new Traverse.Models.MeetRequest(this.model.get("request"));
+    this.pending_request =
+      new Traverse.Models.MeetRequest(this.model.get("pending_request"));
+    this.listenTo(this.pending_request, "sync", this.render);
   },
 
   render: function() {
-    var content = this.template({ trip: this.model });
-    this.$el.html(content);
-    var sharedTripButton = new Traverse.Views.SharedTripButton({
-      model: this.request
+    var content = this.template({
+      trip: this.model,
+      pending_request: this.pending_request
     });
-    this.$('#request-button').append(sharedTripButton.render().$el);
+    this.$el.html(content);
+    if (this.pending_request.get("status") !== "PENDING") {
+      var sharedTripButton = new Traverse.Views.SharedTripButton({
+        model: this.request
+      });
+      this.$('#request-button').append(sharedTripButton.render().$el);
+    }
     return this;
   },
 
   submitRequest: function () {
     this.request.save({requested_trip_id: this.model.get("id"), status: 'PENDING'});
-  }
+  },
 
+  handleRequest: function (event) {
+    var status = $(event.currentTarget).data("response");
+    this.pending_request.save({status: status});
+    this.request.set("status", status);
+  },
 });
 
 Traverse.Views.SharedTripButton = Backbone.View.extend({

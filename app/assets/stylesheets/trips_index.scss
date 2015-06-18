@@ -115,11 +115,39 @@
 }
 
 #pending-requests {
-  background-color: #eee;
-  height: 220px;
+  text-align: center;
+  height: 240px;
+  width: 240px;
   overflow: hidden;
   text-align: center;
-  margin: 8px 0px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+#pending-requests img {
+  background-color: white;
+  width: 240px;
+}
+
+#pending-requests .btn {
+  position: absolute;
+  bottom: 0px;
+  z-index: 1;
+  height: 25px;
+  padding: 2px 6px;
+  width: 50%;
+  border-radius: 0px;
+}
+
+#pending-requests #decline {
+  right: 0;
+}
+
+#pending-requests #accept {
+  left: 0;
 }
 
 #pending-requests h3 {
@@ -127,8 +155,17 @@
   color: #bbb;
 }
 
+#pending-requests #requester-info {
+  position: absolute;
+  top: 20px;
+  font-size: 22px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, .8);
+  width: 100%;
+}
+
 .meeter-item {
-  background-color: #337AB7;
+  border: 1px solid #222;
   height: 51px;
   width: 51px;
   float: left;
@@ -145,8 +182,11 @@
   line-height: 1.25;
 }
 
-.meeter-item:hover {
+.meeter-search {
   background-color: #286090;
+}
+
+.meeter-search:hover {
   cursor: pointer;
 }
 

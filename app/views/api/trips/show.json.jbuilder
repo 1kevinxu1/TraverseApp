@@ -11,5 +11,6 @@ json.pending_requests @trip.pending_requests do |request|
 end
 json.accepted_requests @trip.accepted_requests do |request|
   user = request.requester
+  json.id user.id
   json.image_url user.image_url
 end

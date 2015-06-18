@@ -2,8 +2,7 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
   template: JST['trips/index/flashview/requesters'],
 
   events: {
-    'click #accept': 'acceptRequest',
-    'click #decline': 'declineRequest'
+    'click .response': 'handleRequest'
   },
 
   initialize: function (options) {
@@ -18,10 +17,13 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
     return this;
   },
 
-  acceptRequest: function (event) {
+  handleRequest: function (event) {
     var request = new Traverse.Models.MeetRequest(this.model.get("request"));
-    request.save({status:"ACCEPTED"});
-    this.meeters.add(this.model);
+    var status = $(event.currentTarget).data("response");
+    request.save({status: status});
+    if (status === "ACCEPTED") {
+      this.meeters.add(this.model);
+    }
     this.collection.shift();
   }
 });

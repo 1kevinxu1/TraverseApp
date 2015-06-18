@@ -6,6 +6,10 @@
     <%= trip.get("country")%>
   <% } %>
 </h5>
-<%= trip.get("start_date_string") %> to
-<%= trip.get("end_date_string") %>
-<div id="request-button"></div>
+
+<div id="request-button">
+  <% if (pending_request.get("status") === "PENDING") { %>
+    <div data-response="DECLINED" class="response btn btn-danger pull-right">Decline</div>
+    <div data-response="ACCEPTED" class="response btn btn-success pull-right">Accept</div>
+  <% } %>
+</div>
