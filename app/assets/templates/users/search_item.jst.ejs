@@ -1,18 +1,13 @@
-<div class="user-details">
-  <div class="user-information-header group">
-    <a href="/#profile/<%= user.get("id") %>">
-      <div id="user-profile-mini" class=""></div>
-    </a>
-    <div class="user-information pull-left">
-      <a href="/#profile/<%= user.get("id") %>">
-        <h4><%= user.get("name") %></h4>
-      </a>
-      <%= user.get("age") %>
-      <% if (user.get("hometown")) { %>
-        <%= user.get("hometown").city %>, <%=user.get("hometown").state %>
-        <% } else { %>
-          No hometown
-        <% } %>
-    </div>
-  </div>
-</div>
+<!-- <a href="/#profile/<%= user.get("id") %>"> -->
+<img id="user-profile-mini" src="<%=user.get("image_url")%>">
+<!-- </a> -->
+<a href="/#profile/<%= user.get("id") %>">
+  <h4><%= user.get("name") %>, <%= user.get("age") %></h4>
+</a>
+<br>
+<h5><%= user.get("city") %>,
+  <% if (user.get("country") === "United States" ) { %>
+    <%= user.get("state")%>
+  <% } else { %>
+    <%= user.get("country")%>
+  <% } %></h5>

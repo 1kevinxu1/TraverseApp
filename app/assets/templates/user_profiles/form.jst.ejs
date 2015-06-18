@@ -23,11 +23,16 @@
     </div>
   </div>
 
-  <input type="hidden" geodata="locality" name="profile[city]">
-  <input type="hidden" geodata="lat" name="profile[latitude]">
-  <input type="hidden" geodata="lng" name="profile[longitude]">
-  <input type="hidden" geodata="administrative_area_level_1_short" name="profile[state]">
-  <input type="hidden" geodata="country" name="profile[country]">
+  <input type="hidden" geodata="locality"
+    name="profile[city]" value="<%=user.get("city")%>">
+  <input type="hidden" geodata="lat"
+    name="profile[latitude]" value="<%=user.get("latitude")%>">
+  <input type="hidden" geodata="lng"
+    name="profile[longitude]" value="<%=user.get("longitude")%>">
+  <input type="hidden" geodata="administrative_area_level_1_short"
+    name="profile[state]" value="<%=user.get("state")%>">
+  <input type="hidden" geodata="country"
+    name="profile[country]" value="<%=user.get("country")%>" >
 
 </form>
 <button id="save-profile" class="btn btn-success btn-block no-border-radius">

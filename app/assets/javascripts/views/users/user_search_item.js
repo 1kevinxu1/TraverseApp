@@ -2,7 +2,7 @@ Traverse.Views.UserSearchItem = Backbone.CompositeView.extend({
 
   template: JST['users/search_item'],
 
-  className: 'trip user-view',
+  className: 'mypanel users-index-item',
 
   initialize: function() {
     this.listenTo(this.model, "sync", this.render);

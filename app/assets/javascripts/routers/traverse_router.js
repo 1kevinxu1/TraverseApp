@@ -11,6 +11,10 @@ Traverse.Routers.Router = Backbone.Router.extend({
     this.$mainview = options.$mainview;
     this.$sideview = options.$sideview;
     this._userTrips = new Traverse.Collections.Trips();
+    var user = new Traverse.Models.User({id: Traverse.userId});
+    user.fetch();
+    var view = new Traverse.Views.ProfileSidebar({ model: user });
+    this._swapView(this.$sideview, this._sideview, view);
   },
 
   tripIndex: function() {

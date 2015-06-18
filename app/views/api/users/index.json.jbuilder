@@ -6,4 +6,5 @@ json.array! @trips do |trip|
   json.age trip.user.age
   json.trip_id trip.id
   json.id trip.owner_id
+  json.image_url trip.user.image_url
 end

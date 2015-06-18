@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   has_many :meet_requests, foreign_key: :requester_id, dependent: :destroy
   has_many :requested_trips, through: :meet_requests, source: :requested_trip
 
-  after_initialize :ensure_session_digest
+  after_initialize :ensure_session_digest, :ensure_profile_picture
   # geocoded_by :address
   # before_validation :geocode
 
@@ -83,6 +83,12 @@ class User < ActiveRecord::Base
     self.session_digest = User.generate_session_digest
     self.save!
     self.session_digest
+  end
+
+  def ensure_profile_picture
+    self.image_url ||= Faker::Avatar.image
+    self.save!
+    self.image_url
   end
 
   def ensure_session_digest
