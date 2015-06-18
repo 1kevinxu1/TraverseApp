@@ -17,6 +17,13 @@ Traverse.Views.SharedTrip = Backbone.CompositeView.extend({
     this.listenTo(this.pending_request, "sync", this.render);
   },
 
+
+  handleRequest: function (event) {
+    var status = $(event.currentTarget).data("response");
+    this.pending_request.save({status: status});
+    this.request.set("status", status);
+  },
+
   render: function() {
     var content = this.template({
       trip: this.model,
@@ -34,20 +41,14 @@ Traverse.Views.SharedTrip = Backbone.CompositeView.extend({
 
   submitRequest: function () {
     this.request.save({requested_trip_id: this.model.get("id"), status: 'PENDING'});
-  },
-
-  handleRequest: function (event) {
-    var status = $(event.currentTarget).data("response");
-    this.pending_request.save({status: status});
-    this.request.set("status", status);
-  },
+  }
 });
 
 Traverse.Views.SharedTripButton = Backbone.View.extend({
   className: 'btn pull-right',
 
   initialize: function () {
-    this.listenTo(this.model, "sync", this.render)
+    this.listenTo(this.model, "sync", this.render);
   },
 
   render: function() {
@@ -64,6 +65,5 @@ Traverse.Views.SharedTripButton = Backbone.View.extend({
       this.$el.addClass("btn-primary submit-request").html("Let's Meet!")
     }
     return this;
-  },
-
+  }
 });

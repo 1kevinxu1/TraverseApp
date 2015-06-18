@@ -11,28 +11,28 @@
   <div id="profile-content" class="mypanel">
     <div id="about-me" class="profile-blurb">
       <h3>About Me</h3>
-      <textarea name="profile[about_blurb]"><%= user.escape("about_blurb") %></textarea>
+      <textarea name="user[about_blurb]"><%= user.escape("about_blurb") %></textarea>
     </div>
     <div id="about-me" class="profile-blurb">
       <h3>One Crazy Story About Me</h3>
-      <textarea name="profile[story_blurb]"><%= user.escape("story_blurb") %></textarea>
+      <textarea name="user[story_blurb]"><%= user.escape("story_blurb") %></textarea>
     </div>
     <div id="about-me" class="profile-blurb">
       <h3>When I travel, I like to...</h3>
-      <textarea name="profile[travel_blurb]"><%= user.escape("travel_blurb") %></textarea>
+      <textarea name="user[travel_blurb]"><%= user.escape("travel_blurb") %></textarea>
     </div>
   </div>
 
   <input type="hidden" geodata="locality"
-    name="profile[city]" value="<%=user.get("city")%>">
+    name="user[city]" value="<%=user.get("city")%>">
   <input type="hidden" geodata="lat"
-    name="profile[latitude]" value="<%=user.get("latitude")%>">
+    name="user[latitude]" value="<%=user.get("latitude")%>">
   <input type="hidden" geodata="lng"
-    name="profile[longitude]" value="<%=user.get("longitude")%>">
+    name="user[longitude]" value="<%=user.get("longitude")%>">
   <input type="hidden" geodata="administrative_area_level_1_short"
-    name="profile[state]" value="<%=user.get("state")%>">
+    name="user[state]" value="<%=user.get("state")%>">
   <input type="hidden" geodata="country"
-    name="profile[country]" value="<%=user.get("country")%>" >
+    name="user[country]" value="<%=user.get("country")%>" >
 
 </form>
 <button id="save-profile" class="btn btn-success btn-block no-border-radius">

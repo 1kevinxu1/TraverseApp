@@ -166,7 +166,8 @@
 }
 
 .meeter-item {
-  border: 1px solid #222;
+  background-color: white;
+  border: 1px solid #ccc;
   height: 51px;
   width: 51px;
   float: left;
@@ -176,7 +177,7 @@
   transition: all .3s ease;
 }
 
-.meeter-item > a {
+.meeter-search {
   font-size: 40px;
   color: white;
   font-weight: 900;
@@ -188,7 +189,14 @@
   background-color: #337ab7;
 }
 
+.meeter-item:hover {
+  -webkit-filter: grayscale(1) brightness(50%);
+  filter: grayscale(1) brightness(50%);
+}
+
 .meeter-search:hover {
+  -webkit-filter: none;
+  filter: none;
   cursor: pointer;
   background-color:#204d74;
 }

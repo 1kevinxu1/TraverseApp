@@ -6,6 +6,17 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+  <script src="http://widget.cloudinary.com/global/all.js" type="text/javascript" charset="utf-8"></script>
+
+   <script type="text/javascript" charset="utf-8">
+     window.CLOUDINARY_OPTIONS = {
+       cloud_name: "<%=ENV['CLOUD_NAME']%>",
+       upload_preset: "<%= ENV['UPLOAD_PRESET'] %>",
+       cropping: "server",
+       cropping_aspect_ratio: 1,
+       theme: "minimal"
+     };
+   </script>
 </head>
 <body>
 

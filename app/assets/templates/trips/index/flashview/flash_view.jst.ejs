@@ -15,10 +15,9 @@
   <h4>You are meeting <%=trip.meetings%>
   <%=trip.meetings === 1 ? "person" : "people"%> </h4>
   <div id="user-meeters"></div>
-  <div id="search-users" class="meeter-item meeter-search">
-    <a href="/#search/<%=trip.get("id")%>">+</a>
-  </div>
-
+  <a href="/#search/<%=trip.get("id")%>">
+    <div id="search-users" class="meeter-item meeter-search">+</div>
+  </a>
 
 <% } else { %>
   <p>It seems like you have no trips. Create one on the left to get started!</p>

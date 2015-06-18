@@ -45,15 +45,14 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   searchTrips: function(tripId) {
+    var user = new Traverse.Models.User({id: Traverse.userId});
     var users = new Traverse.Collections.Users();
-    users.fetch({
-      data: { trip_id: tripId },
-      processData: true,
-      success: function() {
-        var view = new Traverse.Views.SearchResults({collection: users});
-        this._swapView(this.$mainview, this._mainview, view);
-      }.bind(this)
-    });
+    user.fetch();
+    users.fetch({ data: { trip_id: tripId }, processData: true });
+    var mainview = new Traverse.Views.SearchResults({collection: users});
+    var sideview = new Traverse.Views.ProfileSidebar({ model: user });
+    this._swapView(this.$mainview, this._mainview, mainview);
+    this._swapView(this.$sideview, this._sideview, sideview);
     $('.content-header').html($("<h3>").text("User Matches for Trip"));
   },
 

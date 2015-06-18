@@ -11,14 +11,6 @@ Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
     this.listenTo(this.meeters, "add", this.addUserMeetingView);
   },
 
-  render: function () {
-    var content = this.template({
-      trip: this.model
-    });
-    this.$el.html(content);
-    this.attachSubviews();
-    return this;
-  },
 
   addRequesterFlashView: function () {
     var requesterView = new Traverse.Views.RequesterFlashView({
@@ -33,6 +25,14 @@ Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
       model: meeter
     });
     this.addSubview('#user-meeters', meeterView);
-  }
+  },
 
+  render: function () {
+    var content = this.template({
+      trip: this.model
+    });
+    this.$el.html(content);
+    this.attachSubviews();
+    return this;
+  }
 });

@@ -26,7 +26,7 @@ class Api::UsersController < Api::ApiController
   private
 
   def profile_params
-    params.require(:profile).permit(
+    params.require(:user).permit(
       :city,
       :state,
       :country,

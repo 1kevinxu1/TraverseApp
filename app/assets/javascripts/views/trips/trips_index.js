@@ -13,7 +13,6 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.collection.each(this.addTripView.bind(this));
   },
 
-
   addTripView: function(trip) {
     var subview = new Traverse.Views.TripIndexItem({ model: trip });
     this.addSubview('#trips-index', subview);
@@ -21,11 +20,6 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
       this.currentTrip = trip;
       this.render();
     }
-  },
-
-  selectTrip: function (event) {
-    this.currentTrip = this.collection.models[$(event.currentTarget).index()];
-    this.render();
   },
 
   flashTrip: function () {
@@ -63,6 +57,11 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.flashTrip();
     this.onRender();
     return this;
+  },
+
+  selectTrip: function (event) {
+    this.currentTrip = this.collection.models[$(event.currentTarget).index()];
+    this.render();
   },
 
   showForm: function(event) {

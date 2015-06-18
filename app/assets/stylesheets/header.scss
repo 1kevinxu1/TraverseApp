@@ -10,7 +10,18 @@
 #user-profile-mini {
   height: 100px;
   float: left;
+  margin-right: 10px;
+  -webkit-filter: none;
+  filter: none;
+  transition: all .3s ease;
 }
+
+#user-profile-mini:hover {
+  cursor: pointer;
+  -webkit-filter: grayscale(1) brightness(50%);
+  filter: grayscale(1) brightness(50%);
+}
+
 
 #header-container {
   width: 1024px;
@@ -47,6 +58,11 @@
 #upload-photo-button:hover {
   background-color: #eee;
 }
+
+#upload-photo-button:active {
+  background-color: #fff;
+}
+
 
 #profile-picture {
   box-shadow: 2px 2px 4px 1px #CFD3D4;

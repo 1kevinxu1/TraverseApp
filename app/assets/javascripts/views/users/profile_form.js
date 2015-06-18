@@ -9,6 +9,13 @@ Traverse.Views.ProfileEdit = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync", this.render);
   },
 
+  onRender: function () {
+    $("#hometown").geocomplete({
+      details: "#edit-profile-form",
+      detailsAttribute: "geodata"
+    });
+  },
+
   render: function () {
     var content = this.template({
         user: this.model
@@ -16,13 +23,6 @@ Traverse.Views.ProfileEdit = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.onRender();
     return this;
-  },
-
-  onRender: function () {
-    $("#hometown").geocomplete({
-      details: "#edit-profile-form",
-      detailsAttribute: "geodata"
-    });
   },
 
   saveProfile: function() {

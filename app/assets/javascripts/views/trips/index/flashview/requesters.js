@@ -10,13 +10,6 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
     this.meeters = options.meeters;
   },
 
-  render: function () {
-    this.model = this.collection.first() || false;
-    var content = this.template({ user: this.model });
-    this.$el.html(content);
-    return this;
-  },
-
   handleRequest: function (event) {
     var request = new Traverse.Models.MeetRequest(this.model.get("request"));
     var status = $(event.currentTarget).data("response");
@@ -25,5 +18,12 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
       this.meeters.add(this.model);
     }
     this.collection.shift();
+  },
+
+  render: function () {
+    this.model = this.collection.first() || false;
+    var content = this.template({ user: this.model });
+    this.$el.html(content);
+    return this;
   }
 });
