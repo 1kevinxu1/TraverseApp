@@ -9,8 +9,8 @@ Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
     this.addRequesterFlashView();
     this.meeters.each(this.addUserMeetingView.bind(this));
     this.listenTo(this.meeters, "add", this.addUserMeetingView);
+    this.listenTo(this.meeters, "add", this.addUserMeetingView);
   },
-
 
   addRequesterFlashView: function () {
     var requesterView = new Traverse.Views.RequesterFlashView({

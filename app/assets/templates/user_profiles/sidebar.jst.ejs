@@ -10,16 +10,13 @@
     </button></a>
   <% } %>
 </div>
-
-<br>
-<br>
 <br>
 
 <div id="user-tags" class="mypanel">
   <h4>Interests</h4>
   <ul id="myTags" class='tagit'>
-      <!-- Existing list items will be pre-added to the tags -->
-      <li>Tag1</li>
-      <li>Tag2</li>
+    <% user.userInterests().each(function (interest) { %>
+      <li data-id="<%=interest.get("id")%>"><%=interest.get("name")%></li>
+    <% }) %>
   </ul>
 </div>

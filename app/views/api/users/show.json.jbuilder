@@ -11,9 +11,13 @@ json.extract!(
   :about_blurb,
   :story_blurb,
   :travel_blurb,
-  :image_url
+  :image_url,
 )
 json.fname @user.fname.capitalize
+json.user_interests @user.user_interests do |user_interest|
+  json.id user_interest.id
+  json.name user_interest.interest.name
+end
 
 if @user != current_user
   json.shared_trips current_user.trips do |trip|

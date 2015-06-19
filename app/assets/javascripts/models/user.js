@@ -4,27 +4,27 @@ Traverse.Models.User = Backbone.Model.extend({
   sharedTrips: function() {
     this._trips =
       this._trips || new Traverse.Collections.Trips([], { user: this });
+
     return this._trips;
   },
 
-  request: function() {
-    this._request =
-      this._request || new Traverse.Models.MeetRequest({user: this});
-    return this._request;
-  },
+  userInterests: function() {
+    this._user_interests =
+      this._user_interests || new Traverse.Collections.UserInterests({ user: this });
 
-  pending_request: function() {
-    this._pending_request =
-      this._pending_request || new Traverse.Models.MeetRequest({user: this});
-    return this.pending_request;
+    return this._user_interests;
   },
 
   parse: function(response) {
     if (response.shared_trips) {
-      this.request().set(response.request);
       this.sharedTrips().set(response.shared_trips);
       delete response.shared_trips;
     }
+    if (response.user_interests) {
+      this.userInterests().set(response.user_interests);
+      delete response.interests
+    }
+
     return response;
   }
 });

@@ -11,10 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609181032) do
+ActiveRecord::Schema.define(version: 20150619184619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "interests", force: :cascade do |t|
+    t.string "name", null: false
+  end
 
   create_table "meet_requests", force: :cascade do |t|
     t.integer "requester_id",                          null: false
@@ -46,6 +50,11 @@ ActiveRecord::Schema.define(version: 20150609181032) do
   add_index "trips", ["longitude"], name: "index_trips_on_longitude", using: :btree
   add_index "trips", ["owner_id"], name: "index_trips_on_owner_id", using: :btree
   add_index "trips", ["start_date"], name: "index_trips_on_start_date", using: :btree
+
+  create_table "user_interests", force: :cascade do |t|
+    t.integer "user_id",     null: false
+    t.integer "interest_id", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false

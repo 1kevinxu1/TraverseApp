@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
   has_many :trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
   has_many :meet_requests, foreign_key: :requester_id, dependent: :destroy
   has_many :requested_trips, through: :meet_requests, source: :requested_trip
+  has_many :user_interests, dependent: :destroy
+  has_many :interests, through: :user_interests
 
   after_initialize :ensure_session_digest, :ensure_profile_picture
   # geocoded_by :address

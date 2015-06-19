@@ -11,13 +11,13 @@ Traverse.Routers.Router = Backbone.Router.extend({
     this.$mainview = options.$mainview;
     this.$sideview = options.$sideview;
     this._userTrips = new Traverse.Collections.Trips();
+    this.user = new Traverse.Models.User({id: Traverse.userId});
   },
 
   tripIndex: function() {
-    var user = new Traverse.Models.User({id: Traverse.userId});
     var mainview = new Traverse.Views.TripsIndex({collection: this._userTrips});
-    var sideview = new Traverse.Views.ProfileSidebar({ model: user });
-    user.fetch();
+    var sideview = new Traverse.Views.ProfileSidebar({ model: this.user });
+    this.user.fetch();
     this._userTrips.fetch();
     this._swapView(this.$mainview, this._mainview, mainview);
     this._swapView(this.$sideview, this._sideview, sideview);
@@ -25,10 +25,9 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   editProfile: function() {
-    var user = new Traverse.Models.User({id: Traverse.userId});
-    var mainview = new Traverse.Views.ProfileEdit({model: user});
-    var sideview = new Traverse.Views.ProfileSidebar({ model: user });
-    user.fetch();
+    var mainview = new Traverse.Views.ProfileEdit({model: this.user });
+    var sideview = new Traverse.Views.ProfileSidebar({ model: this.user });
+    this.user.fetch();
     this._swapView(this.$mainview, this._mainview, mainview);
     this._swapView(this.$sideview, this._sideview, sideview);
     $('.content-header').html($("<h3>").text("Edit Profile"));
@@ -45,12 +44,11 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   searchTrips: function(tripId) {
-    var user = new Traverse.Models.User({id: Traverse.userId});
     var users = new Traverse.Collections.Users();
-    user.fetch();
-    users.fetch({ data: { trip_id: tripId }, processData: true });
     var mainview = new Traverse.Views.SearchResults({collection: users});
-    var sideview = new Traverse.Views.ProfileSidebar({ model: user });
+    var sideview = new Traverse.Views.ProfileSidebar({ model: this.user });
+    users.fetch({ data: { trip_id: tripId }, processData: true });
+    this.user.fetch();
     this._swapView(this.$mainview, this._mainview, mainview);
     this._swapView(this.$sideview, this._sideview, sideview);
     $('.content-header').html($("<h3>").text("User Matches for Trip"));
