@@ -12,7 +12,12 @@ Traverse.Views.ProfileSidebar = Backbone.CompositeView.extend({
   render: function () {
     var content = this.template({ user: this.model });
     this.$el.html(content);
+    this.onRender();
     return this;
+  },
+
+  onRender: function () {
+    $("#myTags").tagit();
   },
 
   upload: function (arguments) {

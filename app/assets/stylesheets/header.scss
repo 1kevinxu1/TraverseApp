@@ -52,7 +52,7 @@
 }
 
 #upload-photo-button {
-  right: 15px;
+  right: 0px;
 }
 
 #upload-photo-button:hover {
@@ -63,12 +63,12 @@
   background-color: #fff;
 }
 
-
 #profile-picture {
   box-shadow: 2px 2px 4px 1px #CFD3D4;
   background-color: white;
   height: 220px;
   overflow: hidden;
+  position: relative;
 }
 
 #profile-picture:hover button {
@@ -78,14 +78,4 @@
 
 #profile-picture img{
   height: 220px;
-}
-
-#pending-requests .btn {
-  position: absolute;
-  bottom: 0px;
-  z-index: 1;
-  height: 25px;
-  padding: 2px 6px;
-  width: 50%;
-  border-radius: 0px;
 }

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.serializejson.min
 //= require jquery.leanModal.min
 //= require jquery.geocomplete.min
@@ -21,9 +22,6 @@
 //= require backbone
 //= require composite_view
 //= require user_portal
-//= require traverse
-//= require underscore
-//= require backbone
 //= require traverse
 //= require_tree ../templates
 //= require_tree ./models
