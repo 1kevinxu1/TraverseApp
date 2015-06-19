@@ -79,3 +79,45 @@
 #profile-picture img{
   height: 220px;
 }
+
+#user-tags h4, #user-tags h5, #user-tags h6 {
+  margin: 0px 5px 0px 0px;
+  padding: 5px 0px;
+}
+
+#user-tags h5, #user-tags h6 {
+  display:inline;
+}
+
+#user-tags h4 {
+  border-bottom: 1px solid #060E14;
+  margin-bottom: 5px;
+}
+
+#user-tags p {
+  margin-top:15px;
+  padding: 25px 0px;
+}
+
+#myTags {
+  background: white;
+  border: none;
+  font-weight: 400;
+  font-family: "Lato";
+  font-size: 14px;
+}
+
+#myTags li {
+  background: #eee;
+  border: none;
+}
+
+#myTags .tagit-new {
+  background: white;
+}
+
+#myTags input {
+  background: white;
+  border: none;
+  border-bottom: 1px solid black;
+}

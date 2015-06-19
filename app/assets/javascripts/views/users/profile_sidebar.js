@@ -17,7 +17,11 @@ Traverse.Views.ProfileSidebar = Backbone.CompositeView.extend({
   },
 
   onRender: function () {
-    $("#myTags").tagit();
+    $("#myTags").tagit({
+      removeConfirmation: true,
+      allowSpaces: true,
+      placeholderText: "Add New Interest"
+    });
   },
 
   upload: function (arguments) {
