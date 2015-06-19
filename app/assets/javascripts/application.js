@@ -15,6 +15,7 @@
 //= require jquery.serializejson.min
 //= require jquery.leanModal.min
 //= require jquery.geocomplete.min
+//= require tag-it.min
 //= require bootstrap-sprockets
 //= require underscore
 //= require backbone
