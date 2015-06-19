@@ -140,5 +140,12 @@ cities = [
       longitude: longitude
     )
   end
+end
 
+Trip.first.overlapping_trips(true).each do |trip|
+  MeetRequest.create!(
+    requester_id: trip.user.id,
+    requested_trip_id: 1,
+    status: "PENDING"
+  )
 end

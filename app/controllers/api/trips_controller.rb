@@ -30,6 +30,13 @@ class Api::TripsController < Api::ApiController
 
   def destroy
     @trip = Trip.find(params[:id])
+    @trip.overlapping_trips.each do |trip|
+      meet = MeetRequest.find_by(
+        requester_id: current_user.id,
+        requested_trip_id: trip.id
+      )
+      meet && meet.destroy
+    end
     @trip.destroy
     render json: ["Trip deleted."]
   end

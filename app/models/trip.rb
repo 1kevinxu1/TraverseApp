@@ -76,22 +76,6 @@ class Trip < ActiveRecord::Base
         (trips.start_date <= :sd AND trips.end_date >= :ed) OR
         (trips.start_date >= :sd AND trips.end_date <= :ed)) AND
         (:sa OR trips.owner_id = :su)", sql_params)
-
-    # Trip.find_by_sql([<<-SQL, sql_params])
-    #
-    #   SELECT
-    #     *
-    #   FROM
-    #     trips
-    #   WHERE
-    #     ((trips.start_date > :sd AND trips.start_date < :ed) OR
-    #     (trips.end_date > :sd AND trips.end_date < :ed) OR
-    #     (trips.start_date <= :sd AND trips.end_date >= :ed) OR
-    #     (trips.start_date >= :sd AND trips.end_date <= :ed)) AND
-    #     ((trips.city = :city) AND (trips.state = :state)) AND
-    #     (trips.id != :id) AND
-    #     (:sa OR trips.owner_id = :su)
-    # SQL
   end
 
   private
@@ -105,7 +89,6 @@ class Trip < ActiveRecord::Base
   end
 
   def no_overlapping_dates
-    #Use LIMIT/OFFSET later for infinite search results
     trips = Trip.find_by_sql([<<-SQL, {sd: start_date, ed: end_date, su: self.owner_id}])
       SELECT
         *
