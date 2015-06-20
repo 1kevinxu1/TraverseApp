@@ -7,7 +7,6 @@ Traverse.Views.ProfileSidebar = Backbone.CompositeView.extend({
 
   initialize: function () {
     this.listenTo(this.model, "sync", this.setInterestTags);
-    this.listenTo(this.model, "sync", this.render);
   },
 
   onRender: function () {
@@ -44,6 +43,7 @@ Traverse.Views.ProfileSidebar = Backbone.CompositeView.extend({
     this.model.userInterests().each(function(interest) {
       this.interestTags.push(interest.get("name"));
     }.bind(this));
+    this.render();
   },
 
   upload: function () {
