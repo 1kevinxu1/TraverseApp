@@ -21,7 +21,6 @@
 //= require underscore
 //= require backbone
 //= require composite_view
-//= require user_portal
 //= require traverse
 //= require_tree ../templates
 //= require_tree ./models

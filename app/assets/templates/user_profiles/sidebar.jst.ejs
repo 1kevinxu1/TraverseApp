@@ -12,11 +12,13 @@
 </div>
 <br>
 
-<div id="user-tags" class="mypanel">
+<div id="user-tags" class="mypanel group">
   <h4>Interests</h4>
   <ul id="myTags" class='tagit'>
     <% user.userInterests().each(function (interest) { %>
       <li data-id="<%=interest.get("id")%>"><%=interest.get("name")%></li>
     <% }) %>
   </ul>
+  <h4>Recently Met(<%=friendsNum%>)</h4>
+  <div id="friends"></div>
 </div>

@@ -3,7 +3,9 @@ Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
 
   className: 'mypanel group',
 
-  initialize: function() {
+  initialize: function(options) {
+    this.model.meetings = 0;
+    this.user = options.user
     this.requesters = this.model.requesters();
     this.meeters = this.model.meeters();
     this.addRequesterFlashView();
@@ -14,7 +16,8 @@ Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
   addRequesterFlashView: function () {
     var requesterView = new Traverse.Views.RequesterFlashView({
       collection: this.requesters,
-      meeters: this.meeters
+      meeters: this.meeters,
+      user: this.user
     });
     this.addSubview('#pending-requests', requesterView);
   },

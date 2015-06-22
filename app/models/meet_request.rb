@@ -18,8 +18,6 @@ class MeetRequest < ActiveRecord::Base
   belongs_to :requester, class_name: 'User'
   belongs_to :requested_trip, class_name: 'Trip'
 
-  # after_initialize :set_status
-
   private
 
   def cant_request_own_trip

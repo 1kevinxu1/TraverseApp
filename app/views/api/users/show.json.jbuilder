@@ -37,3 +37,8 @@ if @user != current_user
     end
   end
 end
+
+json.friends @user.friends do |friend|
+  json.id friend.id
+  json.image_url friend.image_url
+end

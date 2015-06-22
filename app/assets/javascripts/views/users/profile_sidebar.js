@@ -6,7 +6,20 @@ Traverse.Views.ProfileSidebar = Backbone.CompositeView.extend({
   },
 
   initialize: function () {
+    this.friendsNum = 0;
+    this.friends = this.model.friends();
+    this.listenTo(this.friends, "add", this.addFriendView);
     this.listenTo(this.model, "sync", this.render);
+    this.model.friends().each(this.addFriendView.bind(this));
+  },
+  
+  addFriendView: function (friend) {
+    var friendView = new Traverse.Views.MeeterView({
+      model: friend
+    });
+    this.addSubview('#friends', friendView);
+    this.friendsNum++;
+    this.render();
   },
 
   onRender: function () {
@@ -32,8 +45,12 @@ Traverse.Views.ProfileSidebar = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    var content = this.template({ user: this.model });
+    var content = this.template({
+      user: this.model,
+      friendsNum: this.friendsNum
+    });
     this.$el.html(content);
+    this.attachSubviews();
     this.setInterestTags();
     this.onRender();
     return this;

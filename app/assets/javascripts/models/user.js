@@ -9,10 +9,15 @@ Traverse.Models.User = Backbone.Model.extend({
   },
 
   userInterests: function() {
-    this._user_interests =
-      this._user_interests || new Traverse.Collections.UserInterests({ user: this });
+    this._userInterests =
+      this._userInterests || new Traverse.Collections.UserInterests([], { user: this });
+    return this._userInterests;
+  },
 
-    return this._user_interests;
+  friends: function () {
+    this._friends =
+      this._friends || new Traverse.Collections.Users([], { user: this })
+    return this._friends;
   },
 
   parse: function(response) {
@@ -22,9 +27,12 @@ Traverse.Models.User = Backbone.Model.extend({
     }
     if (response.user_interests) {
       this.userInterests().set(response.user_interests);
-      delete response.interests
+      delete response.interests;
     }
-
+    if (response.friends) {
+      this.friends().set(response.friends);
+      delete response.friends;
+    }
     return response;
   }
 });

@@ -15,8 +15,11 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   tripIndex: function() {
-    var mainview = new Traverse.Views.TripsIndex({collection: this._userTrips});
     var sideview = new Traverse.Views.ProfileSidebar({ model: this.user });
+    var mainview = new Traverse.Views.TripsIndex({
+      collection: this._userTrips,
+      model: this.user
+    });
     this.user.fetch();
     this._userTrips.fetch();
     this._swapView(this.$mainview, this._mainview, mainview);
@@ -25,8 +28,8 @@ Traverse.Routers.Router = Backbone.Router.extend({
   },
 
   editProfile: function() {
-    var mainview = new Traverse.Views.ProfileEdit({model: this.user });
     var sideview = new Traverse.Views.ProfileSidebar({ model: this.user });
+    var mainview = new Traverse.Views.ProfileEdit({model: this.user });
     this.user.fetch();
     this._swapView(this.$mainview, this._mainview, mainview);
     this._swapView(this.$sideview, this._sideview, sideview);
@@ -35,8 +38,8 @@ Traverse.Routers.Router = Backbone.Router.extend({
 
   showProfile: function(id) {
     var user = new Traverse.Models.User({id: id});
-    var mainview = new Traverse.Views.ProfileShow({ model: user });
     var sideview = new Traverse.Views.ProfileSidebar({ model: user });
+    var mainview = new Traverse.Views.ProfileShow({ model: user });
     user.fetch();
     this._swapView(this.$mainview, this._mainview, mainview);
     this._swapView(this.$sideview, this._sideview, sideview);
@@ -45,8 +48,8 @@ Traverse.Routers.Router = Backbone.Router.extend({
 
   searchTrips: function(tripId) {
     var users = new Traverse.Collections.Users();
-    var mainview = new Traverse.Views.SearchResults({collection: users});
     var sideview = new Traverse.Views.ProfileSidebar({ model: this.user });
+    var mainview = new Traverse.Views.SearchResults({collection: users});
     users.fetch({ data: { trip_id: tripId }, processData: true });
     this.user.fetch();
     this._swapView(this.$mainview, this._mainview, mainview);

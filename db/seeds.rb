@@ -32,6 +32,19 @@ trip = Trip.create!(
 )
 
 
+trip = Trip.create!(
+  owner_id: admin.id,
+  name: "Coming Back!",
+  start_date: Date.new(2015,7,25),
+  end_date: Date.new(2015,8,12),
+  city: "Baltimore",
+  state: "MD",
+  country: "United States",
+  latitude: 39.2903848,
+  longitude: -76.6121893
+)
+
+
 birthday_range = [Date.new(1980,1,1), Date.new(1996,6,10)]
 
 cities = [
@@ -80,7 +93,7 @@ cities = [
 ]
 
 
-30.times do
+30.times do |index|
   name = Faker::Name.name.split(' ')
   email = Faker::Internet.free_email(name)
   birthday = Faker::Date.between(*birthday_range)
@@ -146,6 +159,14 @@ Trip.first.overlapping_trips(true).each do |trip|
   MeetRequest.create!(
     requester_id: trip.user.id,
     requested_trip_id: 1,
+    status: "PENDING"
+  )
+end
+
+Trip.second.overlapping_trips(true).each do |trip|
+  MeetRequest.create!(
+    requester_id: trip.user.id,
+    requested_trip_id: 2,
     status: "PENDING"
   )
 end

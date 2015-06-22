@@ -7,6 +7,7 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this.listenTo(this.collection, "sync remove add", this.render);
+    this.user = options.user;
     this.meeters = options.meeters;
   },
 
@@ -16,6 +17,7 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
     request.save({status: status});
     if (status === "ACCEPTED") {
       this.meeters.add(this.model);
+      this.user.friends().add(this.model)
     }
     this.collection.shift();
   },

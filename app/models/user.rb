@@ -44,10 +44,10 @@ class User < ActiveRecord::Base
   has_many :requested_trips, through: :meet_requests, source: :requested_trip
   has_many :user_interests, dependent: :destroy
   has_many :interests, through: :user_interests
+  has_many :user_friendships, foreign_key: :from_user_id
+  has_many :friends, through: :user_friendships, source: :to_user
 
   after_initialize :ensure_session_digest, :ensure_profile_picture
-  # geocoded_by :address
-  # before_validation :geocode
 
   attr_accessor :password
 

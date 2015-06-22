@@ -22,7 +22,6 @@ Traverse.Models.Trip = Backbone.Model.extend({
       this.meeters().set(response.accepted_requests);
       delete response.accepted_requests;
     }
-    this.meetings = 0;
     return response;
   }
 });
