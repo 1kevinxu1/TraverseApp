@@ -16,9 +16,10 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
   addTripView: function(trip) {
     var subview = new Traverse.Views.TripIndexItem({ model: trip });
     this.addSubview('#trips-index', subview);
+
     if (!this.currentTrip) {
       this.currentTrip = trip;
-      this.render();
+      this.flashTrip();
     }
   },
 
@@ -71,6 +72,14 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     this.$("#indexview").prepend(view.render().$el);
   },
 
+  sortTrips: function () {
+    this._subviews['#trips-index'] = _([]);
+    this.collection.comparator = "start_date";
+    this.collection.sort();
+    this.collection.each(this.addTripView.bind(this));
+    this.render();
+  },
+
   submitTrip: function(event) {
     event.preventDefault();
     var data = $(event.currentTarget).serializeJSON();
@@ -78,7 +87,7 @@ Traverse.Views.TripsIndex = Backbone.CompositeView.extend({
     newTrip.save({}, {
       success: function(model, response) {
         this.collection.add(model);
-        this.render();
+        this.sortTrips();
       }.bind(this),
       error: function(model, response) {
         var errors = $('#form-errors');

@@ -24,6 +24,8 @@ Traverse.Views.TripFlashView = Backbone.CompositeView.extend({
       model: meeter
     });
     this.addSubview('#user-meeters', meeterView);
+    this.model.meetings++;
+    this.render();
   },
 
   render: function () {
