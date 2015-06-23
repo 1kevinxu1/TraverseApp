@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20150622010701) do
     t.string "name", null: false
   end
 
+  add_index "interests", ["name"], name: "index_interests_on_name", unique: true, using: :btree
+
   create_table "meet_requests", force: :cascade do |t|
     t.integer "requester_id",                          null: false
     t.integer "requested_trip_id",                     null: false
@@ -65,6 +67,9 @@ ActiveRecord::Schema.define(version: 20150622010701) do
     t.integer "user_id",     null: false
     t.integer "interest_id", null: false
   end
+
+  add_index "user_interests", ["interest_id"], name: "index_user_interests_on_interest_id", using: :btree
+  add_index "user_interests", ["user_id"], name: "index_user_interests_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
