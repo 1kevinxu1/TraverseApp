@@ -5,9 +5,9 @@
   <form id="log-in-form" action="" method="post">
     <h3>Welcome back!</h3>
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-    <input type="text" name="user[email]" value="" placeholder="Email"><br>
-    <input type="password" name="user[password]" value="" placeholder="Password"><br>
-    <button class="btn" type="submit" name="name">Log In</button>
+    <input id="username" type="text" name="user[email]" value="" placeholder="Email"><br>
+    <input id="password" type="password" name="user[password]" value="" placeholder="Password"><br>
+    <button id="login-submit" class="btn" type="submit" name="name">Log In</button>
   </form>
 </div>
 

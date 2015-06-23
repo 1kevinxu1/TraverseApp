@@ -32,10 +32,6 @@
         <img src="http://res.cloudinary.com/traverse/image/upload/b_rgb:877e7e,c_fill,h_300,o_69,w_400/v1435029946/san-francisco_ivknvi.jpg" class="img-responsive center-block"/>
       </div>
       <div class="home-image col-lg-6 col-xs-12">
-        <div class="city-label col-xs-12">SAN DIEGO</div>
-        <img src="http://res.cloudinary.com/traverse/image/upload/b_rgb:b4adad,c_fill,h_300,o_77,w_400/v1435029946/San-diego_dcecls.jpg" class="img-responsive center-block"/>
-      </div>
-      <div class="home-image col-lg-6 col-xs-12">
         <div class="city-label col-xs-12">PARIS</div>
         <img src="http://res.cloudinary.com/traverse/image/upload/b_rgb:f8f6f6,c_fill,h_300,o_62,w_400/v1435029947/paris-france_u7gxs5.jpg" class="img-responsive center-block"/>
       </div>
@@ -43,24 +39,19 @@
         <div class="city-label col-xs-12">SOUTH AFRICA</div>
         <img src="http://res.cloudinary.com/traverse/image/upload/c_fill,h_300,w_400/v1435029949/Cape-town_vwbfx5.jpg" class="img-responsive center-block"/>
       </div>
+      <div class="home-image col-lg-6 col-xs-12">
+        <div class="city-label col-xs-12">SAN DIEGO</div>
+        <img src="http://res.cloudinary.com/traverse/image/upload/b_rgb:b4adad,c_fill,h_300,o_77,w_400/v1435029946/San-diego_dcecls.jpg" class="img-responsive center-block"/>
+      </div>
     </div>
-  </div>
-</div>
-
-<div id="footer" class="row">
-  <div class="col-lg-3 col-xs-12"><h5> Site by Kevin Xu © 2015</h5></div>
-  <div class="col-lg-3 col-xs-12"><h5> Contact: 1kevinxu1@gmail.com</h5></div>
-  <div class="col-lg-3 col-xs-12">
-    <a href="https://github.com/1kevinxu1">
-      <h5> Github</h5>
-    </a>
-  </div>
-  <div class="col-lg-3 col-xs-12">
-    <a href="https://github.com/1kevinxu1/Traverse">
-      <h5> Source Code</h5>
-    </a>
   </div>
 </div>
 
 <%= render 'sessions/log_in' %>
 <%= render 'sessions/sign_up' %>
+
+<script>
+  $(document).ready(function(){
+    GuestLogin.initialize();
+  });
+</script>
