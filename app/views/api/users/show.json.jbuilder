@@ -21,7 +21,7 @@ end
 
 if @user != current_user
   json.shared_trips current_user.trips do |trip|
-    trip.overlapping_trips(false, @user.id).each do |their_trip|
+    trip.overlapping_trips(30, false, @user.id).each do |their_trip|
       json.extract!(
         their_trip,
         :id,

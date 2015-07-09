@@ -1,7 +1,7 @@
 class Api::UsersController < Api::ApiController
   def index
     @trip = Trip.find(params[:trip_id])
-    @trips = @trip.overlapping_trips(true)
+    @trips = @trip.overlapping_trips(10_000, true)
     render :index
   end
 

@@ -2,12 +2,15 @@
   <img id="user-profile-mini" src="<%=user.get("image_url")%>">
 </a>
 <a href="/#profile/<%= user.get("id") %>">
-  <h4><%= user.get("name") %>, <%= user.get("age") %></h4>
+  <h4><%= user.get("trip_name") %></h4>
 </a>
 <br>
-<h5><%= user.get("city") %>,
+<h5><%= user.get("name") %> (<%= user.get("age") %>) will be in <%= user.get("city") %>,
   <% if (user.get("country") === "United States" ) { %>
     <%= user.get("state")%>
   <% } else { %>
     <%= user.get("country")%>
   <% } %></h5>
+<p>from <%= user.get("start_date") %> to <%= user.get("end_date") %> (<%=Math.floor(user.get("distance"))%> miles away from where you'll be!)</p>
+
+<ul class='tagit'></ul>

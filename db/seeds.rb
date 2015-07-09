@@ -20,10 +20,10 @@ Interest.create!([
 ])
 
 admin = User.create(
-  email: "admin",
+  email: "welcome@guest.com",
   password:"password",
-  fname: "Kevin",
-  lname: "Xu",
+  fname: "Guest",
+  lname: "User",
   birthday: Date.new(1995,10,10),
   city:"San Diego",
   state:"CA",
@@ -143,7 +143,7 @@ cities = [
 
   5.times do |index|
     start_date = Faker::Date.between(end_date, end_date + 30)
-    end_date = Faker::Date.between(start_date, start_date + 30)
+    end_date = Faker::Date.between(start_date + 7, start_date + 30)
 
     random_city = cities.sample
     city = random_city[:city]
