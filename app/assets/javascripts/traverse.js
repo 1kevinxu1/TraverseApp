@@ -5,7 +5,8 @@ var Traverse = window.Traverse = {
   Routers: {},
   initialize: function() {
     var header = new Traverse.Views.Header();
-    $('#header').html(header.render().$el);
+    $('#header').html(header.$el);
+    header.render();
     var $mainview = $('#mainview');
     var $sideview = $('#sideview');
     this.router = new Traverse.Routers.Router({

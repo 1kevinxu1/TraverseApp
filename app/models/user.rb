@@ -30,15 +30,13 @@ class User < ActiveRecord::Base
     :fname,
     :lname,
     :birthday,
-    :city,
     :country,
-    :longitude,
-    :latitude,
     presence: true
   )
   validates :age, numericality: { greater_than_or_equal_to: 18 }
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, :session_digest, uniqueness: true
+  validate :real_location
   has_many :trips, class_name: 'Trip', foreign_key: :owner_id, dependent: :destroy
   has_many :meet_requests, foreign_key: :requester_id, dependent: :destroy
   has_many :requested_trips, through: :meet_requests, source: :requested_trip
@@ -95,5 +93,13 @@ class User < ActiveRecord::Base
 
   def ensure_session_digest
     self.session_digest ||= User.generate_session_digest
+  end
+
+  private
+
+  def real_location
+    unless city != "" && latitude && longitude
+      errors.add(:please, "list a city as your destination")
+    end
   end
 end

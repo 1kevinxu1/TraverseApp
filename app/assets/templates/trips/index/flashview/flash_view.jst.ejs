@@ -11,12 +11,13 @@
   Start Date: <h5><%=trip.get("start_date_string")%></h5><br>
   End Date: <h5><%=trip.get("end_date_string")%></h5><br>
   Owned By: <h5><%=trip.get("owner_name")%></h5>
+  <h4>Requests to hang out on this trip</h4>
   <div id="pending-requests"></div>
   <h4>You are meeting <%=trip.meetings%>
   <%=trip.meetings === 1 ? "person" : "people"%> this trip</h4>
   <div id="user-meeters"></div>
   <a href="/#search/<%=trip.get("id")%>">
-    <div id="search-users" class="meeter-item meeter-search">+</div>
+    <div id="search-users" class="meeter-search">Find people traveling here when you are!</div>
   </a>
 
 <% } else { %>

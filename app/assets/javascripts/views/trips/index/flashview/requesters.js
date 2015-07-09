@@ -9,6 +9,7 @@ Traverse.Views.RequesterFlashView = Backbone.CompositeView.extend({
     this.listenTo(this.collection, "sync remove add", this.render);
     this.user = options.user;
     this.meeters = options.meeters;
+    this.requesters = this.collection.length;
   },
 
   handleRequest: function (event) {

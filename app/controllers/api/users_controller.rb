@@ -1,14 +1,15 @@
 class Api::UsersController < Api::ApiController
   def index
     @trip = Trip.find(params[:trip_id])
-    # if user.trips.inlucde?(@trip)
     @trips = @trip.overlapping_trips(true)
     render :index
-      # render json: ["That trip doesn't belong to you"], status: :unauthorized
-    # end
   end
 
-  #id in params is the user_id, not profile id
+  def names
+    @users = User.all.map {|user| {label: user.name, id: user.id} }
+    render json: @users
+  end
+
   def show
     @user = User.find(params[:id])
     render :show

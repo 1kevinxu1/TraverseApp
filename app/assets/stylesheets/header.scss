@@ -22,9 +22,31 @@
   filter: grayscale(1) brightness(50%);
 }
 
-
 #header-container {
   width: 1024px;
+}
+
+#searchbar {
+  height: 22px;
+  width: 400px;
+  margin-left: 150px;
+}
+.ui-autocomplete {
+  padding: 0px !important;
+  margin: 0px;
+}
+.ui-autocomplete > li {
+  padding: 1px 3px !important;
+  background: white;
+  font-family: 'Lato';
+  font-size: 14px;
+}
+
+.ui-state-focus {
+  font-weight: 400 !important;
+  color: #444 !important;
+  background-color: #eee !important;
+  border: none !important;
 }
 
 .users-index-item:after {

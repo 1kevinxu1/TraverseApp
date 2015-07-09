@@ -152,6 +152,11 @@
   left: 0;
 }
 
+#pending-requests h4 {
+  text-align: left;
+  font-size: 25px;
+}
+
 #pending-requests h3 {
   margin-top: 95px;
   color: #bbb;
@@ -178,16 +183,11 @@
   transition: all .3s ease;
 }
 
-.meeter-search {
-  font-size: 40px;
-  color: white;
-  font-weight: 900;
-  line-height: 1.25;
-}
-
-.meeter-search {
-  border: none;
-  background-color: #337ab7;
+.meeter-search > button {
+  height: 25px;
+  padding: 2px;
+  width: 370px;
+  margin: 12px 0px 5px 5px;
 }
 
 .meeter-item:hover {
