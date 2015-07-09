@@ -176,6 +176,7 @@
   border: 1px solid #ccc;
   height: 51px;
   width: 51px;
+  display: block;
   float: left;
   margin: 5px 0px 0px 4px;
   text-align: center;
@@ -183,23 +184,25 @@
   transition: all .3s ease;
 }
 
-.meeter-search > button {
+.meeter-search {
+  display: block;
+  clear: left;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: normal;
   height: 25px;
-  padding: 2px;
-  width: 370px;
-  margin: 12px 0px 5px 5px;
+  width: 278px;
+  top: 10px;
+  line-height: 1.7em;
+  position: relative;
+  margin-bottom: 7px;
 }
 
 .meeter-item:hover {
   -webkit-filter: grayscale(1) brightness(50%);
   filter: grayscale(1) brightness(50%);
-}
-
-.meeter-search:hover {
-  -webkit-filter: none;
-  filter: none;
-  cursor: pointer;
-  background-color:#204d74;
 }
 
 .meeter-item > a:hover {

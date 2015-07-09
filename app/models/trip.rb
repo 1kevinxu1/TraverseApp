@@ -58,7 +58,7 @@ class Trip < ActiveRecord::Base
     meet_requests.where(status: 'ACCEPTED')
   end
 
-  def overlapping_trips(search_all, search_user = self.owner_id)
+  def overlapping_trips(distance, search_all, search_user = self.owner_id)
     #Use LIMIT/OFFSET later for infinite search results
     sql_params = {
       sd: start_date,
@@ -70,7 +70,7 @@ class Trip < ActiveRecord::Base
       id: id
     }
 
-    self.nearbys.where(
+    self.nearbys(distance).where(
        "((trips.start_date > :sd AND trips.start_date < :ed) OR
         (trips.end_date > :sd AND trips.end_date < :ed) OR
         (trips.start_date <= :sd AND trips.end_date >= :ed) OR

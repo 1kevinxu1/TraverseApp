@@ -174,7 +174,7 @@ cities = [
   end
 end
 
-Trip.first.overlapping_trips(true).each do |trip|
+Trip.first.overlapping_trips(30, true).each do |trip|
   MeetRequest.create!(
     requester_id: trip.user.id,
     requested_trip_id: 1,
@@ -182,7 +182,7 @@ Trip.first.overlapping_trips(true).each do |trip|
   )
 end
 
-Trip.second.overlapping_trips(true).each do |trip|
+Trip.second.overlapping_trips(30, true).each do |trip|
   MeetRequest.create!(
     requester_id: trip.user.id,
     requested_trip_id: 2,

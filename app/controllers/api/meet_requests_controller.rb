@@ -24,7 +24,7 @@ class Api::MeetRequestsController < Api::ApiController
 
   def generate_corresponding_request(meet_request, status)
     corresponding_trip =
-      meet_request.requested_trip.overlapping_trips(false, meet_request.requester_id).first
+      meet_request.requested_trip.overlapping_trips(30, false, meet_request.requester_id).first
     if status != 'PENDING'
       MeetRequest.create(
         requester_id: current_user.id,
