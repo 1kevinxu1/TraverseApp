@@ -84,3 +84,32 @@ ul.tagit input[type="text"] {
     background: white;
     border-bottom: 1px solid black;
 }
+
+#similar-interests{
+  list-style-type: none;
+}
+
+#similar-interests li {
+  position: relative;
+  display: inline;
+  font-weight: bold;
+  font-family: "Lato";
+  font-size: 12px;
+  color: #3383bb;
+  padding: .2em 4px .2em .5em;
+  margin: 2px 2px;
+  top: 3px;
+  background: #eee;
+  border: 1px solid #ddd;
+  float: right;
+  border-radius: 5px;
+}
+
+#similar-interests-tag {
+  position: relative;
+  float: right;
+  margin-right: 5px;
+  font-weight: bold;
+  font-size: 12px;
+  top: 6px;
+}

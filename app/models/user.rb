@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     self.session_digest ||= User.generate_session_digest
   end
 
+  def similar_interests(other_user)
+    self.interests & other_user.interests
+  end
+
   private
 
   def real_location

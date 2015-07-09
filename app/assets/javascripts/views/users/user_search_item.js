@@ -9,8 +9,9 @@ Traverse.Views.UserSearchItem = Backbone.CompositeView.extend({
   },
 
   render: function() {
-     var content = this.template({ user: this.model });
+    var content = this.template({ user: this.model });
     this.$el.html(content);
+    this.onRender();
     return this;
   }
 });

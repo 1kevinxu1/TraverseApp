@@ -13,4 +13,11 @@
   <% } %></h5>
 <p>from <%= user.get("start_date") %> to <%= user.get("end_date") %> (<%=Math.floor(user.get("distance"))%> miles away from where you'll be!)</p>
 
-<ul class='tagit'></ul>
+<div class="">
+  <ul id="similar-interests">
+    <% user.get("similar_interests").forEach(function (interest) { %>
+      <li><%=interest.name%></li>
+    <% }) %>
+  </ul>
+  <p id="similar-interests-tag">Similar interests: </p>
+</div>

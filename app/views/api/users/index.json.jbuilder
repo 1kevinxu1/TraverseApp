@@ -11,4 +11,7 @@ json.array! @trips do |trip|
   json.distance trip.distance
   json.start_date trip.start_date_string
   json.end_date trip.end_date_string
+  json.similar_interests do
+    json.array!(current_user.similar_interests(trip.user))
+  end
 end
