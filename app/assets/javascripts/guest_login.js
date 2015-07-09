@@ -9,7 +9,7 @@ window.GuestLogin = {
 		$password = $('#password');
 		$submitButton = $('#login-submit');
 
-		this.slowtype($username, 'admin', function(){
+		this.slowtype($username, 'welcome@guest.com', function(){
 			this.slowtype($password, 'password', function(){
 				$submitButton.click();
 			}.bind(this))

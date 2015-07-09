@@ -105,6 +105,14 @@ cities = [
   }
 ]
 
+UserInterest.create!([
+  {user_id: 1, interest_id: 2},
+  {user_id: 1, interest_id: 3},
+  {user_id: 1, interest_id: 4},
+  {user_id: 1, interest_id: 5},
+  {user_id: 1, interest_id: 6},
+  {user_id: 1, interest_id: 8}
+])
 
 30.times do |index|
   name = Faker::Name.name.split(' ')
