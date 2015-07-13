@@ -1,8 +1,8 @@
 # Traverse
 
-[Heroku link][heroku]
+[Live link][heroku]
 
-[heroku]: http://traverse-app.herokuapp.com
+[heroku]: http://traverse-app.com
 
 ## Minimum Viable Product
 Travserse is an app inspired by Couchsurfing and Meetup built on Rails and
@@ -10,15 +10,16 @@ Backbone. Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
-- [ ] Create trips
-- [ ] Create blog posts
-- [ ] View profiles
-- [ ] View trips
-- [ ] Search for Users by trip overlaps
-- [ ] Connect and request to meet other users
-- [ ] View sidebar
+- [x] Create accounts
+- [x] Create sessions (log in)
+- [x] Create trips
+- [x] View/search profiles
+- [x] View trips
+- [x] Search for Users by trip overlaps ordered by distance
+- [x] Connect and request to meet other users
+- [x] Persistent profile sidebar
+- [x] Autocomplete search bar
+- [x] "Friends" integration — keep a list of everyone you have met up with
 
 ## Design Docs
 * [View Wireframes][views]
@@ -67,15 +68,6 @@ will display their profile picture and interests on the side of the page, in a
 composite view.
 
 [Details][phase-four]
-
-### Bonus Features (TBD)
-- [ ] Typeahead search bar
-- [ ] Random trip selection
-- [ ] Advanced guest log in functionality (choose who to log in as)
-- [ ] "Friends" integration — keep a list of everyone you have met up with
-- [ ] Deprecated trip views - find and interact with trips that have past
-- [ ] Pagination/infinite scroll
-- [ ] Integrating in-app chat/messaging system
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
