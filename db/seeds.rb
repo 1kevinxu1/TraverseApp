@@ -35,8 +35,8 @@ admin = User.create(
 trip = Trip.create!(
   owner_id: admin.id,
   name: "Going Home!",
-  start_date: Date.new(2015,7,10),
-  end_date: Date.new(2015,7,24),
+  start_date: Date.today,
+  end_date: Date.today + 14,
   city: "San Diego",
   state: "CA",
   country: "United States",
@@ -48,8 +48,8 @@ trip = Trip.create!(
 trip = Trip.create!(
   owner_id: admin.id,
   name: "Coming Back!",
-  start_date: Date.new(2015,7,25),
-  end_date: Date.new(2015,8,12),
+  start_date: Date.today + 16,
+  end_date: Date.today + 25,
   city: "Baltimore",
   state: "MD",
   country: "United States",
