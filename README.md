@@ -5,9 +5,10 @@
 [heroku]: http://traverse-app.com
 
 ## Minimum Viable Product
-Traverse is an orignal app where travelers can meet and plan events/activities
-beforehand with users who will be in the same places they will. Built on Rails and
-Backbone. Users can:
+Traverse is an original demo app where travelers can meet and plan
+events/activities beforehand with other users who are traveling near their
+destination. Built with Rails and Backbone.js, with PostgreSQL as the database.
+Users can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
